@@ -22,10 +22,10 @@ export default {
   },
   data() {
     return {
-      activeTab: 'News',
+      activeTab: 'Balance',
       tabs: {
         //notLoggedInTabs: ['Login',  'News',],
-        loggedInTabs: [ 'Balance',],
+        loggedInTabs: [ 'Balance','TradeTab','Ticker','LiveTrades','News',],
       },
       height: 0,
       tabBarEventBus: new Vue(),
