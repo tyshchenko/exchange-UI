@@ -6,11 +6,13 @@
 import ExchangeDataEventBus from '@/eventBuses/exchangeData';
 import PriceAnalysis from './PriceAnalysis/PriceAnalysis.vue';
 import TradingView from './TradingView/TradingView.vue';
+import TradeView from './../../TradeView/TradeView.vue';
 export default {
   name: 'price-pane',
   components: {
     PriceAnalysis,
     TradingView,
+    TradeView,
   },
   data() {
     return {

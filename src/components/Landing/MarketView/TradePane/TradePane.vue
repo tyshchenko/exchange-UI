@@ -9,7 +9,6 @@ import News from './News/News.vue';
 import Balance from './Balance/Balance.vue';
 import LiveTrades from './../BookPane/LiveTrades/LiveTrades';
 import EventBus, { EventNames, } from '@/eventBuses/default';
-import TradeView from './../../TradeView/TradeView.vue';
 
 
 export default {
@@ -21,7 +20,6 @@ export default {
     Balance,
     LiveTrades,
     News,
-    TradeView,
   },
   data() {
     return {
