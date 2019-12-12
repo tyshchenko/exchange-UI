@@ -29,7 +29,7 @@ export default {
       this.action = 'login';
     },
     signUpComplete() {
-      this.tabBarEventBus.$emit('change-active-tab', 'News');
+      this.tabBarEventBus.$emit('change-active-tab', 'Balance');
     },
     onTabChange(activeTab) {
       if (activeTab === 'News') {
