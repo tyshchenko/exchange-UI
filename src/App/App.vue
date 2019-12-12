@@ -98,6 +98,7 @@ export default {
   },
   mounted() {
     this.loginListener = body => this.fetchConfigs(body.username);
+    console.log(body.username);
     this.sessionExpiryListener = () => {
       if (LocalStorage.isUserLoggedIn()) {
         this.$showErrorMsg({
