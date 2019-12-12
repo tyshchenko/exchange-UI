@@ -26,10 +26,10 @@ import '@/assets/css/core.css';
 import '@/assets/css/simplebar.css';
 import '@/assets/css/colors.css';
 
-import '@/services/exchangeSockets/hitbtc';
-import '@/services/exchangeSockets/new_binance';
+//import '@/services/exchangeSockets/hitbtc';
+//import '@/services/exchangeSockets/new_binance';
 import '@/services/exchangeSockets/new_bitfinex';
-import '@/services/exchangeSockets/bitmex.js';
+//import '@/services/exchangeSockets/bitmex.js';
 import '@/services/exchangeSockets/newApiEngine';
 
 const device = new WebSocket('ws://localhost:8085');
