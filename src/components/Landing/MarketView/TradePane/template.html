@@ -10,9 +10,9 @@
                 <tab-bar :mobileDropdown=false :bus="tabBarEventBus" :tabs=tabs.loggedInTabs @tab-change="activeTabChange" v-else />
             </div>
             <keep-alive>
-                <!-- <trade-tab v-if="activeTab === 'Trade'" /> -->
+                <trade-tab v-if="activeTab === 'Trade'" />
                 <login v-if="activeTab === 'Login'" />
-                <!-- <ticker v-if="activeTab === 'Ticker'" /> -->
+                <ticker v-if="activeTab === 'Ticker'" />
                 <balance v-if="activeTab === 'Balance'" />
                 <news v-if="activeTab === 'News'" />
             </keep-alive>
