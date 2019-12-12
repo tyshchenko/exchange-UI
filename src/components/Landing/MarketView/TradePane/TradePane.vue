@@ -25,7 +25,7 @@ export default {
       activeTab: 'Balance',
       tabs: {
         //notLoggedInTabs: ['Login',  'News',],
-        loggedInTabs: [ 'Balance','LiveTrades',],
+        loggedInTabs: [ 'Balance','Trade','Login',],
       },
       height: 0,
       tabBarEventBus: new Vue(),
