@@ -26,7 +26,8 @@
                         </model-select>
                     </div> -->
                     <div class="header-market-link-group uk-clearfix">
-                        <div class="header-market-link-label">{{ $store.getters.formattedSelectedExchange }}</div>
+                        <!-- <div class="header-market-link-label">{{ $store.getters.formattedSelectedExchange }}</div> -->
+                        <div class="header-market-link-label">AnkerPay</div>
                         <div class="header-market-link uk-clearfix">
                             <div class="price-title">{{ $store.state.selectedPair }}</div>
                             <div class="price">
@@ -65,54 +66,54 @@
                             <router-link to="/" v-bind:class="{ active: $route.path === '/' }">
                                 <span>Trade</span>
                             </router-link>
-                            <router-link to="/markets" v-bind:class="{ active: $route.path === '/markets' }">
-                                <span>Markets</span>
-                            </router-link>
-                            <div class="dropdown" v-if="$store.getters.isLoggedIn && $store.getters.themeMode === 'default'">
-                                <button class="dropbtn">Funds
-                                    <i class="fa fa-caret-down"></i>
-                                </button>
-                                <div class="dropdown-content">
+                            <!-- <router-link to="/markets" v-bind:class="{ active: $route.path === '/markets' }"> -->
+                                <!-- <span>Markets</span> -->
+                            <!-- </router-link> -->
+                            <!-- <div class="dropdown" v-if="$store.getters.isLoggedIn && $store.getters.themeMode === 'default'"> -->
+                                <!-- <button class="dropbtn">Funds -->
+                                    <!-- <i class="fa fa-caret-down"></i> -->
+                                <!-- </button> -->
+                                <!-- <div class="dropdown-content"> -->
 
-                                    <a href="javascript:undefined" @click="showWithdrawlModal">
-                                        <!-- <span>
-                                            <i class="icc icons8-donate"></i>
-                                        </span> -->
-                                        <span>Deposit</span>
-                                    </a>
-                                    <!-- <a href="javascript:undefined" @click="showDepositModal">
-                                        <span>
-                      <i class="icc icons8-receive-cash"></i>
-                    </span>
-                                        <span>Withdrawal</span>
-                                    </a> -->
-                                </div>
-                            </div>
-                            <div class="dropdown" v-if="$store.getters.isLoggedIn && $store.getters.themeMode === 'default'">
-                                <button class="dropbtn">Profile
-                                    <i class="fa fa-caret-down"></i>
-                                </button>
-                                <div class="dropdown-content">
-                                    <router-link to="/settings" v-bind:class="{active: $route.path.startsWith('/settings')}">
-                                        Settings
-                                    </router-link>
-                                    <router-link to="/history" v-bind:class="{ active: $route.path.startsWith('/history') }">
-                                        <!-- <span>
-                                            <i class="icc icons8-time-machine"></i>
-                                        </span> -->
-                                        <span>History</span>
-                                    </router-link>
-                                    <a href="javascript:undefined" @click="refreshBalances">
-                                        <span>Refresh Balances</span>
-                                    </a>
-                                    <a href="https://blocknomic.freshdesk.com" v-if="!$store.getters.isLoggedIn" target="_blank">
-                                        <span>Help</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <router-link to="/balance" v-bind:class="{ active: $route.path.startsWith('/balance') }" v-if="$store.getters.isLoggedIn && $store.getters.themeMode === 'default'">
-                                <span>Wallets</span>
-                            </router-link>
+                                    <!-- <a href="javascript:undefined" @click="showWithdrawlModal"> -->
+                                        <!-- <!-- <span> -->
+                                            <!-- <i class="icc icons8-donate"></i> -->
+                                        <!-- </span> --> -->
+                                        <!-- <span>Deposit</span> -->
+                                    <!-- </a> -->
+                                    <!-- <!-- <a href="javascript:undefined" @click="showDepositModal"> -->
+                                        <!-- <span> -->
+                      <!-- <i class="icc icons8-receive-cash"></i> -->
+                    <!-- </span> -->
+                                        <!-- <span>Withdrawal</span> -->
+                                    <!-- </a> --> -->
+                                <!-- </div> -->
+                            <!-- </div> -->
+                            <!-- <div class="dropdown" v-if="$store.getters.isLoggedIn && $store.getters.themeMode === 'default'"> -->
+                                <!-- <button class="dropbtn">Profile -->
+                                    <!-- <i class="fa fa-caret-down"></i> -->
+                                <!-- </button> -->
+                                <!-- <div class="dropdown-content"> -->
+                                    <!-- <router-link to="/settings" v-bind:class="{active: $route.path.startsWith('/settings')}"> -->
+                                        <!-- Settings -->
+                                    <!-- </router-link> -->
+                                    <!-- <router-link to="/history" v-bind:class="{ active: $route.path.startsWith('/history') }"> -->
+                                        <!-- <!-- <span> -->
+                                            <!-- <i class="icc icons8-time-machine"></i> -->
+                                        <!-- </span> --> -->
+                                        <!-- <span>History</span> -->
+                                    <!-- </router-link> -->
+                                    <!-- <!-- <a href="javascript:undefined" @click="refreshBalances"> -->
+                                        <!-- <span>Refresh Balances</span> -->
+                                    <!-- </a> --> -->
+                                    <!-- <!-- <a href="https://blocknomic.freshdesk.com" v-if="!$store.getters.isLoggedIn" target="_blank"> -->
+                                        <!-- <span>Help</span> -->
+                                    <!-- </a> --> -->
+                                <!-- </div> -->
+                            <!-- </div> -->
+                            <!-- <router-link to="/balance" v-bind:class="{ active: $route.path.startsWith('/balance') }" v-if="$store.getters.isLoggedIn && $store.getters.themeMode === 'default'"> -->
+                                <!-- <span>Wallets</span> -->
+                            <!-- </router-link> -->
                         </div>
                     </div>
                     <div id="statusDiv" style="color:var(--primary-text-color);"><span class="dot" :class='serverStatusCode'></span>&nbsp;&nbsp;&nbsp;&nbsp;{{ getServerStatus() }}</div>
