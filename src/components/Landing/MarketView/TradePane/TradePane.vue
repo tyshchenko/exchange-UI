@@ -22,10 +22,10 @@ export default {
   },
   data() {
     return {
-      activeTab: 'Balance',
+      activeTab: 'Trade',
       tabs: {
         //notLoggedInTabs: ['Login',  'News',],
-        loggedInTabs: [ 'Balance','Trade','Login',],
+        loggedInTabs: [ 'Balance','Trade',],
       },
       height: 0,
       tabBarEventBus: new Vue(),
@@ -36,11 +36,11 @@ export default {
   },
   mounted() {
     if(localStorage.getItem('jwt') && localStorage.getItem('mqtt') && localStorage.getItem('usnn')){
-      this.tabBarEventBus.$emit('change-active-tab', 'News');
-      this.activeTab= 'News';      
+      this.tabBarEventBus.$emit('change-active-tab', 'Trade');
+      this.activeTab= 'Trade';      
     }
     EventBus.$on(EventNames.userLogin, () =>
-      this.tabBarEventBus.$emit('change-active-tab', 'News')
+      this.tabBarEventBus.$emit('change-active-tab', 'Trade')
     );
     this.height = this.$refs.tradePane.clientHeight;
     EventBus.$on(EventNames.userLogout, this.userLogoutListener);
@@ -58,8 +58,8 @@ export default {
       // }
     },
     userLogoutListener() {
-      this.activeTab = 'News';
-      this.tabBarEventBus.$emit('change-active-tab', 'News');
+      this.activeTab = 'Trade';
+      this.tabBarEventBus.$emit('change-active-tab', 'Trade');
     },
   },
 };
