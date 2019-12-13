@@ -36,8 +36,23 @@ class TradeService {
 
   async getLedger(requestBody) {
     if (requestBody) {
-      return (await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1],})).data;
+      let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1],}).data;
+      let arr = [];
+      let obj = {};      
+      obj.wallet_type = 'exchange';
+      obj.currency = 'BTC';
+      obj.locked_bal = Number(response.result.BTC.freeze);
+      obj.avail_bal = Number(response.result.BTC.available);
+      obj.total_bal = Number(obj.locked_bal) + Number(obj.avail_bal);
+      arr.push(obj);
+      obj.currency = 'USD';
+      obj.locked_bal = Number(response.result.USD.freeze);
+      obj.avail_bal = Number(response.result.USD.available);
+      obj.total_bal = Number(obj.locked_bal) + Number(obj.avail_bal);
+
+      return {"status":true,"message":"Balance","data":arr};
     }
+
     //return (await ApiCurryBase.post('/get-pair-wise-balance', requestBody)).data;
 //{"status":true,"message":"Balance","data":[{"wallet_type":"exchange","currency":"USD","total_bal":0.75722792,"locked_bal":0,"avail_bal":0.75722792}]}
     //get-pair-wise-balance
