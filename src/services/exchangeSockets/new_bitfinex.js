@@ -540,8 +540,8 @@ class Bitfinex {
     let symbol = pair;
     let data = {
       id: this.id,
-      method: 'kline.subscribe',
-      params: [symbol,10,'0',precision,], //book
+      method: 'price.subscribe',
+      params: [symbol,10,'0',precision,], 
     };
     this.ctx.send(JSON.stringify(data));
     this.id = this.id + 1;
