@@ -247,13 +247,13 @@ class Bitfinex {
         localData.value = Number(item[0]);
         localData.volume = Number(item[1]);
         asks.push(localData);
-    }
+    };
     data.bids.forEach((item) => {
         let localData = {};
         localData.value = Number(item[0]);
         localData.volume = Number(item[1]);
         bids.push(localData);
-    }
+    };
     
     if (chartData.asks && chartData.bids) {
         chartData.asks.push(asks);
