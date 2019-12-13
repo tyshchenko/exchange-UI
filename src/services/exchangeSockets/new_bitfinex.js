@@ -145,11 +145,11 @@ class Bitfinex {
     } = this.state._constants;
     let symbol = pair;
     let data = {
-      event: 'subscribe',
-      channel: 'depth', //book
-      symbol,
-      prec: precision,
+        id: 1,
+      method: 'depth.subscribe',
+      params: [symbol,precision,"0"], //book
       //len: '20',
+      //{"id":2,"method":"depth.subscribe","params":["BTCUSD",50,"0"]}
     };
     this.ctx.send(JSON.stringify(data));
   }
