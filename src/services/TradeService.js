@@ -36,11 +36,12 @@ class TradeService {
 
   async getLedger(requestBody) {
     if (requestBody) {
-      let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1],}).data;
+      let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1,],}).data;
       let arr = [];
       let obj = {};      
       obj.wallet_type = 'exchange';
       obj.currency = 'BTC';
+      console.log(response);
       obj.locked_bal = Number(response.result.BTC.freeze);
       obj.avail_bal = Number(response.result.BTC.available);
       obj.total_bal = Number(obj.locked_bal) + Number(obj.avail_bal);
