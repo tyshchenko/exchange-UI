@@ -215,24 +215,27 @@ class Bitfinex {
 
   emitWorkerTrades(data, isSnapShot) {
     if (isSnapShot) {
-      this.workers.postMessage('emit-live-trades', [data, serialize({
-        fns: {},
-        utils: {
-          dateToDisplayTime,
-        },
-      }), ]).then(data => {
-        this.ExchangeDataEventBus.$emit('snapshotTrades', data);
-        this.ExchangeDataEventBus.$emit('liveTrades', data[1]);
-      }).catch(() => {});
+      // this.workers.postMessage('emit-live-trades', [data, serialize({
+        // fns: {},
+        // utils: {
+          // dateToDisplayTime,
+        // },
+      // }), ]).then(data => {
+        // this.ExchangeDataEventBus.$emit('snapshotTrades', data);
+        // this.ExchangeDataEventBus.$emit('liveTrades', data[1]);
+      // }).catch(() => {});
     } else {
+        //{"params": ["BTCUSD", [{"amount": "0.001", "time": 1576245028.9058609, "id": 1, "type": "sell", "price": "8000"}]], "method": "deals.update", "id": null}
       let arr = [];
       let obj = {};
-      obj.price = Number((data[3]).toFixed(2));
-      obj.timeStamp = dateToDisplayTime(new Date(data[1]));
-      obj.volume = Math.abs(data[2]);
-      obj.buyOrSell = data[2] < 0 ? 'sell' : 'buy';
-      arr.push(obj);
-      this.ExchangeDataEventBus.$emit('liveTrades', obj);
+      data.forEach((item) => {
+          obj.price = Number((item.price).toFixed(2));
+          obj.timeStamp = dateToDisplayTime(new Date(item.time));
+          obj.volume = Number(item.amount);
+          obj.buyOrSell = item.type;
+          arr.push(obj);
+          this.ExchangeDataEventBus.$emit('liveTrades', obj);
+      });
     }
   }
 
@@ -305,17 +308,17 @@ class Bitfinex {
       selectedPair,
     } = this.state._constants;
     if (store.getters.selectedExchange === 'bitfinex') {
-      store.state.sellPrice = data[0];
-      store.state.buyPrice = data[2];
+      store.state.sellPrice = data;
+      store.state.buyPrice = data;
     }
-    obj.ask = data[2];
-    obj.bid = data[0];
-    obj.high = data[8];
-    obj.low = data[9];
-    obj.last = data[6];
-    obj.volume = (data[7]);
+    obj.ask = data;
+    obj.bid = data;
+    obj.high = data;
+    obj.low = data;
+    obj.last = data;
+    obj.volume = 0;
     obj.symbol = selectedPair;
-    obj.percentage = (data[5] * 100);
+    obj.percentage = 0;
     obj.exchange = 'bitfinex';
     this.ExchangeDataEventBus.$emit('ticker', obj);
   }
@@ -352,6 +355,14 @@ class Bitfinex {
         if (method=='depth.update') {
             let data = dataObj.params[1];
             this.emitBooks(data);
+        }
+        if (method=='price.update') {
+            let data = dataObj.params[1];
+            this.makeTickerResponse(data);
+        }
+        if (method=='deals.update') {
+            let data = dataObj.params[1];
+            this.emitWorkerTrades(data, false);
         }
         
     }
