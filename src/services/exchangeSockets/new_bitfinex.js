@@ -146,7 +146,7 @@ class Bitfinex {
     let symbol = pair;
     let data = {
       event: 'subscribe',
-      channel: 'book',
+      channel: 'depth', //book
       symbol,
       prec: precision,
       //len: '20',
@@ -158,7 +158,7 @@ class Bitfinex {
     let symbol = pair;
     let data = {
       event: 'subscribe',
-      channel: 'trades',
+      channel: 'deals', //trades
       symbol,
     };
     this.ctx.send(JSON.stringify(data));
@@ -168,7 +168,7 @@ class Bitfinex {
     let key = `trade:${timeFrame}:${pair}`;
     let data = {
       event: 'subscribe',
-      channel: 'candles',
+      channel: 'kline', //candles
       key,
     };
     this.ctx.send(JSON.stringify(data));
