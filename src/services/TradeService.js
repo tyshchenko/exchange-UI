@@ -3,11 +3,11 @@ import axios from 'axios';
 
 class TradeService {
   async placeNewOrder(requestBody) {
-      let method = {
-          'method': 'order.put_market',
-          'id':1,
-        };
-    return (await ApiCurryBase.post('/', {method, requestBody})).data;
+    let method = {
+      'method': 'order.put_market',
+      'id':1,
+    };
+    return (await ApiCurryBase.post('/', {method, requestBody,})).data;
   }
 
   async cancelOrder(requestBody) {
@@ -35,11 +35,11 @@ class TradeService {
   }
 
   async getLedger(requestBody) {
-      let method = {
-          'method': 'balance.query',
-          'id':1,
-        };
-    return (await ApiCurryBase.post('/', {method, requestBody})).data;
+    let method = {
+      'method': 'balance.query',
+      'id':1,
+    };
+    return (await ApiCurryBase.post('/', {method, requestBody,})).data;
     //get-pair-wise-balance
   }
 

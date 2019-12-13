@@ -145,9 +145,9 @@ class Bitfinex {
     } = this.state._constants;
     let symbol = pair;
     let data = {
-        id: 1,
+      id: 1,
       method: 'depth.subscribe',
-      params: [symbol,precision,"0"], //book
+      params: [symbol,precision,'0',], //book
       //len: '20',
       //{"id":2,"method":"depth.subscribe","params":["BTCUSD",50,"0"]}
     };
