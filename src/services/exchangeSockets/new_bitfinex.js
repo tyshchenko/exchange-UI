@@ -410,7 +410,7 @@ class Bitfinex {
 
   handleMessage(message) {
     let dataObj = JSON.parse(message.data);
-    let event = dataObj.event;
+    let event = dataObj.result;
     const {
       _constants,
     } = this.state;
