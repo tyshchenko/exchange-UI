@@ -35,12 +35,13 @@ class TradeService {
   }
 
   async getLedger(requestBody) {
-    // if (requestBody) {
-      // return (await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1],})).data;
-    // }
-    return (await ApiCurryBase.post('/get-pair-wise-balance', requestBody)).data;
-
+    if (requestBody) {
+      return (await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1],})).data;
+    }
+    //return (await ApiCurryBase.post('/get-pair-wise-balance', requestBody)).data;
+//{"status":true,"message":"Balance","data":[{"wallet_type":"exchange","currency":"USD","total_bal":0.75722792,"locked_bal":0,"avail_bal":0.75722792}]}
     //get-pair-wise-balance
+
   }
 
   async getPairsList() {
@@ -49,6 +50,7 @@ class TradeService {
 
   async getMarginInfo(body) {
     return (await ApiCurryBase.post('/bitfinex-margin-info', body)).data;
+    //{"status":true,"message":"Bitfinex Margin Info","data":{"user_pl":0,"user_swaps":0,"margin_balance":0,"margin_net":0,"margin_required":0}}
   }
 
   async calculatePrices(body) {
