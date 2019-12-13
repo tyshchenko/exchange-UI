@@ -539,12 +539,12 @@ class Bitfinex {
   subscribeTicker(pair, precision) {
     let symbol = pair;
     let data = {
-      event: 'subscribe',
-      channel: 'ticker',
-      symbol,
-      precision,
+      id: this.id,
+      method: 'kline.subscribe',
+      params: [symbol,10,'0',], //book
     };
     this.ctx.send(JSON.stringify(data));
+    this.id = this.id + 1;
   }
 
   subscribeCandleEvent(info) {
