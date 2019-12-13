@@ -42,7 +42,7 @@ class TradeService {
       obj.wallet_type = 'exchange';
       obj.currency = 'BTC';
 /* eslint-disable no-console */
-console.log(response.data);
+console.log(response);
 /* eslint-enable no-console */
       obj.locked_bal = Number(response.data.result.BTC.freeze);
       obj.avail_bal = Number(response.data.result.BTC.available);
