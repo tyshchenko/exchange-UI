@@ -46,6 +46,9 @@ class ApiCurryBase {
       baseURL: process.env.VUE_APP_CURRY_API_BASE_URL,
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin', '*',
+        'Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE',
+        'Access-Control-Allow-Headers', 'Content-Type',
       },
       timeout: 15000,
     });
