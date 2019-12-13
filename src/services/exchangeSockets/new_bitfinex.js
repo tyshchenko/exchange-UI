@@ -229,7 +229,7 @@ class Bitfinex {
       let arr = [];
       let obj = {};
       data.forEach((item) => {
-          obj.price = Number((item.price).toFixed(2));
+          obj.price = Number(item.price);
           obj.timeStamp = dateToDisplayTime(new Date(item.time));
           obj.volume = Number(item.amount);
           obj.buyOrSell = item.type;
