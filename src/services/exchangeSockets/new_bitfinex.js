@@ -194,13 +194,15 @@ class Bitfinex {
         this.id = this.id + 1;
       });
     } else {
-      let data = {
-          id: this.id,
-          method: key + '.unsubscribe',
-          params: [],
-      };
-      this.ctx.send(JSON.stringify(data));
-      this.id = this.id + 1;
+        if (key=="") {
+          let data = {
+              id: this.id,
+              method: key + '.unsubscribe',
+              params: [],
+          };
+          this.ctx.send(JSON.stringify(data));
+          this.id = this.id + 1;
+        }
     }
   }
 
