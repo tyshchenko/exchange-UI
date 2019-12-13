@@ -3,7 +3,11 @@ import axios from 'axios';
 
 class TradeService {
   async placeNewOrder(requestBody) {
-    return (await ApiCurryBase.post('/neworder', requestBody)).data;
+      let method = {
+          'method': 'order.put_market',
+          'id':1,
+        };
+    return (await ApiCurryBase.post('/', {method, requestBody})).data;
   }
 
   async cancelOrder(requestBody) {
