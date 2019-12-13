@@ -188,15 +188,15 @@ class Bitfinex {
 
   unsubscribe(key) {
     if (key) {
-        if (key!="") {
-          let data = {
-              id: this.id,
-              method: key + '.unsubscribe',
-              params: [],
-          };
-          this.ctx.send(JSON.stringify(data));
-          this.id = this.id + 1;
-        }
+      if (key!='') {
+        let data = {
+          id: this.id,
+          method: key + '.unsubscribe',
+          params: [],
+        };
+        this.ctx.send(JSON.stringify(data));
+        this.id = this.id + 1;
+      }
     }
   }
 
@@ -216,25 +216,25 @@ class Bitfinex {
   emitWorkerTrades(data, isSnapShot) {
     if (isSnapShot) {
       // this.workers.postMessage('emit-live-trades', [data, serialize({
-        // fns: {},
-        // utils: {
-          // dateToDisplayTime,
-        // },
+      // fns: {},
+      // utils: {
+      // dateToDisplayTime,
+      // },
       // }), ]).then(data => {
-        // this.ExchangeDataEventBus.$emit('snapshotTrades', data);
-        // this.ExchangeDataEventBus.$emit('liveTrades', data[1]);
+      // this.ExchangeDataEventBus.$emit('snapshotTrades', data);
+      // this.ExchangeDataEventBus.$emit('liveTrades', data[1]);
       // }).catch(() => {});
     } else {
-        //{"params": ["BTCUSD", [{"amount": "0.001", "time": 1576245028.9058609, "id": 1, "type": "sell", "price": "8000"}]], "method": "deals.update", "id": null}
+      //{"params": ["BTCUSD", [{"amount": "0.001", "time": 1576245028.9058609, "id": 1, "type": "sell", "price": "8000"}]], "method": "deals.update", "id": null}
       let arr = [];
       let obj = {};
       data.forEach((item) => {
-          obj.price = Number(item.price);
-          obj.timeStamp = dateToDisplayTime(new Date(item.time));
-          obj.volume = Number(item.amount);
-          obj.buyOrSell = item.type;
-          arr.push(obj);
-          this.ExchangeDataEventBus.$emit('liveTrades', obj);
+        obj.price = Number(item.price);
+        obj.timeStamp = dateToDisplayTime(new Date(item.time));
+        obj.volume = Number(item.amount);
+        obj.buyOrSell = item.type;
+        arr.push(obj);
+        this.ExchangeDataEventBus.$emit('liveTrades', obj);
       });
     }
   }
@@ -246,34 +246,34 @@ class Bitfinex {
     let asks = [];
     let bids = [];
     if (data.asks) {
-        data.asks.forEach((item) => {
-            let localData = {};
-            localData.value = Number(item[0]);
-            localData.volume = Number(item[1]);
-            asks.push(localData);
-        });
-    };
+      data.asks.forEach((item) => {
+        let localData = {};
+        localData.value = Number(item[0]);
+        localData.volume = Number(item[1]);
+        asks.push(localData);
+      });
+    }
     if (data.bids) {
-        data.bids.forEach((item) => {
-            let localData = {};
-            localData.value = Number(item[0]);
-            localData.volume = Number(item[1]);
-            bids.push(localData);
-        });
+      data.bids.forEach((item) => {
+        let localData = {};
+        localData.value = Number(item[0]);
+        localData.volume = Number(item[1]);
+        bids.push(localData);
+      });
     }
     
     if (chartData.asks && chartData.bids) {
-        chartData.asks.push(asks);
-        chartData.bids.push(bids);
-        if (chartData.asks.length > 9 && chartData.bids.length > 9) {
-            this.ExchangeDataEventBus.$emit('updateOrderbook', JSON.parse(JSON.stringify(chartData)));
-        } else {
-            this.refreshOrderBook();
-        }
+      chartData.asks.push(asks);
+      chartData.bids.push(bids);
+      if (chartData.asks.length > 9 && chartData.bids.length > 9) {
+        this.ExchangeDataEventBus.$emit('updateOrderbook', JSON.parse(JSON.stringify(chartData)));
+      } else {
+        this.refreshOrderBook();
+      }
     } else {
-        chartData.asks = asks;
-        chartData.bids = bids;
-        this.ExchangeDataEventBus.$emit('snapshotOrderbook', JSON.parse(JSON.stringify(chartData)));
+      chartData.asks = asks;
+      chartData.bids = bids;
+      this.ExchangeDataEventBus.$emit('snapshotOrderbook', JSON.parse(JSON.stringify(chartData)));
     }
   }
 
@@ -352,61 +352,61 @@ class Bitfinex {
     let dataObj = JSON.parse(message.data);
     let method = dataObj.method;
     if (method) {
-        if (method=='depth.update') {
-            let data = dataObj.params[1];
-            this.emitBooks(data);
-        }
-        if (method=='price.update') {
-            let data = dataObj.params[1];
-            this.makeTickerResponse(data);
-        }
-        if (method=='deals.update') {
-            let data = dataObj.params[1];
-            this.emitWorkerTrades(data, false);
-        }
+      if (method=='depth.update') {
+        let data = dataObj.params[1];
+        this.emitBooks(data);
+      }
+      if (method=='price.update') {
+        let data = dataObj.params[1];
+        this.makeTickerResponse(data);
+      }
+      if (method=='deals.update') {
+        let data = dataObj.params[1];
+        this.emitWorkerTrades(data, false);
+      }
         
     }
     // let event = dataObj.result;
     // const {
-      // _constants,
+    // _constants,
     // } = this.state;
     // if (event) {
-// //          if (dataObj.channel === 'trades') {
-            // _constants.channelIDs.trades = dataObj.chanId;
-// //          } else if (dataObj.channel === 'candles') {
-            // _constants.channelIDs.candles = dataObj.chanId;
-            // _constants.candlesIdArray.push(dataObj.chanId);
-// //          } else if (dataObj.channel === 'book') {
-            // _constants.channelIDs.books = dataObj.chanId;
-// //          } else if (dataObj.channel === 'ticker') {
-            // _constants.channelIDs.ticker = dataObj.chanId;
-          // }
+    // //          if (dataObj.channel === 'trades') {
+    // _constants.channelIDs.trades = dataObj.chanId;
+    // //          } else if (dataObj.channel === 'candles') {
+    // _constants.channelIDs.candles = dataObj.chanId;
+    // _constants.candlesIdArray.push(dataObj.chanId);
+    // //          } else if (dataObj.channel === 'book') {
+    // _constants.channelIDs.books = dataObj.chanId;
+    // //          } else if (dataObj.channel === 'ticker') {
+    // _constants.channelIDs.ticker = dataObj.chanId;
+    // }
     // } else {
-      // let response = dataObj;
-      // if (response[0] == _constants.channelIDs.trades) {
-        // if (response[1] == 'tu') {
-          // this.emitWorkerTrades(response[2], false);
-        // } else if (Array.isArray(response[1])) {
-          // this.emitWorkerTrades(response[1], true);
-        // }
-      // } else if (response[0] == _constants.channelIDs.books) {
-        // let data = response[1];
-        // this.emitBooks(data);
-      // } else if (response[0] == _constants.channelIDs.candles) {
-        // if (response[1] != 'hb') {
-          // if (Array.isArray(response[1][0])) {
-            // let barArray = this.barData(response[1]);
-            // this.ExchangeDataEventBus.$emit('snapshotCandles', barArray);
-          // } else {
-            // this.updateBars(response[1]);
-          // }
-        // }
+    // let response = dataObj;
+    // if (response[0] == _constants.channelIDs.trades) {
+    // if (response[1] == 'tu') {
+    // this.emitWorkerTrades(response[2], false);
+    // } else if (Array.isArray(response[1])) {
+    // this.emitWorkerTrades(response[1], true);
+    // }
+    // } else if (response[0] == _constants.channelIDs.books) {
+    // let data = response[1];
+    // this.emitBooks(data);
+    // } else if (response[0] == _constants.channelIDs.candles) {
+    // if (response[1] != 'hb') {
+    // if (Array.isArray(response[1][0])) {
+    // let barArray = this.barData(response[1]);
+    // this.ExchangeDataEventBus.$emit('snapshotCandles', barArray);
+    // } else {
+    // this.updateBars(response[1]);
+    // }
+    // }
 
-      // } else if (response[0] == _constants.channelIDs.ticker) {
-        // if (response[1] != 'hb') {
-          // this.makeTickerResponse(response[1]);
-        // }
-      // }
+    // } else if (response[0] == _constants.channelIDs.ticker) {
+    // if (response[1] != 'hb') {
+    // this.makeTickerResponse(response[1]);
+    // }
+    // }
     // }
   }
 
