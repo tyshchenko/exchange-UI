@@ -185,16 +185,18 @@ class Bitfinex {
     } = this.state._constants;
     if (!key) {
       [channelIDs.trades, channelIDs.books, ...candlesIdArray, ].forEach((elem) => {
-        let data = {
-          id: this.id,
-          method: elem + '.unsubscribe',
-          params: [],
-        };
-        this.ctx.send(JSON.stringify(data));
-        this.id = this.id + 1;
+          if (elem) {
+            let data = {
+              id: this.id,
+              method: elem + '.unsubscribe',
+              params: [],
+            };
+            this.ctx.send(JSON.stringify(data));
+            this.id = this.id + 1;
+          }
       });
     } else {
-        if (key=="") {
+        if (key!="") {
           let data = {
               id: this.id,
               method: key + '.unsubscribe',
