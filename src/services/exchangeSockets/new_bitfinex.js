@@ -135,7 +135,7 @@ class Bitfinex {
   subscribePair(currencyPair) {
     let pair = keyMaps[`bitfinex-_-${currencyPair}`];
     this.subscribeOrderBook(pair);
-    this.subscribeTicker(pair, 'P0');
+    this.subscribeTicker(pair);
     this.subscribeTrades(pair);
     //subscribeCandles(pair, '1m');
   }
@@ -488,7 +488,7 @@ class Bitfinex {
     let timerId;
     const handler = () => {
       if (WebSocket.OPEN == this.ctx.readyState) {
-        this.subscribeTicker(pair, 'P0');
+        this.subscribeTicker(pair);
         clearInterval(timerId);
       }
     };
@@ -532,16 +532,16 @@ class Bitfinex {
   changeTickerPair(pair) {
     this.unsubscribe(this.state._constants.channelIDs.ticker);
     let Cpair = pair.replace('/', '');
-    this.subscribeTicker(Cpair, 'P0');
+    this.subscribeTicker(Cpair);
     return;
   }
 
-  subscribeTicker(pair, precision) {
+  subscribeTicker(pair) {
     let symbol = pair;
     let data = {
       id: this.id,
       method: 'price.subscribe',
-      params: [symbol,10,'0',precision,], 
+      params: [symbol,], 
     };
     this.ctx.send(JSON.stringify(data));
     this.id = this.id + 1;
