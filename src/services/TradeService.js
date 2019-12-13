@@ -36,7 +36,7 @@ class TradeService {
 
   async getLedger(requestBody) {
     if (requestBody) {
-      let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1,],});
+      let response = ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1,],});
       let arr = [];
       let obj = {};      
       obj.wallet_type = 'exchange';
