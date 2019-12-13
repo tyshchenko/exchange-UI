@@ -161,7 +161,7 @@ class Bitfinex {
     let data = {
       id: this.id,
       method: 'deals.subscribe',
-      params: [symbol,10,'0',], //book
+      params: [symbol,], //book
     };
     this.ctx.send(JSON.stringify(data));
     this.id = this.id + 1;
@@ -186,17 +186,21 @@ class Bitfinex {
     if (!key) {
       [channelIDs.trades, channelIDs.books, ...candlesIdArray, ].forEach((elem) => {
         let data = {
-          'event': 'unsubscribe',
-          'chanId': elem,
+          id: this.id,
+          method: elem + '.unsubscribe',
+          params: [],
         };
         this.ctx.send(JSON.stringify(data));
+        this.id = this.id + 1;
       });
     } else {
       let data = {
-        'event': 'unsubscribe',
-        'chanId': key,
+          id: this.id,
+          method: key + '.unsubscribe',
+          params: [],
       };
       this.ctx.send(JSON.stringify(data));
+      this.id = this.id + 1;
     }
   }
 
