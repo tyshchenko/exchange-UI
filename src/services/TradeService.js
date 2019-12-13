@@ -42,15 +42,15 @@ class TradeService {
       obj.wallet_type = 'exchange';
       obj.currency = 'BTC';
 /* eslint-disable no-console */
-console.log(response);
+console.log(response.data);
 /* eslint-enable no-console */
-      obj.locked_bal = Number(response.result.BTC.freeze);
-      obj.avail_bal = Number(response.result.BTC.available);
+      obj.locked_bal = Number(response.data.result.BTC.freeze);
+      obj.avail_bal = Number(response.data.result.BTC.available);
       obj.total_bal = Number(obj.locked_bal) + Number(obj.avail_bal);
       arr.push(obj);
       obj.currency = 'USD';
-      obj.locked_bal = Number(response.result.USD.freeze);
-      obj.avail_bal = Number(response.result.USD.available);
+      obj.locked_bal = Number(response.data.result.USD.freeze);
+      obj.avail_bal = Number(response.data.result.USD.available);
       obj.total_bal = Number(obj.locked_bal) + Number(obj.avail_bal);
 
       return {"status":true,"message":"Balance","data":arr};
