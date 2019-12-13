@@ -10,6 +10,7 @@ import {
 class Bitfinex {
   constructor() {
     this.ExchangeDataEventBus = ExchangeDataEventBus;
+    this.id = 1;
     this.state = {
       _constants: {
         selectedExchange: store.getters.selectedExchange,
@@ -140,38 +141,41 @@ class Bitfinex {
   }
 
   subscribeOrderBook(pair) {
-    const {
-      precision,
-    } = this.state._constants;
+    //    const {
+    //      precision,
+    //    } = this.state._constants;
     let symbol = pair;
     let data = {
-      id: 1,
+      id: this.id,
       method: 'depth.subscribe',
-      params: [symbol,precision,'0',], //book
+      params: [symbol,10,'0',], //book
       //len: '20',
       //{"id":2,"method":"depth.subscribe","params":["BTCUSD",50,"0"]}
     };
     this.ctx.send(JSON.stringify(data));
+    this.id = this.id + 1;
   }
 
   subscribeTrades(pair) {
     let symbol = pair;
     let data = {
-      event: 'subscribe',
-      channel: 'deals', //trades
-      symbol,
+      id: this.id,
+      method: 'deals.subscribe',
+      params: [symbol,10,'0',], //book
     };
     this.ctx.send(JSON.stringify(data));
+    this.id = this.id + 1;
   }
 
   subscribeCandles(pair, timeFrame) {
     let key = `trade:${timeFrame}:${pair}`;
     let data = {
-      event: 'subscribe',
-      channel: 'kline', //candles
-      key,
+      id: this.id,
+      method: 'kline.subscribe',
+      params: [pair,10,'0',key,], //book
     };
     this.ctx.send(JSON.stringify(data));
+    this.id = this.id + 1;
   }
 
   unsubscribe(key) {
