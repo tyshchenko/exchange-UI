@@ -250,7 +250,7 @@ class Bitfinex {
             asks.push(localData);
         });
     };
-    if (bids.asks) {
+    if (data.bids) {
         data.bids.forEach((item) => {
             let localData = {};
             localData.value = Number(item[0]);
