@@ -41,9 +41,9 @@ class TradeService {
       let obj = {};      
       obj.wallet_type = 'exchange';
       obj.currency = 'BTC';
-/* eslint-disable no-console */
-console.log(response.data);
-/* eslint-enable no-console */
+      /* eslint-disable no-console */
+      console.log(response.data);
+      /* eslint-enable no-console */
       obj.locked_bal = Number(response.result.BTC.freeze);
       obj.avail_bal = Number(response.result.BTC.available);
       obj.total_bal = Number(obj.locked_bal) + Number(obj.avail_bal);
@@ -53,11 +53,11 @@ console.log(response.data);
       obj.avail_bal = Number(response.result.USD.available);
       obj.total_bal = Number(obj.locked_bal) + Number(obj.avail_bal);
 
-      return {"status":true,"message":"Balance","data":arr};
+      return {'status':true,'message':'Balance','data':arr,};
     }
 
     //return (await ApiCurryBase.post('/get-pair-wise-balance', requestBody)).data;
-//{"status":true,"message":"Balance","data":[{"wallet_type":"exchange","currency":"USD","total_bal":0.75722792,"locked_bal":0,"avail_bal":0.75722792}]}
+    //{"status":true,"message":"Balance","data":[{"wallet_type":"exchange","currency":"USD","total_bal":0.75722792,"locked_bal":0,"avail_bal":0.75722792}]}
     //get-pair-wise-balance
 
   }
