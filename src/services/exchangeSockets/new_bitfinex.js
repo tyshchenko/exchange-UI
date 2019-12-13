@@ -472,12 +472,12 @@ class Bitfinex {
     _constants.selectedExchange = exchange;
     this.state.chartData = {};
     if (exchange == 'bitfinex') {
-      this.unsubscribe();
+      //this.unsubscribe();
       this.subscribePair(_constants.selectedPair);
       this.state.connectionFlag = true;
     } else {
       if (connectionFlag) {
-        this.unsubscribe();
+        //this.unsubscribe();
         this.state.connectionFlag = false;
       }
     }
