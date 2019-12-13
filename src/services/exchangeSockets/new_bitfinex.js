@@ -368,6 +368,7 @@ class Bitfinex {
       if (method=='deals.update') {
         let data = dataObj.params[1];
         this.emitWorkerTrades(data, false);
+        this.emitWorkerTrades(data, true);
       }
         
     }
