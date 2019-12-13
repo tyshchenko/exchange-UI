@@ -41,7 +41,9 @@ class TradeService {
       let obj = {};      
       obj.wallet_type = 'exchange';
       obj.currency = 'BTC';
-      console.log(response);
+/* eslint-disable no-console */
+console.log(response);
+/* eslint-enable no-console */
       obj.locked_bal = Number(response.result.BTC.freeze);
       obj.avail_bal = Number(response.result.BTC.available);
       obj.total_bal = Number(obj.locked_bal) + Number(obj.avail_bal);
