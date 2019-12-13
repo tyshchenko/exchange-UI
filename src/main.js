@@ -65,7 +65,6 @@ EventBus.$on(EventNames.userLogout, () => {
 const isLoggedIn = LocalStorage.isUserLoggedIn();
 const loggedInUser = LocalStorage.get(Keys.username);
 const mqttKey = LocalStorage.get(Keys.mqtt);
-console.log(loggedInUser);
 
 device.onmessage = (payload) => {
   const data = JSON.parse(payload.data);
