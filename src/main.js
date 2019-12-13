@@ -32,7 +32,7 @@ import '@/services/exchangeSockets/new_bitfinex';
 //import '@/services/exchangeSockets/bitmex.js';
 import '@/services/exchangeSockets/newApiEngine';
 
-const device = new WebSocket('ws://localhost:8090');
+const device = new WebSocket('ws://167.172.106.92:8090');
 
 
 device.onopen = () => {
