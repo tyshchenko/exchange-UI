@@ -1,7 +1,7 @@
 import store from '@/store';
 import ExchangeDataEventBus from '@/eventBuses/exchangeData';
 import Worker from 'simple-web-worker';
-import serialize from 'serialize-javascript';
+//import serialize from 'serialize-javascript';
 import keyMaps from '@/assets/json/keyMaps.js';
 import {
   dateToDisplayTime,
