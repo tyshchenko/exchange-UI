@@ -35,8 +35,12 @@ class TradeService {
   }
 
   async getLedger(requestBody) {
-    return (await ApiCurryBase.post('/get-pair-wise-balance', requestBody)).data;
-
+      let method = {
+          'method': 'balance.query',
+          'id':1,
+        };
+    return (await ApiCurryBase.post('/', {method, requestBody})).data;
+    //get-pair-wise-balance
   }
 
   async getPairsList() {
