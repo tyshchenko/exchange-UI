@@ -20,7 +20,7 @@ export default {
   },
   mounted() {
     this.getActiveOrders();
-    this.activeOrders = this.mapActiveOrders(this.$store.getters.activeOrders);
+    //this.activeOrders = this.mapActiveOrders(this.$store.getters.activeOrders);
     /* eslint-disable no-console */
     console.log(this.activeOrders);
     console.log('mounted');
@@ -35,6 +35,11 @@ export default {
       let activeOrders = await TradeService.getActiveOrders();
       activeOrders.status &&
         this.$store.commit('activeOrders', activeOrders.data);
+      this.activeOrders = this.mapActiveOrders(this.$store.getters.activeOrders);
+      /* eslint-disable no-console */
+      console.log(this.activeOrders);
+      console.log('mounted');
+      /* eslint-enable no-console */
     },
     toggleOpen() {
       this.$emit('toggle-open');
