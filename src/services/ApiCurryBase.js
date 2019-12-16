@@ -45,8 +45,8 @@ class ApiCurryBase {
     this.curryAxios = axios.create({
       baseURL: process.env.VUE_APP_CURRY_API_BASE_URL,
       headers: {},
-//        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-//      },
+      //        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      //      },
       timeout: 15000,
     });
   }
