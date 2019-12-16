@@ -28,8 +28,7 @@ export default {
   methods: {
     async getActiveOrders() {
       let activeOrders = await TradeService.getActiveOrders();
-      activeOrders.status &&
-        this.$store.commit('activeOrders', activeOrders.data);
+      this.$store.commit('activeOrders', activeOrders.data);
       this.activeOrders = this.mapActiveOrders(activeOrders.data);
       /* eslint-disable no-console */
       console.log(this.activeOrders);
