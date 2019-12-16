@@ -235,10 +235,6 @@ class Bitfinex {
         obj.buyOrSell = item.type;
         arr.push({'price':Number(item.price),'timeStamp':dateToDisplayTime(new Date(item.time)),'volume':Number(item.amount), 'buyOrSell':item.type});
         this.ExchangeDataEventBus.$emit('liveTrades', obj);
-        this.ExchangeDataEventBus.$emit('liveTrades', obj);
-        this.ExchangeDataEventBus.$emit('liveTrades', obj);
-        this.ExchangeDataEventBus.$emit('liveTrades', obj);
-        this.ExchangeDataEventBus.$emit('liveTrades', obj);
       });
       //this.ExchangeDataEventBus.$emit('snapshotTrades', arr);
     }
