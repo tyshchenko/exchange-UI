@@ -33,33 +33,16 @@ class TradeService {
   async getFees() {
     return (await ApiCurryBase.get('/fees')).data;
   }
-  
-  call_server(postdata) {
-    $http({method: 'POST', url: process.env.VUE_APP_CURRY_API_BASE_URL, data: postdata})
-    .then(response => {
-      /* eslint-disable no-console */
-      console.log(response);
-      /* eslint-enable no-console */
-        var obj = JSON.parse(response.data);
-        return obj;
-    }).catch((err) => {
-      /* eslint-disable no-console */
-      console.log(err);
-      /* eslint-enable no-console */
-    })
-  }
-
 
   async getLedger(requestBody) {
     if (requestBody) {
-      var postdata = JSON.stringify({'method': 'balance.query','id':1, 'params':[1,],});
-      let response = this.call_server(postdata);
+      let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1,],});
       let arr = [];
       let obj = {};      
       obj.wallet_type = 'exchange';
       obj.currency = 'BTC';
       /* eslint-disable no-console */
-      console.log(response);
+      console.log(response.data);
       /* eslint-enable no-console */
       obj.locked_bal = Number(response.result.BTC.freeze);
       obj.avail_bal = Number(response.result.BTC.available);
