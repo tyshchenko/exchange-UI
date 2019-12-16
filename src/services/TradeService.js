@@ -81,7 +81,7 @@ class TradeService {
         console.log(body);
         /* eslint-enable no-console */
     }
-    let data = {'user_pl':0,'user_swaps':0,'margin_balance':0,'margin_net':0,'margin_required':0,};
+    let data = {'user_pl':10,'user_swaps':20,'margin_balance':30,'margin_net':40,'margin_required':50,};
     return {'status':true,'message':'Bitfinex Margin Info','data':data,};
   }
 
