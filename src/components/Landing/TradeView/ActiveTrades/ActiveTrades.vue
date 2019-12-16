@@ -20,6 +20,12 @@ export default {
   },
   mounted() {
     this.getActiveOrders();
+    this.activeOrders = this.mapActiveOrders(this.$store.getters.activeOrders);
+    /* eslint-disable no-console */
+    console.log(this.activeOrders);
+    console.log('mounted');
+    /* eslint-enable no-console */
+    
     // // this.userLogoutListener = () => (this.activeOrders = []);
     // EventBus.$on(EventNames.userLogin, this.userLoginListener);
     // // EventBus.$on(EventNames.userLogout, this.userLogoutListener);
