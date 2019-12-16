@@ -2,6 +2,7 @@ import ApiCurryBase from './ApiCurryBase';
 import axios from 'axios';
 
 class TradeService {
+  var call_id = 0;
   async placeNewOrder(requestBody) {
     let method = {
       'method': 'order.put_market',
@@ -33,16 +34,32 @@ class TradeService {
   async getFees() {
     return (await ApiCurryBase.get('/fees')).data;
   }
+  
+  call_server(postdata) {
+    $.ajax({
+        type: "POST",
+        url: process.env.VUE_APP_CURRY_API_BASE_URL,
+        data: postdata
+    })
+    .done(function (data)
+    {
+        var obj = JSON.parse(data);
+        return obj;
+    });
+  }
+
 
   async getLedger(requestBody) {
     if (requestBody) {
-      let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1,],});
+      call_id++;
+      var postdata = JSON.stringify({'method': 'balance.query','id':call_id, 'params':[1,],});
+      let response = call_server(postdata);
       let arr = [];
       let obj = {};      
       obj.wallet_type = 'exchange';
       obj.currency = 'BTC';
       /* eslint-disable no-console */
-      console.log(response.data);
+      console.log(response);
       /* eslint-enable no-console */
       obj.locked_bal = Number(response.result.BTC.freeze);
       obj.avail_bal = Number(response.result.BTC.available);
