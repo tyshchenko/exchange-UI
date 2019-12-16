@@ -35,7 +35,7 @@ class TradeService {
   }
   
   call_server(postdata) {
-    this.$http({method: 'POST', url: process.env.VUE_APP_CURRY_API_BASE_URL, data: postdata})
+    $http({method: 'POST', url: process.env.VUE_APP_CURRY_API_BASE_URL, data: postdata})
     .then(response => {
       /* eslint-disable no-console */
       console.log(response);
