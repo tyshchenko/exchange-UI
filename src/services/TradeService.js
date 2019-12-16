@@ -33,24 +33,24 @@ class TradeService {
     console.log(data.result.records);
     /* eslint-enable no-console */
     let outputdata = data.result.records.map(rt => ({
-        id: rt.id,
-        clientOrderId: rt.id,
-        placedTime: rt.ctime,
-        amount: rt.deal_money,
-        avgPrice: rt.price,
-        buyOrSell: rt.side,
-        exchange: 'bitfinex',
-        orderType: '',
-        stopPrice:  rt.price,
-        status: rt.status,
-        pair: rt.market,
-      }));
-    return {data:outputdata};
+      id: rt.id,
+      clientOrderId: rt.id,
+      placedTime: rt.ctime,
+      amount: rt.deal_money,
+      avgPrice: rt.price,
+      buyOrSell: rt.side,
+      exchange: 'bitfinex',
+      orderType: '',
+      stopPrice:  rt.price,
+      status: rt.status,
+      pair: rt.market,
+    }));
+    return {data:outputdata,};
   }
   
   async getOpenPositions(exchange) {
     // return (await ApiCurryBase.post('/get-open-positions', {
-      // exchange,
+    // exchange,
     // })).data;
     let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[1,'BTCUSD',0,50,],});
     let data = response.data;
@@ -58,19 +58,19 @@ class TradeService {
     console.log(data.result.records);
     /* eslint-enable no-console */
     let outputdata = data.result.records.map(rt => ({
-        id: rt.id,
-        clientOrderId: rt.id,
-        placedTime: rt.ctime,
-        amount: rt.deal_money,
-        avgPrice: rt.price,
-        buyOrSell: rt.side,
-        exchange: exchange,
-        orderType: '',
-        stopPrice:  rt.price,
-        status: rt.status,
-        pair: rt.market,
-      }));
-    return {'status':true,'message':'Balance','data':outputdata};
+      id: rt.id,
+      clientOrderId: rt.id,
+      placedTime: rt.ctime,
+      amount: rt.deal_money,
+      avgPrice: rt.price,
+      buyOrSell: rt.side,
+      exchange: exchange,
+      orderType: '',
+      stopPrice:  rt.price,
+      status: rt.status,
+      pair: rt.market,
+    }));
+    return {'status':true,'message':'Balance','data':outputdata,};
   }
 
   async getFees() {
@@ -96,9 +96,9 @@ class TradeService {
   async getMarginInfo(body) {
     //return (await ApiCurryBase.post('/bitfinex-margin-info', body)).data;
     if (body) {
-        /* eslint-disable no-console */
-        console.log(body);
-        /* eslint-enable no-console */
+      /* eslint-disable no-console */
+      console.log(body);
+      /* eslint-enable no-console */
     }
     let data = {'user_pl':10,'user_swaps':20,'margin_balance':30,'margin_net':40,'margin_required':50,};
     return {'status':true,'message':'Bitfinex Margin Info','data':data,};
