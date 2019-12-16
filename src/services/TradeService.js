@@ -30,10 +30,24 @@ class TradeService {
     let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[1,'BTCUSD',0,50,],});
     let data = response.data;
     /* eslint-disable no-console */
-    console.log(data.result);
+    console.log(data.result.records);
     /* eslint-enable no-console */
-    return data.result.records;
+    let outputdata = data.result.records.map(rt => ({
+        id: rt.id,
+        clientOrderId: rt.id,
+        placedTime: rt.ctime,
+        amount: rt.deal_money,
+        avgPrice: rt.price,
+        buyOrSell: rt.side,
+        exchange: 'bitfinex',
+        orderType: '',
+        stopPrice:  rt.price,
+        status: rt.status,
+        pair: rt.market,
+      }));
+    return {data:outputdata};
   }
+  
   async getOpenPositions(exchange) {
     return (await ApiCurryBase.post('/get-open-positions', {
       exchange,
