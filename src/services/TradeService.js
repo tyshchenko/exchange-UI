@@ -37,7 +37,10 @@ class TradeService {
   call_server(postdata) {
     this.$http({method: 'POST', url: process.env.VUE_APP_CURRY_API_BASE_URL, data: postdata})
     .then(response => {
-        var obj = JSON.parse(data);
+      /* eslint-disable no-console */
+      console.log(response);
+      /* eslint-enable no-console */
+        var obj = JSON.parse(response.data);
         return obj;
     }).catch((err) => {
       /* eslint-disable no-console */
@@ -50,7 +53,7 @@ class TradeService {
   async getLedger(requestBody) {
     if (requestBody) {
       var postdata = JSON.stringify({'method': 'balance.query','id':1, 'params':[1,],});
-      let response = call_server(postdata);
+      let response = this.call_server(postdata);
       let arr = [];
       let obj = {};      
       obj.wallet_type = 'exchange';
