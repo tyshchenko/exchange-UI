@@ -57,10 +57,6 @@ class TradeService {
       return {'status':true,'message':'Balance','data':arr,};
     }
 
-    //return (await ApiCurryBase.post('/get-pair-wise-balance', requestBody)).data;
-    //{"status":true,"message":"Balance","data":[{"wallet_type":"exchange","currency":"USD","total_bal":0.75722792,"locked_bal":0,"avail_bal":0.75722792}]}
-    //get-pair-wise-balance
-
   }
 
   async getPairsList() {
