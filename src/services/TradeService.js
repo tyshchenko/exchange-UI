@@ -77,7 +77,8 @@ class TradeService {
   async getMarginInfo(body) {
     //return (await ApiCurryBase.post('/bitfinex-margin-info', body)).data;
     if (body) {
-      return {'status':true,'message':'Bitfinex Margin Info','data':{'user_pl':0,'user_swaps':0,'margin_balance':0,'margin_net':0,'margin_required':0,},};
+      let data = {'user_pl':0,'user_swaps':0,'margin_balance':0,'margin_net':0,'margin_required':0,};
+      return {'status':true,'message':'Bitfinex Margin Info','data':data,};
     }
   }
 
