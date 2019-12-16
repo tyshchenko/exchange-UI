@@ -20,6 +20,13 @@ class TradeService {
 
   async getActiveOrders(exchange = '', pair = '') {
     //get-active-orders
+    if (exchange) {
+        if (pair) { 
+            /* eslint-disable no-console */
+            console.log(exchange);
+            /* eslint-enable no-console */
+        }
+    }
     let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[1,"BTCUSD",0,50],});
     let data = response.data;
     /* eslint-disable no-console */
