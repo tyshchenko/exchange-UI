@@ -262,7 +262,7 @@ class Bitfinex {
         bids.push(localData);
       });
     }
-    
+    bids.reverse();
     if (chartData.asks && chartData.bids) {
       chartData.asks.push(asks);
       chartData.bids.push(bids);
