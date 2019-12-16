@@ -19,10 +19,13 @@ class TradeService {
   }
 
   async getActiveOrders(exchange = '', pair = '') {
-    return (await ApiCurryBase.post('/get-active-orders', {
-      exchange,
-      pair,
-    })).data;
+    //get-active-orders
+    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[1,"BTCUSD",0,50],});
+    let data = response.data;
+    /* eslint-disable no-console */
+    console.log(data.result);
+    /* eslint-enable no-console */
+    return data.result.records;
   }
   async getOpenPositions(exchange) {
     return (await ApiCurryBase.post('/get-open-positions', {
@@ -39,9 +42,6 @@ class TradeService {
       let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1,],});
       let arr = [];
       let data = response.data;
-      /* eslint-disable no-console */
-      console.log(data.result);
-      /* eslint-enable no-console */
       arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available))});
       arr.push({'wallet_type':'exchange','currency':'USD','locked_bal':Number(data.result.USD.freeze),'avail_bal':Number(data.result.USD.available),'total_bal':Number(data.result.USD.freeze) + Number(Number(data.result.USD.available))});
       return {'status':true,'message':'Balance','data':arr,};
