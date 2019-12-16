@@ -30,7 +30,7 @@ export default {
       let activeOrders = await TradeService.getActiveOrders();
       activeOrders.status &&
         this.$store.commit('activeOrders', activeOrders.data);
-      this.activeOrders = this.mapActiveOrders(this.$store.activeOrders);
+      this.activeOrders = this.mapActiveOrders(activeOrders.data);
       /* eslint-disable no-console */
       console.log(this.activeOrders);
       console.log('mounted');
