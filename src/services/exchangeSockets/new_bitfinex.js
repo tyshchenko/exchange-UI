@@ -222,7 +222,7 @@ class Bitfinex {
         obj.timeStamp = dateToDisplayTime(new Date(item.time));
         obj.volume = Number(item.amount);
         obj.buyOrSell = item.type;
-        arr.push({'price':Number(item.price),'timeStamp':dateToDisplayTime(new Date(item.time)),'volume':Number(item.amount), 'buyOrSell':item.type});
+        arr.push({'price':Number(item.price),'timeStamp':dateToDisplayTime(new Date(item.time)),'volume':Number(item.amount), 'buyOrSell':item.type,});
         this.ExchangeDataEventBus.$emit('liveTrades', obj);
       });
       this.ExchangeDataEventBus.$emit('snapshotTrades', arr);
@@ -235,7 +235,7 @@ class Bitfinex {
         obj.timeStamp = dateToDisplayTime(new Date(item.time));
         obj.volume = Number(item.amount);
         obj.buyOrSell = item.type;
-        arr.push({'price':Number(item.price),'timeStamp':dateToDisplayTime(new Date(item.time)),'volume':Number(item.amount), 'buyOrSell':item.type});
+        arr.push({'price':Number(item.price),'timeStamp':dateToDisplayTime(new Date(item.time)),'volume':Number(item.amount), 'buyOrSell':item.type,});
         this.ExchangeDataEventBus.$emit('liveTrades', obj);
       });
       //this.ExchangeDataEventBus.$emit('snapshotTrades', arr);
@@ -366,9 +366,9 @@ class Bitfinex {
       if (method=='deals.update') {
         let data = dataObj.params[1];
         if ( data.length > 3 ) {
-            this.emitWorkerTrades(data, true);
+          this.emitWorkerTrades(data, true);
         } else {
-            this.emitWorkerTrades(data, false);
+          this.emitWorkerTrades(data, false);
         }
       }
         

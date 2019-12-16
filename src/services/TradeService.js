@@ -21,13 +21,13 @@ class TradeService {
   async getActiveOrders(exchange = '', pair = '') {
     //get-active-orders
     if (exchange) {
-        if (pair) { 
-            /* eslint-disable no-console */
-            console.log(exchange);
-            /* eslint-enable no-console */
-        }
+      if (pair) { 
+        /* eslint-disable no-console */
+        console.log(exchange);
+        /* eslint-enable no-console */
+      }
     }
-    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[1,"BTCUSD",0,50],});
+    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[1,'BTCUSD',0,50,],});
     let data = response.data;
     /* eslint-disable no-console */
     console.log(data.result);
@@ -49,8 +49,8 @@ class TradeService {
       let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1,],});
       let arr = [];
       let data = response.data;
-      arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available))});
-      arr.push({'wallet_type':'exchange','currency':'USD','locked_bal':Number(data.result.USD.freeze),'avail_bal':Number(data.result.USD.available),'total_bal':Number(data.result.USD.freeze) + Number(Number(data.result.USD.available))});
+      arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available)),});
+      arr.push({'wallet_type':'exchange','currency':'USD','locked_bal':Number(data.result.USD.freeze),'avail_bal':Number(data.result.USD.available),'total_bal':Number(data.result.USD.freeze) + Number(Number(data.result.USD.available)),});
       return {'status':true,'message':'Balance','data':arr,};
     }
 
@@ -63,7 +63,7 @@ class TradeService {
   async getMarginInfo(body) {
     //return (await ApiCurryBase.post('/bitfinex-margin-info', body)).data;
     if (body) {
-        return {"status":true,"message":"Bitfinex Margin Info","data":{"user_pl":0,"user_swaps":0,"margin_balance":0,"margin_net":0,"margin_required":0}}
+      return {'status':true,'message':'Bitfinex Margin Info','data':{'user_pl':0,'user_swaps':0,'margin_balance':0,'margin_net':0,'margin_required':0,},};
     }
   }
 
