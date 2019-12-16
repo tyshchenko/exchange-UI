@@ -19,7 +19,7 @@ export default {
     },
   },
   mounted() {
-    // this.userLoginListener = () => this.getActiveOrders();
+    this.getActiveOrders();
     // // this.userLogoutListener = () => (this.activeOrders = []);
     // EventBus.$on(EventNames.userLogin, this.userLoginListener);
     // // EventBus.$on(EventNames.userLogout, this.userLogoutListener);
