@@ -38,11 +38,12 @@ class TradeService {
     if (requestBody) {
       let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1,],});
       let arr = [];
-      let obj = {};      
+      let obj = {};
+      let data = response.data;
       obj.wallet_type = 'exchange';
       obj.currency = 'BTC';
       /* eslint-disable no-console */
-      console.log(response.result);
+      console.log(data);
       /* eslint-enable no-console */
       obj.locked_bal = Number(response.result.BTC.freeze);
       obj.avail_bal = Number(response.result.BTC.available);
