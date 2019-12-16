@@ -38,22 +38,12 @@ class TradeService {
     if (requestBody) {
       let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1,],});
       let arr = [];
-      let obj = {};
       let data = response.data;
-      obj.wallet_type = 'exchange';
-      obj.currency = 'BTC';
       /* eslint-disable no-console */
       console.log(data.result);
       /* eslint-enable no-console */
-      obj.locked_bal = Number(data.result.BTC.freeze);
-      obj.avail_bal = Number(data.result.BTC.available);
-      obj.total_bal = Number(obj.locked_bal) + Number(obj.avail_bal);
-      arr.push(obj);
-      obj.currency = 'USD';
-      obj.locked_bal = Number(data.result.USD.freeze);
-      obj.avail_bal = Number(data.result.USD.available);
-      obj.total_bal = Number(obj.locked_bal) + Number(obj.avail_bal);
-      arr.push(obj);
+      arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available))});
+      arr.push({'wallet_type':'exchange','currency':'USD','locked_bal':Number(data.result.USD.freeze),'avail_bal':Number(data.result.USD.available),'total_bal':Number(data.result.USD.freeze) + Number(Number(data.result.USD.available))});
       return {'status':true,'message':'Balance','data':arr,};
     }
 
