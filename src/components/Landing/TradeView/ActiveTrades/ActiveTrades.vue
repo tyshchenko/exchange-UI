@@ -33,8 +33,9 @@ export default {
       this.activeOrders = this.mapActiveOrders(activeOrders.data);
       /* eslint-disable no-console */
       console.log(this.activeOrders);
-      console.log('mounted');
+      console.log(activeOrders.data);
       /* eslint-enable no-console */
+      this.activeOrders = activeOrders.data;
     },
     toggleOpen() {
       this.$emit('toggle-open');
