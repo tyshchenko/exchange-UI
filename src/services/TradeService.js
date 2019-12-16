@@ -49,9 +49,28 @@ class TradeService {
   }
   
   async getOpenPositions(exchange) {
-    return (await ApiCurryBase.post('/get-open-positions', {
-      exchange,
-    })).data;
+    // return (await ApiCurryBase.post('/get-open-positions', {
+      // exchange,
+    // })).data;
+    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[1,'BTCUSD',0,50,],});
+    let data = response.data;
+    /* eslint-disable no-console */
+    console.log(data.result.records);
+    /* eslint-enable no-console */
+    let outputdata = data.result.records.map(rt => ({
+        id: rt.id,
+        clientOrderId: rt.id,
+        placedTime: rt.ctime,
+        amount: rt.deal_money,
+        avgPrice: rt.price,
+        buyOrSell: rt.side,
+        exchange: exchange,
+        orderType: '',
+        stopPrice:  rt.price,
+        status: rt.status,
+        pair: rt.market,
+      }));
+    return {data:outputdata};
   }
 
   async getFees() {
