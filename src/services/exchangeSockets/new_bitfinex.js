@@ -240,7 +240,7 @@ class Bitfinex {
         this.ExchangeDataEventBus.$emit('liveTrades', obj);
         this.ExchangeDataEventBus.$emit('liveTrades', obj);
       });
-      this.ExchangeDataEventBus.$emit('snapshotTrades', arr);
+      //this.ExchangeDataEventBus.$emit('snapshotTrades', arr);
     }
   }
 
