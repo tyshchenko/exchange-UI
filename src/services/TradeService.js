@@ -2,7 +2,6 @@ import ApiCurryBase from './ApiCurryBase';
 import axios from 'axios';
 
 class TradeService {
-  var call_id = 0;
   async placeNewOrder(requestBody) {
     let method = {
       'method': 'order.put_market',
@@ -51,8 +50,7 @@ class TradeService {
 
   async getLedger(requestBody) {
     if (requestBody) {
-      this.call_id++;
-      var postdata = JSON.stringify({'method': 'balance.query','id':this.call_id, 'params':[1,],});
+      var postdata = JSON.stringify({'method': 'balance.query','id':1, 'params':[1,],});
       let response = call_server(postdata);
       let arr = [];
       let obj = {};      
