@@ -53,7 +53,7 @@ class TradeService {
       obj.locked_bal = Number(data.result.USD.freeze);
       obj.avail_bal = Number(data.result.USD.available);
       obj.total_bal = Number(obj.locked_bal) + Number(obj.avail_bal);
-
+      arr.push(obj);
       return {'status':true,'message':'Balance','data':arr,};
     }
 
