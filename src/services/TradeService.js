@@ -78,7 +78,7 @@ class TradeService {
     //return (await ApiCurryBase.post('/bitfinex-margin-info', body)).data;
     if (body) {
         /* eslint-disable no-console */
-        console.log(exchange);
+        console.log(body);
         /* eslint-enable no-console */
     }
     let data = {'user_pl':0,'user_swaps':0,'margin_balance':0,'margin_net':0,'margin_required':0,};
