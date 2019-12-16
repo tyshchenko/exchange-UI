@@ -35,16 +35,15 @@ class TradeService {
   }
   
   call_server(postdata) {
-    $.ajax({
-        type: "POST",
-        url: process.env.VUE_APP_CURRY_API_BASE_URL,
-        data: postdata
-    })
-    .done(function (data)
-    {
+    this.$http({method: 'POST', url: process.env.VUE_APP_CURRY_API_BASE_URL, data: postdata})
+    .then(response => {
         var obj = JSON.parse(data);
         return obj;
-    });
+    }).catch((err) => {
+      /* eslint-disable no-console */
+      console.log(err);
+      /* eslint-enable no-console */
+    })
   }
 
 
