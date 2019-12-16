@@ -51,8 +51,8 @@ class TradeService {
 
   async getLedger(requestBody) {
     if (requestBody) {
-      call_id++;
-      var postdata = JSON.stringify({'method': 'balance.query','id':call_id, 'params':[1,],});
+      this.call_id++;
+      var postdata = JSON.stringify({'method': 'balance.query','id':this.call_id, 'params':[1,],});
       let response = call_server(postdata);
       let arr = [];
       let obj = {};      
