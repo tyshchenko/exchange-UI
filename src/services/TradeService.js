@@ -70,7 +70,7 @@ class TradeService {
         status: rt.status,
         pair: rt.market,
       }));
-    return {data:outputdata};
+    return {'status':true,'message':'Balance','data':outputdata};
   }
 
   async getFees() {
