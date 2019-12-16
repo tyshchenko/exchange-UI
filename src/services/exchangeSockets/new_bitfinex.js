@@ -215,15 +215,17 @@ class Bitfinex {
 
   emitWorkerTrades(data, isSnapShot) {
     if (isSnapShot) {
-      // this.workers.postMessage('emit-live-trades', [data, serialize({
-      // fns: {},
-      // utils: {
-      // dateToDisplayTime,
-      // },
-      // }), ]).then(data => {
-      // this.ExchangeDataEventBus.$emit('snapshotTrades', data);
-      // this.ExchangeDataEventBus.$emit('liveTrades', data[1]);
-      // }).catch(() => {});
+      let arr = [];
+      let obj = {};
+      data.forEach((item) => {
+        obj.price = Number(item.price);
+        obj.timeStamp = dateToDisplayTime(new Date(item.time));
+        obj.volume = Number(item.amount);
+        obj.buyOrSell = item.type;
+        arr.push({'price':Number(item.price),'timeStamp':dateToDisplayTime(new Date(item.time)),'volume':Number(item.amount), 'buyOrSell':item.type});
+        this.ExchangeDataEventBus.$emit('liveTrades', obj);
+      });
+      this.ExchangeDataEventBus.$emit('snapshotTrades', arr);
     } else {
       //{"params": ["BTCUSD", [{"amount": "0.001", "time": 1576245028.9058609, "id": 1, "type": "sell", "price": "8000"}]], "method": "deals.update", "id": null}
       let arr = [];
@@ -363,8 +365,11 @@ class Bitfinex {
       }
       if (method=='deals.update') {
         let data = dataObj.params[1];
-        this.emitWorkerTrades(data, false);
-        this.emitWorkerTrades(data, true);
+        if ( data.length > 3 ) {
+            this.emitWorkerTrades(data, true);
+        } else {
+            this.emitWorkerTrades(data, false);
+        }
       }
         
     }
