@@ -54,8 +54,8 @@ export default {
     HeaderSection,
     SideMenu,
     ModalBox,
-//    TradeModal,
-//    ActiveTrades,
+    //    TradeModal,
+    //    ActiveTrades,
   },
   data() {
     return {
