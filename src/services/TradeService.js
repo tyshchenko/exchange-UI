@@ -3,15 +3,55 @@ import axios from 'axios';
 
 class TradeService {
   async placeNewOrder(requestBody) {
+    /* eslint-disable no-console */
+    console.log(requestBody);
+    /* eslint-enable no-console */
+    let side = 1;
+    if (requestBody.bos =='buy') {
+      side = 2;
+    }
+    let params = [1,'BTCUSD',side,requestBody.amount,'0.00','',];
+    let type = 'order.put_market';
+    if (requestBody.type == 'limit') {
+      type = 'order.put_limit';
+      params = [1,'BTCUSD',side,requestBody.amount,requestBody.price,'0.00','0.00','',];
+    }
     let method = {
-      'method': 'order.put_market',
+      'method': type,
       'id':1,
+      'params':params,
     };
-    return (await ApiCurryBase.post('/', {method, requestBody,})).data;
+    //equestBody: {pair: "BTC/USD", type: "market", exc: "bitfinex", bos: "buy", amount: "1", moe: "market"}
+    //{"id":2,"method":"order.put_market","params":[1,"BTCUSD",2,"0.02","0.002",""]}: 
+    let responce = (await ApiCurryBase.post('/', method)).data;
+    responce.status = true;
+    responce.data = responce.result;
+    responce.data.message = 'success';
+    responce.data.volume = responce.result.amount;
+    /* eslint-disable no-console */
+    console.log(responce);
+    /* eslint-enable no-console */
+    return responce;
   }
 
   async cancelOrder(requestBody) {
-    return (await ApiCurryBase.post('/cancel-order', requestBody)).data;
+    /* eslint-disable no-console */
+    console.log(requestBody);
+    /* eslint-enable no-console */
+    let params = [1,'BTCUSD',requestBody.orderId,];
+    let method = {
+      'method': 'order.cancel',
+      'id':1,
+      'params':params,
+    };
+    let responce = (await ApiCurryBase.post('/', method)).data;
+    responce.status = true;
+    responce.data = responce.result;
+    responce.data.message = 'success';
+    /* eslint-disable no-console */
+    console.log(responce);
+    /* eslint-enable no-console */
+    return responce;
   }
 
   async getRecentOrders() {

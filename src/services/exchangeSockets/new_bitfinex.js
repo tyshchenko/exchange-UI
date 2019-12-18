@@ -201,6 +201,11 @@ class Bitfinex {
   }
 
   emitLiveTrades(data, obj) {
+    /* eslint-disable no-console */
+    console.log('emitLiveTrades');
+    console.log(data);
+    console.log(obj);
+    /* eslint-enable no-console */
     const E = eval('(' + obj + ')');
     let arr = data.map((elem) => {
       let obj = {};
@@ -250,29 +255,25 @@ class Bitfinex {
     let bids = [];
     if (data.asks) {
       data.asks.forEach((item) => {
-        let localData = {};
-        localData.value = Number(item[0]);
-        localData.volume = Number(item[1]);
-        asks.push(localData);
+        asks.push({'value':Number(item[0]),'volume':Number(item[1]),});
       });
     }
     if (data.bids) {
       data.bids.forEach((item) => {
-        let localData = {};
-        localData.value = Number(item[0]);
-        localData.volume = Number(item[1]);
-        bids.push(localData);
+        bids.push({'value':Number(item[0]),'volume':Number(item[1]),});
       });
     }
     bids.reverse();
     if (chartData.asks && chartData.bids) {
       chartData.asks.push(asks);
       chartData.bids.push(bids);
-      if (chartData.asks.length > 9 && chartData.bids.length > 9) {
-        this.ExchangeDataEventBus.$emit('updateOrderbook', JSON.parse(JSON.stringify(chartData)));
-      } else {
-        this.refreshOrderBook();
-      }
+      //      if (chartData.asks.length > 9 && chartData.bids.length > 9) {
+      //        this.ExchangeDataEventBus.$emit('updateOrderbook', JSON.parse(JSON.stringify(chartData)));
+      //      } else {
+      //        this.refreshOrderBook();
+      //      }
+      this.ExchangeDataEventBus.$emit('snapshotOrderbook', JSON.parse(JSON.stringify(chartData)));
+      this.ExchangeDataEventBus.$emit('updateOrderbook', JSON.parse(JSON.stringify(chartData)));
     } else {
       chartData.asks = asks;
       chartData.bids = bids;
@@ -365,7 +366,7 @@ class Bitfinex {
       }
       if (method=='deals.update') {
         let data = dataObj.params[1];
-        if ( data.length > 3 ) {
+        if ( data.length > 2 ) {
           this.emitWorkerTrades(data, true);
         } else {
           this.emitWorkerTrades(data, false);
