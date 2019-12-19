@@ -137,7 +137,8 @@ class Bitfinex {
     this.subscribeOrderBook(pair);
     this.subscribeTicker(pair);
     this.subscribeTrades(pair);
-    this.queryOrderbook(pair);
+    //this.queryOrderbook(pair);
+    this.subscribeOrders(pair);
     //subscribeCandles(pair, '1m');
   }
 
@@ -169,6 +170,17 @@ class Bitfinex {
     let data = {
       id: this.id,
       method: 'deals.subscribe',
+      params: [symbol,], 
+    };
+    this.ctx.send(JSON.stringify(data));
+    this.id = this.id + 1;
+  }
+
+  subscribeOrders(pair) {
+    let symbol = pair;
+    let data = {
+      id: this.id,
+      method: 'order.subscribe',
       params: [symbol,], 
     };
     this.ctx.send(JSON.stringify(data));
@@ -221,26 +233,20 @@ class Bitfinex {
   emitWorkerTrades(data, isSnapShot) {
     if (isSnapShot) {
       let arr = [];
-      let obj = {};
       data.forEach((item) => {
-        obj.price = Number(item.price);
-        obj.timeStamp = dateToDisplayTime(new Date(item.time));
-        obj.volume = Number(item.amount);
-        obj.buyOrSell = item.type;
-        arr.push({'price':Number(item.price),'timeStamp':dateToDisplayTime(new Date(item.time)),'volume':Number(item.amount), 'buyOrSell':item.type,});
-        this.ExchangeDataEventBus.$emit('liveTrades', obj);
+        arr.push({'price':Number(item.price),'timeStamp':dateToDisplayTime(new Date(item.time * 1000)),'volume':Number(item.amount), 'buyOrSell':item.type,});
       });
+      this.ExchangeDataEventBus.$emit('liveTrades', arr[0]);
       this.ExchangeDataEventBus.$emit('snapshotTrades', arr);
     } else {
       //{"params": ["BTCUSD", [{"amount": "0.001", "time": 1576245028.9058609, "id": 1, "type": "sell", "price": "8000"}]], "method": "deals.update", "id": null}
-      let arr = [];
-      let obj = {};
       data.forEach((item) => {
+        let obj = {};
         obj.price = Number(item.price);
-        obj.timeStamp = dateToDisplayTime(new Date(item.time));
+        obj.timeStamp = dateToDisplayTime(new Date(item.time * 1000));
         obj.volume = Number(item.amount);
         obj.buyOrSell = item.type;
-        arr.push({'price':Number(item.price),'timeStamp':dateToDisplayTime(new Date(item.time)),'volume':Number(item.amount), 'buyOrSell':item.type,});
+        //arr.push({'price':Number(item.price),'timeStamp':dateToDisplayTime(new Date(item.time)),'volume':Number(item.amount), 'buyOrSell':item.type,});
         this.ExchangeDataEventBus.$emit('liveTrades', obj);
       });
       //this.ExchangeDataEventBus.$emit('snapshotTrades', arr);
@@ -263,21 +269,51 @@ class Bitfinex {
         bids.push({'value':Number(item[0]),'volume':Number(item[1]),});
       });
     }
-    bids.reverse();
     if (chartData.asks && chartData.bids) {
-      chartData.asks.push(asks);
-      chartData.bids.push(bids);
+      if (asks) {
+        asks.forEach((item) => {
+          let fask = chartData.asks.find(x => x.value == item.value);
+          if (fask) chartData.asks.find(x => x.value == item.value).volume = item.volume;
+        });
+      }
+      if (bids) {
+        bids.forEach((item) => {
+          let fbid = chartData.bids.find(x => x.value == item.value);
+          if (fbid) chartData.bids.find(x => x.value == item.value).volume = item.volume;
+        });
+      }
+      //chartData.asks.push(...asks);
+      //chartData.bids.push(...bids);
       //      if (chartData.asks.length > 9 && chartData.bids.length > 9) {
       //        this.ExchangeDataEventBus.$emit('updateOrderbook', JSON.parse(JSON.stringify(chartData)));
       //      } else {
       //        this.refreshOrderBook();
       //      }
-      this.ExchangeDataEventBus.$emit('snapshotOrderbook', JSON.parse(JSON.stringify(chartData)));
+      //this.ExchangeDataEventBus.$emit('snapshotOrderbook', JSON.parse(JSON.stringify(chartData)));
+      chartData.asks.sort(function(a, b) {
+        return a.value - b.value;
+      });
+      chartData.bids.sort(function(a, b) {
+        return a.value - b.value;
+      });
+      chartData.asks = chartData.asks.filter(i => i.volume > 0.00001 && i.value > 0.0001).splice(0, 25);
+      chartData.bids = chartData.bids.filter(i => i.volume > 0.00001 && i.value > 0.0001).splice(-25);
       this.ExchangeDataEventBus.$emit('updateOrderbook', JSON.parse(JSON.stringify(chartData)));
     } else {
+      bids.reverse();
       chartData.asks = asks;
       chartData.bids = bids;
       this.ExchangeDataEventBus.$emit('snapshotOrderbook', JSON.parse(JSON.stringify(chartData)));
+    }
+    /* eslint-disable no-console */
+    console.log('emitBooks');
+    console.log(chartData);
+    /* eslint-enable no-console */
+    if (chartData.asks) {
+      store.state.sellPrice = chartData.asks[0].value;
+    }
+    if (chartData.bids) {
+      store.state.buyPrice = chartData.bids[chartData.bids.length - 1].value;
     }
   }
 
@@ -311,10 +347,10 @@ class Bitfinex {
     let {
       selectedPair,
     } = this.state._constants;
-    if (store.getters.selectedExchange === 'bitfinex') {
-      store.state.sellPrice = data;
-      store.state.buyPrice = data;
-    }
+    //if (store.getters.selectedExchange === 'bitfinex') {
+    //  store.state.sellPrice = data;
+    //  store.state.buyPrice = data;
+    //}
     obj.ask = data;
     obj.bid = data;
     obj.high = data;
