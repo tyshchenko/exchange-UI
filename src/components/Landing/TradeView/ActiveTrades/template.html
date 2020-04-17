@@ -9,8 +9,8 @@
                         <tr>
                             <!-- <th width="50">ID</th> -->
                             <th>Order ID</th>
-                            <th>Time</th>
-                            <th>Order Type</th>
+                            <th width="200">Time</th>
+                            <!-- <th>Order Type</th> -->
                             <th>Pair</th>
                             <th>Amount</th>
                             <!-- <th>Fee</th> -->
@@ -26,18 +26,18 @@
                         <tr v-for="order in activeOrders">
                             <!-- <td width="50">{{ order.id }}</td> -->
                             <td>{{ order.orderId }}</td>
-                            <td>{{ formatDateTime(order.tTime) }}</td>
-                            <td>{{ order.orderType }}</td>
+                            <td width="200">{{ formatDateTime(order.tTime) }}</td>
+                            <!-- <td>{{ order.orderType }}</td> -->
                             <td>{{ order.pair }}</td>
                             <td>{{ order.amount }}</td>
                             <!-- <td>{{ trade.fee }}</td> -->
                             <td>{{ order.avgPrice }}</td>
                             <td>{{ order.stopPrice }}</td>
-                            <td>{{ order.buyOrSell }}</td>
-                            <td>{{ order.exchange }}</td>
+                            <td width="100" :class="order.buyOrSell">{{ order.buyOrSell }}</td>
+                            <td width="100">{{ order.exchange }}</td>
                             <td>{{ order.status }}</td>
                             <td>
-                                <a @click=cancelOrder(order.id) href="javascript:undefined" class="fs14 os-semibold c-white">
+                                <a @click=cancelOrder(order.id) href="javascript:undefined" class="os-semibold c-red">
                                     <span class="mr5 text-underline">Cancel</span>
                                     <i class="icons8-delete"></i>
                                 </a>

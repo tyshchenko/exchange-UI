@@ -7,6 +7,8 @@ import TabBar from '@/components/TabBar/TabBar.vue';
 import Ticker from './Ticker/Ticker.vue';
 import News from './News/News.vue';
 import Balance from './Balance/Balance.vue';
+import Login from './Login/Login.vue';
+import Register from './Register/Register.vue';
 import LiveTrades from './../BookPane/LiveTrades/LiveTrades';
 import EventBus, { EventNames, } from '@/eventBuses/default';
 
@@ -20,12 +22,14 @@ export default {
     Balance,
     LiveTrades,
     News,
+    Login,
+    Register,
   },
   data() {
     return {
       activeTab: 'Trade',
       tabs: {
-        //notLoggedInTabs: ['Login',  'News',],
+        notLoggedInTabs: ['Login', 'Register',],
         loggedInTabs: [ 'Balance','Trade',],
       },
       height: 0,
@@ -59,8 +63,8 @@ export default {
       // }
     },
     userLogoutListener() {
-      this.activeTab = 'Trade';
-      this.tabBarEventBus.$emit('change-active-tab', 'Trade');
+      this.activeTab = 'Login';
+      this.tabBarEventBus.$emit('change-active-tab', 'Login');
     },
   },
 };

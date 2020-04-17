@@ -75,14 +75,15 @@ class TradeService {
     let outputdata = data.result.records.map(rt => ({
       id: rt.id,
       clientOrderId: rt.id,
+      orderId: rt.id,
       placedTime: rt.ctime,
-      amount: rt.deal_money,
+      amount: rt.amount,
       avgPrice: rt.price,
-      buyOrSell: rt.side,
-      exchange: 'bitfinex',
+      buyOrSell: rt.side==2 ? 'buy' : 'sell',
+      exchange: 'AnkerX',
       orderType: '',
       stopPrice:  rt.price,
-      status: rt.status,
+      status: rt.deal_stock>0 ? 'part.filled' : 'pending',
       pair: rt.market,
     }));
     return {data:outputdata,};

@@ -3,7 +3,7 @@
 <script>
 import TradeService from '@/services/TradeService';
 import { dateToDisplayDateTime, } from '@/utils/utility';
-// import EventBus, { EventNames, } from '@/eventBuses/default';
+import EventBus, { EventNames, } from '@/eventBuses/default';
 
 export default {
   name: 'active-trades',
@@ -21,9 +21,10 @@ export default {
   mounted() {
     this.getActiveOrders();
     //this.activeOrders = this.mapActiveOrders(this.$store.getters.activeOrders);
-    // // this.userLogoutListener = () => (this.activeOrders = []);
-    // EventBus.$on(EventNames.userLogin, this.userLoginListener);
-    // // EventBus.$on(EventNames.userLogout, this.userLogoutListener);
+    this.userLoginListener = () => this.getActiveOrders();
+    this.userLogoutListener = () => (this.activeOrders = []);
+    EventBus.$on(EventNames.userLogin, this.userLoginListener);
+    EventBus.$on(EventNames.userLogout, this.userLogoutListener);
   },
   methods: {
     async getActiveOrders() {
@@ -76,8 +77,8 @@ export default {
     
   },
   destroyed() {
-    // EventBus.$off(EventNames.userLogin, this.userLoginListener);
-    // EventBus.$off(EventNames.userLogout, this.userLogoutListener);
+    EventBus.$off(EventNames.userLogin, this.userLoginListener);
+    EventBus.$off(EventNames.userLogout, this.userLogoutListener);
   },
 };
 </script>

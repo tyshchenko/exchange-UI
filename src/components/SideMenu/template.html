@@ -9,22 +9,22 @@
                     <span>&nbsp;</span>
                 </a>
             </li>
-            <li class="mt0" v-if="$store.getters.isLoggedIn">
+<!--             <li class="mt0" v-if="$store.getters.isLoggedIn">
                 <router-link to="/settings" v-bind:class="{ active: $route.path.startsWith('/settings') }">
                     <span>
                         <i class="icons8-user"></i>
                     </span>
                     <span>My Profile</span>
                 </router-link>
-            </li>
-            <li class="mt0" v-if="$store.getters.isLoggedIn">
+            </li> -->
+<!--            <li class="mt0" v-if="$store.getters.isLoggedIn">
                 <router-link to="/trade-modal" v-bind:class="{ active: $route.path.startsWith('/settings') }">
                     <span>
                         <i class="icons8-user"></i>
                     </span>
                     <span>Trade</span>
                 </router-link>
-            </li>
+            </li> -->
             <li class="mt0">
                 <router-link to="/" v-bind:class="{ active: $route.path === '/' }">
                     <span>
@@ -33,15 +33,15 @@
                     <span>Dashboard</span>
                 </router-link>
             </li>
-            <li class="mt0">
+<!--             <li class="mt0">
                 <router-link to="/markets" v-bind:class="{ active: $route.path === '/markets' }">
                     <span>
                         <i class="icons8-time-machine" aria-hidden="true"></i>
                     </span>
                     <span>Markets</span>
                 </router-link>
-            </li>
-            <li class="mt0">
+            </li>-->
+<!--             <li class="mt0">
                 <router-link to="/history" v-if="$store.getters.isLoggedIn"
                     v-bind:class="{ active: $route.path.startsWith('/history') }">
                     <span>
@@ -49,8 +49,8 @@
                     </span>
                     <span>History</span>
                 </router-link>
-            </li>
-            <li class="mt0">
+            </li>-->
+<!--             <li class="mt0">
                 <router-link to="/balance" v-if="$store.getters.isLoggedIn"
                     v-bind:class="{ active: $route.path.startsWith('/balance') }">
                     <span>
@@ -58,8 +58,8 @@
                     </span>
                     <span>Wallets</span>
                 </router-link>
-            </li>
-            <li class="mt0">
+            </li>-->
+<!--             <li class="mt0">
                 <router-link to="/active-trades" v-if="$store.getters.isLoggedIn"
                     v-bind:class="{ active: $route.path.startsWith('/active-trades') }">
                     <span>
@@ -67,23 +67,15 @@
                     </span>
                     <span>Active Trades</span>
                 </router-link>
-            </li>
-            <li class="mt0">
+            </li>-->
+<!--             <li class="mt0">
                 <a href="javascript:undefined" v-if="$store.getters.isLoggedIn" @click="showWithdrawlModal">
                     <span>
                         <i class="icons8-donate"></i>
                     </span>
                     <span>Deposit</span>
                 </a>
-            </li>
-            <li class="mt0">
-                <a href="https://blocknomic.freshdesk.com" v-if="$store.getters.isLoggedIn" target="_blank">
-                    <span>
-                        <!-- <i class="icons8-logout-rounded-up-2"></i> -->
-                        <img src="https://png.icons8.com/small/32/ffffff/help.png"> </span>
-                    <span>Help</span>
-                </a>
-            </li>
+            </li>-->
             <li class="mt0">
                 <a href="javascript:undefined" v-if="$store.getters.isLoggedIn" @click="logout">
                     <span>
