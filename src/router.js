@@ -25,7 +25,7 @@ const vueRouter = new Router({
     name: 'home',
     component: Landing,
     meta: {
-      pageTitle: 'Open Trading Platform',
+      pageTitle: 'Futures trading Platform | CoinBae - Trade, Love, Crypto.',
     },
   }, {
     path: '/markets',
@@ -59,7 +59,7 @@ const vueRouter = new Router({
                name: 'trezor',
                component: Trezor,
                meta: {
-                 pageTitle: 'Trezor - Open Trading Platform',
+                 pageTitle: 'Trezor - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
                  needLogin: false,
                },
              }, ],
@@ -68,7 +68,7 @@ const vueRouter = new Router({
              path: '/balance',
              component: BalanceTransfer,
              meta: {
-               pageTitle: 'Wallets - Open Trading Platform',
+               pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
                needLogin: false,
              },
              children: [{
@@ -76,7 +76,7 @@ const vueRouter = new Router({
                name: 'wallet-summary-bequant',
                component: SummaryBequant,
                meta: {
-                 pageTitle: 'Wallets - Open Trading Platform',
+                 pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
                  needLogin: false,
                },
              },
@@ -85,7 +85,7 @@ const vueRouter = new Router({
                           name: 'wallet-summary-bitfinex',
                           component: SummaryBitfinex,
                           meta: {
-                            pageTitle: 'Wallets - Open Trading Platform',
+                            pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
                             needLogin: false,
                           },
                         },
@@ -94,7 +94,7 @@ const vueRouter = new Router({
                           name: 'wallet-summary-binance',
                           component: SummaryBinance,
                           meta: {
-                            pageTitle: 'Wallets - Open Trading Platform',
+                            pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
                             needLogin: false,
                           },
                         },
@@ -103,7 +103,7 @@ const vueRouter = new Router({
                           name: 'wallet-summary-bitmex',
                           component: SummaryBitmex,
                           meta: {
-                            pageTitle: 'Wallets - Open Trading Platform',
+                            pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
                             needLogin: false,
                           },
                         },
@@ -114,7 +114,7 @@ const vueRouter = new Router({
              name: 'history',
              component: History,
              meta: {
-               pageTitle: 'History - Open Trading Platform',
+               pageTitle: 'History - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
                needLogin: false,
              },
 
