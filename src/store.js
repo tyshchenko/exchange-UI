@@ -39,7 +39,7 @@ const store = new Vuex.Store({
     recentTrades: [],
     loaderCounter: 0,
     loaderCancellable: false,
-    isLoggedIn: true,
+    isLoggedIn: false,
     isPhoneVerified: true, //change to true to enable phone verification
     isKycVerified: false,
     sidebarOpen: false,

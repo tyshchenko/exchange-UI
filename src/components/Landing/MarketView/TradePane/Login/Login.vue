@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     login() {
-      EventBus.$emit(EventNames.userLogin, { username: loggedInUser, mqttKey: mqttKey, });
+      EventBus.$emit(EventNames.userLogin, { username: this.formData.login, mqttKey: this.formData.password, });
       this.$showSuccessMsg({
         message: 'Login Successfully',
       });

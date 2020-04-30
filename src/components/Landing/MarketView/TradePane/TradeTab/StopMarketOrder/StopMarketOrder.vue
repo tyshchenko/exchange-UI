@@ -108,7 +108,7 @@ export default {
             message: 'Timeout exceeded.',
           });
         }
-      },15000);
+      },7000);
       this.formData.amount = undefined;
       this.showConfirm = false;
       if (response.status) {
