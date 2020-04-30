@@ -13,8 +13,8 @@ export default {
     return {
       showLoader: false,
       formData: {
-        login: '',
-        password: '',
+        login: loggedInUser,
+        password: mqttKey,
       },
     };
   },
