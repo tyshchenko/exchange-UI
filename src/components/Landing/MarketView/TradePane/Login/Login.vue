@@ -31,6 +31,8 @@ export default {
         this.$showSuccessMsg({
           message: response.Result,
         });
+      } else if (response.Status == 100) {
+        showTwoFAuthenticationModal();
       } else {
         this.$showErrorMsg({
           message: response.Result,
