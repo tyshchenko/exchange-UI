@@ -31,16 +31,13 @@ export default {
         this.$showSuccessMsg({
           message: response.Result,
         });
-      } else if (response.Status == 100) {
-        this.$showErrorMsg({
-          message: response.Result,
-        });
-        this.$store.commit('closeSidebar');
-        this.$emit('show-TwoFAuthentication-modal');
       } else {
         this.$showErrorMsg({
           message: response.Result,
         });
+        if (response.Status == 100) {
+          this.showWithdrawlModal();
+        }
       }
     },
     showDepositModal() {
