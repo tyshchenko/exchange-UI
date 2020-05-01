@@ -65,9 +65,6 @@ class WalletService {
       'params':params,
     };
     let responce = (await ApiCurryBase.post('/', method)).data;
-    responce.status = true;
-    responce.data = responce.result;
-    responce.data.message = 'success';
     /* eslint-disable no-console */
     console.log(responce);
     /* eslint-enable no-console */

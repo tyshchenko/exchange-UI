@@ -26,14 +26,14 @@ export default {
         message: 'Executing Login Procedure ... ',
       });
       const response = await WalletService.login(this.formData);
-      if (response.data.status == 0) {
+      if (response.status == 0) {
         this.$showSuccessMsg({
-          message: response.data.result,
+          message: response.result,
         });
       } else {
         EventBus.$emit(EventNames.userLogin, { username: this.formData.login, mqttKey: this.formData.password, });
         this.$showErrorMsg({
-          message: response.data.result,
+          message: response.result,
         });
       }
     },
