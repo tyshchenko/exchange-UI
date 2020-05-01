@@ -32,7 +32,8 @@ export default {
           message: response.Result,
         });
       } else if (response.Status == 100) {
-        this.showTwoFAuthenticationModal();
+        this.$store.commit('closeSidebar');
+        this.$emit('show-TwoFAuthentication-modal');
       } else {
         this.$showErrorMsg({
           message: response.Result,
