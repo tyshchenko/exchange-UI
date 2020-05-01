@@ -1,6 +1,7 @@
 <template src="./template.html"></template>
 
 <script>
+import WalletService from '@/services/WalletService';
 import EventBus, { EventNames, } from '@/eventBuses/default';
 import LocalStorage, { Keys, } from '@/utils/localStorage.js';
 
@@ -19,7 +20,7 @@ export default {
     };
   },
   methods: {
-    register() {
+    async register() {
       const response = await WalletService.register(this.formData);
       if (response.Status == 0) {
         this.$showSuccessMsg({
