@@ -44,8 +44,9 @@ if (!LocalStorage.get(Keys.pingUuid)) {
 }
 
 
-EventBus.$on(EventNames.userLogin, () => {
+EventBus.$on(EventNames.userLogin, (body) => {
   store.commit('isLoggedIn', true);
+  LocalStorage.set(Keys.username, body.username);
 });
 
 EventBus.$on(EventNames.userLogout, () => {
