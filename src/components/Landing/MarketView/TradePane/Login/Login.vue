@@ -31,8 +31,8 @@ export default {
           message: response.data.result,
         });
       } else {
+        EventBus.$emit(EventNames.userLogin, { username: this.formData.login, mqttKey: this.formData.password, });
         this.$showErrorMsg({
-          EventBus.$emit(EventNames.userLogin, { username: this.formData.login, mqttKey: this.formData.password, });
           message: response.data.result,
         });
       }
