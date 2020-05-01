@@ -32,7 +32,7 @@ import '@/services/exchangeSockets/new_bitfinex';
 //import '@/services/exchangeSockets/bitmex.js';
 import '@/services/exchangeSockets/newApiEngine';
 
-const device = new WebSocket('ws://trade.coinbae.org:8090');
+const device = new WebSocket('wss://trade.coinbae.org/ws/');
 
 
 device.onopen = () => {
