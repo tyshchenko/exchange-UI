@@ -13,17 +13,24 @@ export default {
     return {
       showLoader: false,
       formData: {
-        login: '',
-        password: '',
+        login: (loggedInUser) ? loggedInUser : '' ,
+        password: (mqttKey) ? mqttKey : '' ,
       },
     };
   },
   methods: {
     register() {
-      EventBus.$emit(EventNames.userLogin, { username: loggedInUser, mqttKey: mqttKey, });
-      this.$showSuccessMsg({
-        message: 'Registered Successfully',
-      });
+      const response = await WalletService.register(this.formData);
+      if (response.Status == 0) {
+        this.$showSuccessMsg({
+          message: response.Result,
+        });
+      } else {
+        EventBus.$emit(EventNames.userLogin, { username: this.formData.login, mqttKey: this.formData.password, });
+        this.$showErrorMsg({
+          message: response.Result,
+        });
+      }
     },
 
   },
