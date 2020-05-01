@@ -32,7 +32,7 @@ export default {
           message: response.Result,
         });
       } else if (response.Status == 100) {
-        showTwoFAuthenticationModal();
+        this.showTwoFAuthenticationModal();
       } else {
         this.$showErrorMsg({
           message: response.Result,
