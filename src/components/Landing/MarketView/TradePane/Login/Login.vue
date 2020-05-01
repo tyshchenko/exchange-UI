@@ -26,7 +26,7 @@ export default {
         message: 'Executing Login Procedure ... ',
       });
       const response = await WalletService.login(this.formData);
-      if (response.Status == 0) {
+      if (response.Status == 1) {
         this.$showSuccessMsg({
           message: response.Result,
         });

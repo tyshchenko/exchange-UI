@@ -22,7 +22,7 @@ export default {
   methods: {
     async register() {
       const response = await WalletService.register(this.formData);
-      if (response.Status == 0) {
+      if (response.Status == 1) {
         this.$showSuccessMsg({
           message: response.Result,
         });
