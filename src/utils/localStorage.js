@@ -16,7 +16,7 @@ class LocalStorage {
   }
 
   isUserLoggedIn() {
-    return true;
+    return false;
   }
 
   clearLoginUserData() {
