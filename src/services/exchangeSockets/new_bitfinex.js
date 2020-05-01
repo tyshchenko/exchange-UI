@@ -17,7 +17,7 @@ class Bitfinex {
         // selectedPair: store.getters.selectedPair,
         defaultPair: 'BTC/USD',
         selectedPair: 'BTC/USD',
-        baseAddress: 'wss://trade.coinbae.org:8090',
+        baseAddress: 'ws://trade.coinbae.org:8090',
         streams: ['trades', 'candles', 'books', 'ticker', ],
         channelIDs: {
           candles: '',
