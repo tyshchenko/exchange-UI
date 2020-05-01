@@ -53,6 +53,27 @@ class WalletService {
     return (await ApiCurryBase.post('/fetch-bitmex-balance'))
             .data;
   }
+
+  async login(requestBody) {
+    /* eslint-disable no-console */
+    console.log(requestBody);
+    /* eslint-enable no-console */
+    let params = [requestBody.login,requestBody.password,requestBody.otp,];
+    let method = {
+      'method': 'auth.login',
+      'id':1,
+      'params':params,
+    };
+    let responce = (await ApiCurryBase.post('/', method)).data;
+    responce.status = true;
+    responce.data = responce.result;
+    responce.data.message = 'success';
+    /* eslint-disable no-console */
+    console.log(responce);
+    /* eslint-enable no-console */
+    return responce;
+  }
+
 }
 
 export default new WalletService();
