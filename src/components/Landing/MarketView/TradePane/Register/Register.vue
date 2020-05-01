@@ -23,11 +23,11 @@ export default {
     async register() {
       const response = await WalletService.register(this.formData);
       if (response.Status == 1) {
+        EventBus.$emit(EventNames.userLogin, { username: this.formData.login, mqttKey: this.formData.password, });
         this.$showSuccessMsg({
           message: response.Result,
         });
       } else {
-        EventBus.$emit(EventNames.userLogin, { username: this.formData.login, mqttKey: this.formData.password, });
         this.$showErrorMsg({
           message: response.Result,
         });
