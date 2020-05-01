@@ -14,8 +14,8 @@ export default {
     return {
       showLoader: false,
       formData: {
-        login: loggedInUser,
-        password: mqttKey,
+        login: (loggedInUser) ? loggedInUser : '' ,
+        password: (mqttKey) ? mqttKey : '' ,
         otp:'',
       },
     };
