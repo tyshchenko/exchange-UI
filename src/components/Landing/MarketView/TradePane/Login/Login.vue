@@ -36,7 +36,8 @@ export default {
           message: response.Result,
         });
         if (response.Status == 100) {
-          this.showWithdrawlModal();
+          this.$store.commit('closeSidebar');
+          this.$emit('show-deposit-modal');
         }
       }
     },
