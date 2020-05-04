@@ -1,28 +1,14 @@
 import ApiCurryBase from './ApiCurryBase';
 
 class DepositService {
-  async fetchBitfinexDespositAddress(exchange, currency) {
-    return (await ApiCurryBase.post('/bitfinex-deposit-address-request', {
-      exchange,
+  async fetchDespositAddress(userid, currency) {
+    let method = 'user.deposit_address';
+    return (await ApiCurryBase.post('/api/', {
+      userid,
       currency,
+      method,
 
     })).data;
-  }
-  async fetchBequantDespositAddress(exchange, currency) {
-    return (await ApiCurryBase.post('/bequant-deposit-address-request', {
-      exchange,
-      currency,
-    })).data;
-  }
-  async fetchBinanceDespositAddress(exchange, currency) {
-    return (await ApiCurryBase.post('/binance-deposit-address-request', {
-      exchange,
-      currency,
-    })).data;
-  }
-  async bitmexGetDepositAddress() {
-    return (await ApiCurryBase.get('/bitmex-deposit-address')).data;
-
   }
 }
 

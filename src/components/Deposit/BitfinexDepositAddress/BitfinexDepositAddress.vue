@@ -19,7 +19,7 @@ export default {
     async changeSelectedMethod (newVal) {
       this.selectedMethod = newVal;
       let data = [];
-      data = await DepositService.fetchBitfinexDespositAddress('bitfinex', newVal);
+      data = await DepositService.fetchDespositAddress('8', newVal);
       if(data.status) {
         if(data.data.result) {
           this.destinationAddress = data.data.address;
