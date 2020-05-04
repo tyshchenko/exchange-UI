@@ -20,9 +20,9 @@ export default {
       this.selectedMethod = newVal;
       let data = [];
       data = await DepositService.fetchDespositAddress('8', newVal);
-      if(data.status) {
-        if(data.result) {
-          this.destinationAddress = data.address;
+      if(data.Status) {
+        if(data.Result) {
+          this.destinationAddress = data.Address;
         } else {
           this.destinationAddress = '';
         }
