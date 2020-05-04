@@ -1,5 +1,5 @@
 <div class="price-pane">
     <trading-view v-if="isTradingView" />
     <!-- <price-analysis /> -->
-    <trade-view />
+    <trade-view v-if="$store.getters.isLoggedIn"/>
 </div>
