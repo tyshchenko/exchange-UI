@@ -13,7 +13,7 @@ export default {
       selectedMethod: 'SELECT A CURRENCY',
       destinationAddress: '',
       bitfinexMethodTypes: ['bitcoin',],
-      currentImgUrl: '@/assets/logo.png',
+      currentImgUrl: '/img/qr.png',
     };
   },
   methods: {
