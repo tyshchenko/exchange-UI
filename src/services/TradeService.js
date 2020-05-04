@@ -35,9 +35,6 @@ class TradeService {
   }
 
   async cancelOrder(requestBody) {
-    /* eslint-disable no-console */
-    console.log(requestBody);
-    /* eslint-enable no-console */
     let params = [1,'BTCUSD',requestBody.orderId,];
     let method = {
       'method': 'order.cancel',
@@ -45,12 +42,12 @@ class TradeService {
       'params':params,
     };
     let responce = (await ApiCurryBase.post('/', method)).data;
-    responce.status = true;
-    responce.data = responce.result;
-    responce.data.message = 'success';
     /* eslint-disable no-console */
     console.log(responce);
     /* eslint-enable no-console */
+    responce.status = true;
+    responce.data = responce.result;
+    responce.data.message = 'success';
     return responce;
   }
 
@@ -60,13 +57,7 @@ class TradeService {
 
   async getActiveOrders(exchange = '', pair = '') {
     //get-active-orders
-    if (exchange) {
-      if (pair) { 
-        /* eslint-disable no-console */
-        console.log(exchange);
-        /* eslint-enable no-console */
-      }
-    }
+
     let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[1,'BTCUSD',0,50,],});
     let data = response.data;
     /* eslint-disable no-console */
