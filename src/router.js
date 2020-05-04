@@ -3,10 +3,7 @@ import Router from 'vue-router';
 import Settings from '@/components/Settings/Settings.vue';
 import History from '@/components/History/History.vue';
 import BalanceTransfer from '@/components/BalanceTransfer/BalanceTransfer.vue';
-import SummaryBequant from '@/components/BalanceTransfer/SummaryBequant/SummaryBequant.vue';
 import SummaryBitfinex from '@/components/BalanceTransfer/SummaryBitfinex/SummaryBitfinex.vue';
-import SummaryBinance from '@/components/BalanceTransfer/SummaryBinance/SummaryBinance.vue';
-import SummaryBitmex from '@/components/BalanceTransfer/SummaryBitmex/SummaryBitmex.vue';
 import ActiveTradesMobile from '@/components/ActiveTradesMobile/ActiveTradesMobile.vue';
 import LocalStorage from '@/utils/localStorage.js';
 import EventBus, {
