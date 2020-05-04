@@ -8,3 +8,9 @@
         height: calc(100vh - 320px) !important;
     }
 }
+.halfheight {
+  height: calc(100vh - 295px);
+}
+.fullheight {
+  height: 100vh;
+}
