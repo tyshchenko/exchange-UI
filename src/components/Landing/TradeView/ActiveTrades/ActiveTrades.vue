@@ -19,7 +19,7 @@ export default {
     },
   },
   mounted() {
-    this.getActiveOrders();
+    //this.getActiveOrders();
     //this.activeOrders = this.mapActiveOrders(this.$store.getters.activeOrders);
     this.userLoginListener = () => this.getActiveOrders();
     this.userLogoutListener = () => (this.activeOrders = []);

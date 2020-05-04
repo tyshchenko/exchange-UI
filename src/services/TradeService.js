@@ -80,7 +80,7 @@ class TradeService {
       amount: rt.amount,
       avgPrice: rt.price,
       buyOrSell: rt.side==2 ? 'buy' : 'sell',
-      exchange: 'AnkerX',
+      exchange: 'XCoinBae',
       orderType: '',
       stopPrice:  rt.price,
       status: rt.deal_stock>0 ? 'part.filled' : 'pending',
