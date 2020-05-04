@@ -57,7 +57,7 @@ const vueRouter = new Router({
                component: Trezor,
                meta: {
                  pageTitle: 'Trezor - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
-                 needLogin: true,
+                 needLogin: false,
                },
              }, ],
            },
@@ -66,7 +66,7 @@ const vueRouter = new Router({
              component: BalanceTransfer,
              meta: {
                pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
-               needLogin: true,
+               needLogin: false,
              },
              children: [ {
                           path: '',
