@@ -13,6 +13,7 @@ export default {
       selectedMethod: 'SELECT A CURRENCY',
       destinationAddress: '',
       bitfinexMethodTypes: ['bitcoin',],
+      currentImgUrl: '',
     };
   },
   methods: {
@@ -23,6 +24,7 @@ export default {
       if(data.Status) {
         if(data.Result) {
           this.destinationAddress = data.Address;
+          this.currentImgUrl = process.env.VUE_APP_CURRY_API_BASE_URL + 'qr/' + data.Address;
         } else {
           this.destinationAddress = '';
         }
