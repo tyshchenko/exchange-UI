@@ -6,7 +6,7 @@
 
     </div>
     <modal-box internalComponent="deposit" v-if="$store.getters.isLoggedIn" :show='depositModalShown' @modal-closed='toggleDepositModal' />
-    <modal-box internalComponent="withdrawl" v-if="$store.getters.isLoggedIn" :show='withdrawlModalShown' @modal-closed='toggleWithdrawlModal' />
+    <modal-box internalComponent="withdrawal" v-if="$store.getters.isLoggedIn" :show='withdrawlModalShown' @modal-closed='toggleWithdrawlModal' />
 
     <trade-modal v-if="$store.getters.isLoggedIn"/>
     <active-trades v-if="$store.getters.isLoggedIn"/>
