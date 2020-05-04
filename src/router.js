@@ -60,7 +60,7 @@ const vueRouter = new Router({
                component: Trezor,
                meta: {
                  pageTitle: 'Trezor - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
-                 needLogin: false,
+                 needLogin: true,
                },
              }, ],
            },
@@ -69,45 +69,17 @@ const vueRouter = new Router({
              component: BalanceTransfer,
              meta: {
                pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
-               needLogin: false,
+               needLogin: true,
              },
-             children: [{
-               path: 'wallet-summary-bequant',
-               name: 'wallet-summary-bequant',
-               component: SummaryBequant,
-               meta: {
-                 pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
-                 needLogin: false,
-               },
-             },
-                        {
-                          path: 'wallet-summary-bitfinex',
+             children: [ {
+                          path: '',
                           name: 'wallet-summary-bitfinex',
                           component: SummaryBitfinex,
                           meta: {
                             pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
                             needLogin: false,
                           },
-                        },
-                        {
-                          path: '',
-                          name: 'wallet-summary-binance',
-                          component: SummaryBinance,
-                          meta: {
-                            pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
-                            needLogin: false,
-                          },
-                        },
-                        {
-                          path: 'wallet-summary-bitmex',
-                          name: 'wallet-summary-bitmex',
-                          component: SummaryBitmex,
-                          meta: {
-                            pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
-                            needLogin: false,
-                          },
-                        },
-             ],
+                        }, ],
            },
            {
              path: '/history',

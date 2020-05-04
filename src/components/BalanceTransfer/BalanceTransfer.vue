@@ -12,16 +12,10 @@ export default {
     return {
       activeTab: 'BITFINEX',
       tabs: [
-        'BINANCE',        
         'BITFINEX',
-        'BEQUANT',
-        'BITMEX',
       ],
       tabRouteMapping: {
-        'BINANCE': '/balance',            
-        'BITFINEX': '/balance/wallet-summary-bitfinex',
-        'BEQUANT': '/balance/wallet-summary-bequant',
-        'BITMEX': '/balance/wallet-summary-bitmex',
+        'BITFINEX': '/balance',
       },
     };
   },
