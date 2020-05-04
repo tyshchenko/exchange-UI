@@ -8,7 +8,7 @@ class DepositService {
       currency,
       method,
 
-    })).data;
+    }));
   }
 }
 

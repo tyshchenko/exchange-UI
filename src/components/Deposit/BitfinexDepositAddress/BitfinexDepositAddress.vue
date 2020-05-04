@@ -21,8 +21,8 @@ export default {
       let data = [];
       data = await DepositService.fetchDespositAddress('8', newVal);
       if(data.status) {
-        if(data.data.result) {
-          this.destinationAddress = data.data.address;
+        if(data.result) {
+          this.destinationAddress = data.address;
         } else {
           this.destinationAddress = '';
         }
