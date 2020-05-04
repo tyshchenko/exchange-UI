@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <header-section @show-deposit-modal="toggleDepositModal" @show-miner-modal="toggleMinerModal" />
+    <header-section @show-deposit-modal="toggleDepositModal" @show-miner-modal="toggleMinerModal" @show-withdrawl-modal="toggleWithdrawlModal" />
      <div class="uk-hidden@m">
     <side-menu @show-deposit-modal="toggleDepositModal" @show-withdrawl-modal="toggleWithdrawlModal" @show-miner-modal="toggleMinerModal"  />
 
     </div>
     <modal-box internalComponent="deposit" v-if="$store.getters.isLoggedIn" :show='depositModalShown' @modal-closed='toggleDepositModal' />
-    
+    <modal-box internalComponent="withdrawl" v-if="$store.getters.isLoggedIn" :show='withdrawlModalShown' @modal-closed='toggleWithdrawlModal' />
     <modal-box internalComponent="miner" v-if="$store.getters.isLoggedIn" :show='minerModalShown' @modal-closed='toggleMinerModal' />
 
     <trade-modal v-if="$store.getters.isLoggedIn"/>

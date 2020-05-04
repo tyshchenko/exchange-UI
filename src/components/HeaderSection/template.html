@@ -86,6 +86,12 @@
                                         </span>
                                         <span>Withdrawal</span>
                                     </a>
+                                    <a href="javascript:undefined" @click="showMinerModal">
+                                        <span>
+                                          <i class="icc icons8-receive-cash"></i>
+                                        </span>
+                                        <span>Miner</span>
+                                    </a>
                                 </div>
                             </div>
                             <div class="dropdown" v-if="$store.getters.isLoggedIn && $store.getters.themeMode === 'default'">
