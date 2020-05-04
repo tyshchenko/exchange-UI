@@ -12,7 +12,7 @@ export default {
     return {
       selectedMethod: 'SELECT A CURRENCY',
       destinationAddress: '',
-      bitfinexMethodTypes: ['bitcoin', 'litecoin', 'ethereum', 'tetheruso', 'ethereumc', 'zcash', 'monero', 'iota', 'bcash',],
+      bitfinexMethodTypes: ['bitcoin',],
     };
   },
   methods: {

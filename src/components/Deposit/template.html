@@ -1,17 +1,8 @@
 <div class="deposit">
     <div class="uk-margin-medium-top uk-visible@m">
         <vk-tabs align="center">
-            <vk-tabs-item title="Bitfinex">
+            <vk-tabs-item title="XCoinBae">
                 <bitfinex-deposit-address></bitfinex-deposit-address>
-            </vk-tabs-item>
-            <vk-tabs-item title="Binance">
-                <binance-deposit-address></binance-deposit-address>
-            </vk-tabs-item>
-            <vk-tabs-item title="Bequant">
-                <bequant-deposit-address></bequant-deposit-address>
-            </vk-tabs-item>
-            <vk-tabs-item title="Bitmex">
-                <bitmex-deposit-address></bitmex-deposit-address>
             </vk-tabs-item>
         </vk-tabs>
     </div>
@@ -22,9 +13,6 @@
                 <vk-nav-item v-for="tab of tabs" :key="tab" :title="tab" @click="onDropDownTabChange(tab)"></vk-nav-item>
             </vk-nav-dropdown>
         </vk-dropdown>
-        <bitfinex-deposit-address v-if="activeTab === 'Bitfinex'"></bitfinex-deposit-address>
-        <binance-deposit-address v-if="activeTab === 'Binance'"></binance-deposit-address>
-        <bequant-deposit-address v-if="activeTab === 'Bequant'"></bequant-deposit-address>
-        <bitmex-deposit-address v-if="activeTab === 'Bitmex'"></bitmex-deposit-address>
+        <bitfinex-deposit-address v-if="activeTab === 'XCoinBae'"></bitfinex-deposit-address>
     </div>
 </div>
