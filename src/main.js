@@ -47,6 +47,7 @@ if (!LocalStorage.get(Keys.pingUuid)) {
 EventBus.$on(EventNames.userLogin, (body) => {
   store.commit('isLoggedIn', true);
   LocalStorage.set(Keys.username, body.username);
+  LocalStorage.set(Keys.mqtt, body.mqttKey);
   this.$showSuccessMsg({
     message: 'Login Successfully',
   });

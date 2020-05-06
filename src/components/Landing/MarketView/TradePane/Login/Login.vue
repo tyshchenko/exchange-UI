@@ -6,7 +6,7 @@ import EventBus, { EventNames, } from '@/eventBuses/default';
 import LocalStorage, { Keys, } from '@/utils/localStorage.js';
 
 const loggedInUser = LocalStorage.get(Keys.username);
-const mqttKey = LocalStorage.get(Keys.mqtt);
+
 
 export default {
   name: 'login',
@@ -14,8 +14,8 @@ export default {
     return {
       showLoader: false,
       formData: {
-        login: (loggedInUser) ? loggedInUser : '' ,
-        password: (mqttKey) ? mqttKey : '' ,
+        login: (loggedInUser) ? loggedInUser : '',
+        password: '',
         otp:'',
       },
     };
@@ -27,7 +27,7 @@ export default {
       });
       const response = await WalletService.login(this.formData);
       if (response.Status == 1) {
-        EventBus.$emit(EventNames.userLogin, { username: this.formData.login, mqttKey: this.formData.password, });
+        EventBus.$emit(EventNames.userLogin, { username: this.formData.login, mqttKey: response.Userid, });
         this.$showSuccessMsg({
           message: response.Result,
         });

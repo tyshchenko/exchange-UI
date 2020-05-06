@@ -1,5 +1,8 @@
 import ApiCurryBase from './ApiCurryBase';
 import axios from 'axios';
+import LocalStorage, { Keys, } from '@/utils/localStorage.js';
+const mqttKey = LocalStorage.get(Keys.mqtt);
+
 
 class TradeService {
   async placeNewOrder(requestBody) {
@@ -64,7 +67,7 @@ class TradeService {
         /* eslint-enable no-console */
       }
     }
-    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[1,'BTCUSD',0,50,],});
+    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[self.mqttKey,'BTCUSD',0,50,],});
     let data = response.data;
     /* eslint-disable no-console */
     console.log(data.result.records);
