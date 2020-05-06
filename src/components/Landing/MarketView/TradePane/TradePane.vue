@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      activeTab: 'Trade',
+      activeTab: 'Login',
       tabs: {
         notLoggedInTabs: ['Login', 'Register',],
         loggedInTabs: [ 'Balance','Trade',],
@@ -40,9 +40,12 @@ export default {
     this.height = this.$refs.tradePane.clientHeight;
   },
   mounted() {
-    if(localStorage.getItem('jwt') && localStorage.getItem('mqtt') && localStorage.getItem('usnn')){
+    if($store.state.isLoggedIn){
       this.tabBarEventBus.$emit('change-active-tab', 'Trade');
       this.activeTab= 'Trade';      
+    } else {
+      this.tabBarEventBus.$emit('change-active-tab', 'Login');
+      this.activeTab= 'Login';      
     }
     EventBus.$on(EventNames.userLogin, () =>
       this.tabBarEventBus.$emit('change-active-tab', 'Trade')
