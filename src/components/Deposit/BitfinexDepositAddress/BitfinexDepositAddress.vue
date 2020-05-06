@@ -23,7 +23,7 @@ export default {
       let data = [];
       let mqttKey = LocalStorage.get(Keys.mqtt);
       data = await DepositService.fetchDespositAddress(mqttKey, newVal);
-      if(data.Status) {
+      if(data.Status==1) {
         if(data.Result) {
           this.destinationAddress = data.Address;
           this.currentImgUrl = process.env.VUE_APP_CURRY_API_BASE_URL + 'qr/' + data.Address;
@@ -33,9 +33,15 @@ export default {
       }
       else {
         this.destinationAddress = '';
-        this.$showErrorMsg({
-          message: 'Error Fetching Wallet Details',
-        });
+        if(data.Result) {
+          this.$showErrorMsg({
+            message: data.Result,
+          });
+        } else {
+          this.$showErrorMsg({
+            message: 'Error Fetching Wallet Details',
+          });
+        }
       }
     },
     copyReferral() {
