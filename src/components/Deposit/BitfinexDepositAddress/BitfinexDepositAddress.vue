@@ -3,6 +3,7 @@
 <script>
 import DepositService from '@/services/DepositService.js';
 import LocalStorage, { Keys, } from '@/utils/localStorage.js';
+import EventBus, { EventNames, } from '@/eventBuses/default';
 
 export default {
   name: 'bitfinex-deposit-address',
@@ -41,6 +42,9 @@ export default {
           this.$showErrorMsg({
             message: 'Error Fetching Wallet Details',
           });
+        }
+        if (data.Expired==1) {
+          EventBus.$emit(EventNames.userLogout);
         }
       }
     },
