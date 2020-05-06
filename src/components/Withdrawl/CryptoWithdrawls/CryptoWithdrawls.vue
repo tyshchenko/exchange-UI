@@ -8,7 +8,7 @@ export default {
   name: 'crypto-withdrawls',
   data() {
     return {
-      supportedCoins: ['btc', 'bch', 'ltc','xmr',],
+      supportedCoins: ['btc', ],
       formValue: {
         amount: '',
         recievingAddress: '',
