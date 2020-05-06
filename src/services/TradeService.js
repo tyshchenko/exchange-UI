@@ -12,11 +12,12 @@ class TradeService {
     if (requestBody.bos =='buy') {
       side = 2;
     }
-    let params = [1,'BTCUSD',side,requestBody.amount,'0.00','',];
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    let params = [mqttKey,'BTCUSD',side,requestBody.amount,'0.00','',];
     let type = 'order.put_market';
     if (requestBody.type == 'limit') {
       type = 'order.put_limit';
-      params = [1,'BTCUSD',side,requestBody.amount,requestBody.price,'0.00','0.00','',];
+      params = [mqttKey,'BTCUSD',side,requestBody.amount,requestBody.price,'0.00','0.00','',];
     }
     let method = {
       'method': type,
@@ -37,7 +38,8 @@ class TradeService {
   }
 
   async cancelOrder(requestBody) {
-    let params = [1,'BTCUSD',requestBody.orderId,];
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    let params = [mqttKey,'BTCUSD',requestBody.orderId,];
     let method = {
       'method': 'order.cancel',
       'id':1,
@@ -94,7 +96,8 @@ class TradeService {
     // return (await ApiCurryBase.post('/get-open-positions', {
     // exchange,
     // })).data;
-    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[1,'BTCUSD',0,50,],});
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[mqttKey,'BTCUSD',0,50,],});
     let data = response.data;
     /* eslint-disable no-console */
     console.log(data.result.records);
@@ -116,12 +119,13 @@ class TradeService {
   }
 
   async getFees() {
-    return (await ApiCurryBase.get('/fees')).data;
+    return (await ApiCurryBase.post('/', {'method': 'exchange.fee','id':1, })).data;
   }
 
   async getLedger(requestBody) {
     if (requestBody) {
-      let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[1,],});
+      let mqttKey = LocalStorage.get(Keys.mqtt);
+      let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[mqttKey,],});
       let arr = [];
       let data = response.data;
       arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available)),});
@@ -143,7 +147,7 @@ class TradeService {
       /* eslint-enable no-console */
     }
     let data = {'user_pl':10,'user_swaps':20,'margin_balance':30,'margin_net':40,'margin_required':50,};
-    return {'status':true,'message':'Bitfinex Margin Info','data':data,};
+    return {'status':true,'message':'Margin Info','data':data,};
   }
 
   async calculatePrices(body) {
