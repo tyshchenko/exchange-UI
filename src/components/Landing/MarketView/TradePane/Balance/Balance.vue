@@ -40,7 +40,7 @@ export default {
       } else {
         this.excPair = pairs[`${this.exc}-_-${this.pair}`];
         this.balance =(await TradeService.getLedger({selectedExchange: this.exc, selectedPair:  this.pair, orderType: 'SPOT',excPair: this.excPair, })).data;
-        if(this.exc === 'bitfinex') {
+        if(this.exc === 'bitrfinex') {
           await setTimeout(async () => {
             this.marginInfo =(await TradeService.getLedger({selectedExchange: this.exc, selectedPair:  this.pair, orderType: 'MARGIN',excPair: this.excPair, })).data;
   
@@ -64,7 +64,7 @@ export default {
         this.exc = this.$store.getters.selectedExchange.toLowerCase();
         this.excPair = pairs[`${this.exc}-_-${this.pair}`];
         this.balance =(await TradeService.getLedger({selectedExchange: this.exc, selectedPair:  this.pair, orderType: 'SPOT',excPair: this.excPair, })).data;
-        if(this.exc === 'bitfinex') {
+        if(this.exc === 'bitrfinex') {
           await setTimeout(async () => {
             this.marginInfo =(await TradeService.getLedger({selectedExchange: this.exc, selectedPair:  this.pair, orderType: 'MARGIN',excPair: this.excPair, })).data;
 
