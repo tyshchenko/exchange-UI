@@ -67,7 +67,7 @@ class TradeService {
         /* eslint-enable no-console */
       }
     }
-    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[self.mqttKey,'BTCUSD',0,50,],});
+    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[mqttKey,'BTCUSD',0,50,],});
     let data = response.data;
     /* eslint-disable no-console */
     console.log(data.result.records);
