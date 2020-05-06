@@ -2,6 +2,7 @@
 
 <script>
 import DepositService from '@/services/DepositService.js';
+import LocalStorage, { Keys, } from '@/utils/localStorage.js';
 
 export default {
   name: 'bitfinex-deposit-address',
@@ -20,7 +21,8 @@ export default {
     async changeSelectedMethod (newVal) {
       this.selectedMethod = newVal;
       let data = [];
-      data = await DepositService.fetchDespositAddress('8', newVal);
+      let mqttKey = LocalStorage.get(Keys.mqtt);
+      data = await DepositService.fetchDespositAddress(mqttKey, newVal);
       if(data.Status) {
         if(data.Result) {
           this.destinationAddress = data.Address;
