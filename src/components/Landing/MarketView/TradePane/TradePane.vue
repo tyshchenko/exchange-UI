@@ -40,7 +40,7 @@ export default {
     this.height = this.$refs.tradePane.clientHeight;
   },
   mounted() {
-    if($store.state.isLoggedIn){
+    if(this.$store.state.isLoggedIn){
       this.tabBarEventBus.$emit('change-active-tab', 'Trade');
       this.activeTab= 'Trade';      
     } else {
