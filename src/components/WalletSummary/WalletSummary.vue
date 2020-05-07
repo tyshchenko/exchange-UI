@@ -3,6 +3,7 @@
 <script>
 import WalletService from '@/services/WalletService.js';
 import Spinner from '@/components/Spinner/Spinner.vue';
+import TradeService from '@/services/TradeService';
 
 export default {
   name: 'wallet-summary',
