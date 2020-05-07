@@ -1,6 +1,7 @@
 import ApiCurryBase from './ApiCurryBase';
 import axios from 'axios';
 import LocalStorage, { Keys, } from '@/utils/localStorage.js';
+import EventBus, { EventNames, } from '@/eventBuses/default';
 
 
 class TradeService {
@@ -31,6 +32,10 @@ class TradeService {
     responce.data = responce.result;
     responce.data.message = 'success';
     responce.data.volume = responce.result.amount;
+    if (responce.Expired==1) {
+      EventBus.$emit(EventNames.userLogout);
+    }
+
     /* eslint-disable no-console */
     console.log(responce);
     /* eslint-enable no-console */
@@ -52,6 +57,9 @@ class TradeService {
     responce.status = true;
     responce.data = responce.result;
     responce.data.message = 'success';
+    if (responce.Expired==1) {
+      EventBus.$emit(EventNames.userLogout);
+    }
     return responce;
   }
 
@@ -75,6 +83,9 @@ class TradeService {
     /* eslint-disable no-console */
     console.log(data.result.records);
     /* eslint-enable no-console */
+    if (data.Expired==1) {
+      EventBus.$emit(EventNames.userLogout);
+    }
     let outputdata = data.result.records.map(rt => ({
       id: rt.id,
       clientOrderId: rt.id,
@@ -102,6 +113,9 @@ class TradeService {
     /* eslint-disable no-console */
     console.log(data.result.records);
     /* eslint-enable no-console */
+    if (data.Expired==1) {
+      EventBus.$emit(EventNames.userLogout);
+    }
     let outputdata = data.result.records.map(rt => ({
       id: rt.id,
       clientOrderId: rt.id,
@@ -119,7 +133,8 @@ class TradeService {
   }
 
   async getFees() {
-    return (await ApiCurryBase.post('/', {'method': 'exchange.fee','id':1, })).data;
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    return (await ApiCurryBase.post('/', {'method': 'exchange.fee','id':1, 'params':[mqttKey,],})).data;
   }
 
   async getLedger(requestBody) {
@@ -128,6 +143,9 @@ class TradeService {
       let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[mqttKey,],});
       let arr = [];
       let data = response.data;
+      if (data.Expired==1) {
+        EventBus.$emit(EventNames.userLogout);
+      }
       arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available)),});
       arr.push({'wallet_type':'exchange','currency':'USD','locked_bal':Number(data.result.USD.freeze),'avail_bal':Number(data.result.USD.available),'total_bal':Number(data.result.USD.freeze) + Number(Number(data.result.USD.available)),});
       return {'status':true,'message':'Balance','data':arr,};

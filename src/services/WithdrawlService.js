@@ -1,4 +1,5 @@
 import ApiCurryBase from './ApiCurryBase';
+import LocalStorage, { Keys, } from '@/utils/localStorage.js';
 
 class WithdrawlService {
   async withdrawCrypto(body) {
@@ -9,7 +10,8 @@ class WithdrawlService {
     return (await ApiCurryBase.post('/send-cryptowithdrawl-email-otp',body)).data;
   }
   async getWithdrawalFees() {
-    return (await ApiCurryBase.post('/get-withdrawal-fees')).data;
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    return (await ApiCurryBase.post('/',{'method': 'withdrawal.fee','id':1, 'params':[mqttKey,],})).data;
   }
 }
 
