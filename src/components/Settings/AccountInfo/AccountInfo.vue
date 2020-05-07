@@ -2,6 +2,7 @@
 </template>
 
 <script>
+import LocalStorage, { Keys, } from '@/utils/localStorage.js';
 
 const loggedInUser = LocalStorage.get(Keys.username);
 
