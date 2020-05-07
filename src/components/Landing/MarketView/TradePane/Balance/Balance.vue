@@ -23,7 +23,7 @@ export default {
     ExchangeDataEventBus.$on('change-symbol', this.getBalance);
     ExchangeDataEventBus.$on('afterSymbolAndExchangeChange', this.getBalance);
     EventBus.$on(EventNames.notification, this.getBalanceByNotify);
-
+    EventBus.$on('change-active-tab', this.activeTabChange);
     this.getBalance();
   },
   methods: {
@@ -80,12 +80,18 @@ export default {
         this.showLoader= false;
       }
     },
+    activeTabChange(activeTab) {
+      this.activeTab = activeTab;
+      if (activeTab === 'Balance') {
+        this.getBalance();
+      }
+    },
   },
   destroyed() {
     EventBus.$off(EventNames.notification, this.getBalanceByNotify);
     ExchangeDataEventBus.$off('afterSymbolAndExchangeChange', this.getBalance);
     ExchangeDataEventBus.$off('change-symbol', this.getBalance);
-
+    EventBus.$off('change-active-tab', this.activeTabChange);
   },
 };
 </script>
