@@ -3,21 +3,21 @@
 
 <script>
 import AccountInfo from '@/components/Settings/AccountInfo/AccountInfo.vue';
-import ReceivingAddress from '@/components/Settings/ReceivingAddress/ReceivingAddress.vue';
 import SendMoney from '@/components/Settings/SendMoney/SendMoney.vue';
+import BitfinexDepositAddress from '@/components/Deposit/BitfinexDepositAddress/BitfinexDepositAddress';
 
 
 export default {
   name: 'settings',
   components: {
     AccountInfo,
-    ReceivingAddress,
+    BitfinexDepositAddress,
     SendMoney,
   },
   data () {
     return {
       activeTab: 'Account Info',
-      tabs: ['Account Info', 'Receiving Address', 'Send Money',],
+      tabs: ['Account Info', 'Deposit Address', 'Send Money',],
     };
   },
   methods: {
