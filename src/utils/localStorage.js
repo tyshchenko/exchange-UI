@@ -16,7 +16,7 @@ class LocalStorage {
   }
 
   isUserLoggedIn() {
-    return false;
+    return window.localStorage.getItem(Keys.logedin);
   }
 
   clearLoginUserData() {
@@ -26,6 +26,7 @@ class LocalStorage {
     this.remove(Keys.idToken);
     this.remove(Keys.username);
     this.remove(Keys.mqtt);
+    this.remove(Keys.logedin);
   }
 }
 
@@ -39,4 +40,5 @@ export const Keys = {
   username: 'usnn',
   pingUuid: 'sth',
   mqtt: 'mqtt',
+  logedin: false,
 };

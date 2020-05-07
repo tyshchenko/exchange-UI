@@ -48,6 +48,7 @@ EventBus.$on(EventNames.userLogin, (body) => {
   store.commit('isLoggedIn', true);
   LocalStorage.set(Keys.username, body.username);
   LocalStorage.set(Keys.mqtt, body.mqttKey);
+  LocalStorage.set(Keys.logedin, true);
   this.$showSuccessMsg({
     message: 'Login Successfully',
   });
