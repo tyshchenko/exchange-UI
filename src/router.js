@@ -32,62 +32,62 @@ const vueRouter = new Router({
       pageTitle: 'Markets',
     },
   },
-           {
-             path: '/active-trades',
-             name: 'active-trades-mobile',
-             component: ActiveTradesMobile,
-             meta: {
-               pageTitle: 'Active Trades',
-             },
-           },
-           {
-             path: '/trade-modal',
-             name: 'trade-modal-mobile',
-             component: TradeModalMobile,
-             meta: {
-               pageTitle: 'Trade',
-             },
-           },
-           {
-             path: '/settings',
-             component: Settings,
-             children: [{
-               path: '',
-               name: 'trezor',
-               component: Trezor,
-               meta: {
-                 pageTitle: 'Trezor - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
-                 needLogin: false,
-               },
-             }, ],
-           },
-           {
-             path: '/balance',
-             component: BalanceTransfer,
-             meta: {
-               pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
-               needLogin: false,
-             },
-             children: [ {
-                          path: '',
-                          name: 'wallet-summary-bitfinex',
-                          component: SummaryBitfinex,
-                          meta: {
-                            pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
-                            needLogin: false,
-                          },
-                        }, ],
-           },
-           {
-             path: '/history',
-             name: 'history',
-             component: History,
-             meta: {
-               pageTitle: 'History - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
-               needLogin: false,
-             },
+  {
+    path: '/active-trades',
+    name: 'active-trades-mobile',
+    component: ActiveTradesMobile,
+    meta: {
+      pageTitle: 'Active Trades',
+    },
+  },
+  {
+    path: '/trade-modal',
+    name: 'trade-modal-mobile',
+    component: TradeModalMobile,
+    meta: {
+      pageTitle: 'Trade',
+    },
+  },
+  {
+    path: '/settings',
+    component: Settings,
+    children: [{
+      path: '',
+      name: 'trezor',
+      component: Trezor,
+      meta: {
+        pageTitle: 'Trezor - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
+        needLogin: false,
+      },
+    }, ],
+  },
+  {
+    path: '/balance',
+    component: BalanceTransfer,
+    meta: {
+      pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
+      needLogin: false,
+    },
+    children: [ {
+                path: '',
+                name: 'wallet-summary-bitfinex',
+                component: SummaryBitfinex,
+                meta: {
+                  pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
+                  needLogin: false,
+                },
+              }, ],
+  },
+  {
+    path: '/history',
+    name: 'history',
+    component: History,
+    meta: {
+      pageTitle: 'History - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
+      needLogin: false,
+    },
 
-           },
+  },
   ],
 });
 
