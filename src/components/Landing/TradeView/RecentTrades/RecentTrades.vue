@@ -3,7 +3,7 @@
 <script>
 import TradeService from '@/services/TradeService';
 import { dateToDisplayDateTime, } from '@/utils/utility';
-// import EventBus, { EventNames, } from '@/eventBuses/default';
+import EventBus, { EventNames, } from '@/eventBuses/default';
 
 export default {
   name: 'recent-trades',
