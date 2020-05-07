@@ -52,6 +52,7 @@ export default {
     );
     this.height = this.$refs.tradePane.clientHeight;
     EventBus.$on(EventNames.userLogout, this.userLogoutListener);
+    EventBus.$on('change-active-tab', this.activeTabChange);
   },
   methods: {
     activeTabChange(activeTab) {
