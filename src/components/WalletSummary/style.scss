@@ -222,7 +222,7 @@ tbody>tr:hover {
 }
 
 .sortIcon {
-    background: url("../../../assets/sort.svg") center center no-repeat;
+    background: url("@/assets/sort.svg") center center no-repeat;
     ;
     height: 67px;
     width: 63px;
@@ -297,7 +297,7 @@ input[type="submit"] {
     float: right;
     background-size: contain;
     background-color: #DDD;
-    background: url("../../../assets/iconfinder-icon.svg") center center no-repeat;
+    background: url("@/assets/iconfinder-icon.svg") center center no-repeat;
     text-indent: -10000px;
     border-right: 1px solid var(--tab-color) !important;
     border: none;
@@ -495,7 +495,7 @@ body {
         left: 0;
         width: 40px;
         height: 40px;
-        background: url("../../../assets/sort.svg") center center no-repeat;
+        background: url("@/assets/sort.svg") center center no-repeat;
         background-size: 60%;
         border-radius: 50%;
         transition: all 1s;
