@@ -19,10 +19,10 @@ export default {
     };
   },
   mounted() {
-    // this.userLoginListener = () => this.getRecentTrades();
-    // // this.userLogoutListener = () => (this.recentTrades = []);
-    // EventBus.$on(EventNames.userLogin, this.userLoginListener);
-    // EventBus.$on(EventNames.userLogout, this.userLogoutListener);
+    this.userLoginListener = () => this.getRecentTrades();
+    this.userLogoutListener = () => (this.recentTrades = []);
+    EventBus.$on(EventNames.userLogin, this.userLoginListener);
+    EventBus.$on(EventNames.userLogout, this.userLogoutListener);
   },
   computed: {
     recentTrades() {
