@@ -5,7 +5,7 @@ const mqttKey = LocalStorage.get(Keys.mqtt);
 class History {
   async bitfinexTradingHistoryData(exchange) {
     // console.log((await ApiCurryBase.post('/bitfinex-wallet-transfer-request', body)).data)
-    return (await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[mqttKey,exchange,],})).data;
+    return (await ApiCurryBase.post('/', {'method': 'order.penrding','id':1, 'params':[mqttKey,exchange,],})).data;
   }
   async bitfinexTransactionHistoryData(exchange) {
     // console.log((await ApiCurryBase.post('/bitfinex-wallet-transfer-request', body)).data)
