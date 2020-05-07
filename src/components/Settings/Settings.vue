@@ -1,31 +1,32 @@
-<template src="./template.html"></template>
+<template src="./template.html"> 
+</template>
+
 <script>
-import Vue from 'vue';
-import TabBar from '@/components/TabBar/TabBar.vue';
+import AccountInfo from '@/components/Settings/AccountInfo/AccountInfo.vue';
+import ReceivingAddress from '@/components/Settings/ReceivingAddress/ReceivingAddress.vue';
+import SendMoney from '@/components/Settings/SendMoney/SendMoney.vue';
+
 
 export default {
   name: 'settings',
   components: {
-    TabBar,
+    AccountInfo,
+    ReceivingAddress,
+    SendMoney,
   },
-  data() {
+  data () {
     return {
-      tabBarEventBus: new Vue(),
-      tabRouteMapping: {
-        Trezor: '/settings',
-      },
+      activeTab: 'Account Info',
+      tabs: ['Account Info', 'Receiving Address', 'Send Money',],
     };
   },
-  computed: {
-    tabs() {
-      return ['Trezor',];
-    },
-  },
   methods: {
+    onDropDownTabChange(tab) {
+      this.activeTab = tab;
+    },
   },
 };
 </script>
+<style src="./style.scss" lang="scss" scoped>
 
-<style lang="scss" src="./style.scss" scoped>
 </style>
-

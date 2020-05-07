@@ -10,7 +10,6 @@ import EventBus, {
 } from '@/eventBuses/default';
 import Landing from '@/components/Landing/Landing.vue';
 import Ticker from '@/components/TickerPage/TickerPage.vue';
-import Trezor from '@/components/Settings/Trezor/Trezor.vue';
 import TradeModalMobile from '@/components/TradeModalMobile/TradeModalMobile';
 
 Vue.use(Router);
@@ -47,15 +46,11 @@ const vueRouter = new Router({
   }, {
     path: '/settings',
     component: Settings,
-    children: [{
-      path: '',
-      name: 'trezor',
-      component: Trezor,
-      meta: {
-        pageTitle: 'Trezor - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
-        needLogin: true,
-      },
-    }, ],
+    name: 'settings',
+    meta: {
+      pageTitle: 'Settings - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
+      needLogin: true,
+    },
   }, {
     path: '/balance',
     component: WalletSummary,
