@@ -2,8 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Settings from '@/components/Settings/Settings.vue';
 import History from '@/components/History/History.vue';
-import BalanceTransfer from '@/components/BalanceTransfer/BalanceTransfer.vue';
-import SummaryBitfinex from '@/components/BalanceTransfer/SummaryBitfinex/SummaryBitfinex.vue';
 import WalletSummary from '@/components/WalletSummary/WalletSummary.vue';
 import ActiveTradesMobile from '@/components/ActiveTradesMobile/ActiveTradesMobile.vue';
 import LocalStorage from '@/utils/localStorage.js';
