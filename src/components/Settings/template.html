@@ -6,7 +6,7 @@
                     <account-info></account-info>
                 </vk-tabs-item>
                 <vk-tabs-item title="Deposit Address">
-                    <bitfinex-deposit-address></bitfinex-deposit-address>
+                    <receiving-address></receiving-address>
                 </vk-tabs-item>
                 <vk-tabs-item title="Send Crypto">
                     <send-money></send-money>
@@ -21,7 +21,7 @@
                 </vk-nav-dropdown>
             </vk-dropdown>
             <account-info v-if="activeTab === 'Account Info'"></account-info>
-            <bitfinex-deposit-address v-if="activeTab === 'Deposit Address'"></bitfinex-deposit-address>
+            <receiving-address v-if="activeTab === 'Deposit Address'"></receiving-address>
             <send-money v-if="activeTab === 'Send Money'"></send-money>
         </div>
     </div>
