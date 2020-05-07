@@ -63,20 +63,12 @@ const vueRouter = new Router({
   },
   {
     path: '/balance',
-    component: BalanceTransfer,
+    component: WalletSummary,
+    name: 'wallet-summary',
     meta: {
       pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
       needLogin: true,
     },
-    children: [ {
-                path: '',
-                name: 'wallet-summary-bitfinex',
-                component: SummaryBitfinex,
-                meta: {
-                  pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
-                  needLogin: true,
-                },
-              }, ],
   },
   {
     path: '/history',
