@@ -56,6 +56,9 @@ export default {
   methods: {
     activeTabChange(activeTab) {
       this.activeTab = activeTab;
+      if (activeTab === 'Balance') {
+        this.getBalance();
+      }
       // let el = document.getElementsByClassName('trade-pane-content')[0];
       // if (activeTab === 'Login') {
       //   el.style.height = 'calc(50% - 0px)';
