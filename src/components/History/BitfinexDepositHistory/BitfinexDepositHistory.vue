@@ -4,7 +4,6 @@
 import HistoryService from '@/services/HistoryService.js';
 import { dateToDisplayDateTime, } from '@/utils/utility';
 import Spinner from '@/components/Spinner/Spinner.vue';
-import EventBus, { EventNames, } from '@/eventBuses/default';
 
 export default {
   name: 'bitfinex-deposit-history',
@@ -38,9 +37,6 @@ export default {
       this.$showErrorMsg({
         message: data.error,
       });
-      if (data.Expired==1) {
-        EventBus.$emit(EventNames.userLogout);
-      }
     } else {
       data.data.forEach((val) => {
         this.spinnerFlag = false;
