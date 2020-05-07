@@ -305,10 +305,6 @@ class Bitfinex {
       chartData.bids = bids;
       this.ExchangeDataEventBus.$emit('snapshotOrderbook', JSON.parse(JSON.stringify(chartData)));
     }
-    /* eslint-disable no-console */
-    console.log('emitBooks');
-    console.log(chartData);
-    /* eslint-enable no-console */
     if (chartData.asks) {
       store.state.sellPrice = chartData.asks[0].value;
     }
