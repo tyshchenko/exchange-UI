@@ -136,20 +136,17 @@ class TradeService {
     return (await ApiCurryBase.post('/', {'method': 'exchange.fee','id':1, 'params':[mqttKey,],})).data;
   }
 
-  async getLedger(requestBody) {
-    if (requestBody) {
-      let mqttKey = LocalStorage.get(Keys.mqtt);
-      let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[mqttKey,],});
-      let arr = [];
-      let data = response.data;
-      if (data.Expired==1) {
-        EventBus.$emit(EventNames.userLogout);
-      }
-      arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available)),});
-      arr.push({'wallet_type':'exchange','currency':'USD','locked_bal':Number(data.result.USD.freeze),'avail_bal':Number(data.result.USD.available),'total_bal':Number(data.result.USD.freeze) + Number(Number(data.result.USD.available)),});
-      return {'status':true,'message':'Balance','data':arr,};
+  async getLedger() {
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[mqttKey,],});
+    let arr = [];
+    let data = response.data;
+    if (data.Expired==1) {
+      EventBus.$emit(EventNames.userLogout);
     }
-
+    arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available)),});
+    arr.push({'wallet_type':'exchange','currency':'USD','locked_bal':Number(data.result.USD.freeze),'avail_bal':Number(data.result.USD.available),'total_bal':Number(data.result.USD.freeze) + Number(Number(data.result.USD.available)),});
+    return {'status':true,'message':'Balance','data':arr,};
   }
 
   async getPairsList() {

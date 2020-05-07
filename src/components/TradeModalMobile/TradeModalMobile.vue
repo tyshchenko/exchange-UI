@@ -325,12 +325,7 @@ export default {
               this.selectedPair.text
             }`
           ];
-        let balance = await TradeService.getLedger({
-          selectedExchange: this.selectedExchange.text,
-          selectedPair: this.selectedPair.text,
-          orderType: this.orderTypeBasic.text,
-          excPair: this.excPair,
-        });
+        let balance = await TradeService.getLedger();
         this.ledgerDataProcess(balance.data);
         this.showBalances = true;
       }
@@ -345,12 +340,7 @@ export default {
       this.orderTypes = this.orderTypesList[this.selectedExchange.text][
         newVal.text
       ];
-      let tradeableBalance = (await TradeService.getLedger({
-        selectedExchange: this.selectedExchange.text,
-        selectedPair: this.selectedPair.text,
-        orderType: newVal.text,
-        excPair: this.excPair,
-      })).data.tradeable_balance;
+      let tradeableBalance = (await TradeService.getLedger()).data.tradeable_balance;
       if (tradeableBalance) {
         this.tradeableBalance = tradeableBalance;
         this.showTradeBal = true;

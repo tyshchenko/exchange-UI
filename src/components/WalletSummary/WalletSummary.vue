@@ -27,6 +27,7 @@ export default {
   },
   methods: {
     async creating () {
+      this.bitfinexSummary =(await TradeService.getLedger()).data;
       let data = await WalletService.bitfinexWalletSummary();
       let newData = [];
       if(data.error) {
@@ -55,7 +56,6 @@ export default {
         });
       }
       this.initialData = newData;
-      this.bitfinexSummary = newData;
     },
 
   },
