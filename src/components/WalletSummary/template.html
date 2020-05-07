@@ -17,9 +17,9 @@
             <tbody v-else>
                 <tr v-for="(SummaryRow,index) in bitfinexSummary">
                     <td class="currency">{{ SummaryRow.currency }}</td>
-                    <td>{{SummaryRow.wallet_type}}</td>
-                    <td>{{SummaryRow.avail_bal}}</td>
-                    <td>{{SummaryRow.locked_bal}}</td>
+                    <td>{{ SummaryRow.wallet_type }}</td>
+                    <td>{{ SummaryRow.avail_bal }}</td>
+                    <td>{{ SummaryRow.locked_bal }}</td>
                     <td>{{ SummaryRow.total_bal }}</td>
                 </tr>
                 <tr v-if="bitfinexSummary.length === 0">

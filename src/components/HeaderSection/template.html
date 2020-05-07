@@ -94,7 +94,10 @@
                                 </button>
                                 <div class="dropdown-content">
                                     <router-link to="/settings" v-bind:class="{active: $route.path.startsWith('/settings')}">
-                                        Settings
+                                        <span>
+                                            <i class="icc icons8-settings"></i>
+                                        </span>
+                                        <span>Settings</span>
                                     </router-link>
                                     <router-link to="/history" v-bind:class="{ active: $route.path.startsWith('/history') }">
                                         <span>
@@ -103,6 +106,9 @@
                                         <span>History</span>
                                     </router-link>
                                     <router-link to="/balance" v-bind:class="{ active: $route.path.startsWith('/balance') }" v-if="$store.getters.isLoggedIn && $store.getters.themeMode === 'default'">
+                                        <span>
+                                            <i class="icc icons8-donate"></i>
+                                        </span>
                                       <span>Wallets</span>
                                     </router-link>
 <!--                                    <a href="javascript:undefined" @click="refreshBalances">
