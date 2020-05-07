@@ -20,9 +20,9 @@ export default {
   async created() {
     this.$store.commit('addLoaderTask', 1, false);
     let data = [];
-    data = await HistoryService.bitfinexTransactionHistoryData('bitfinex');
+    data = await HistoryService.withdrawalTransactionHistoryData();
     let newData = [];
-    if(data.data.error) {
+    if(data.error) {
       this.spinnerFlag = false;
       this.history = [];
       this.displayText = 'Invalid API-KEY or API-KEYS not Entered.';
