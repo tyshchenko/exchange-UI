@@ -28,14 +28,13 @@ class TradeService {
     //equestBody: {pair: "BTC/USD", type: "market", exc: "bitfinex", bos: "buy", amount: "1", moe: "market"}
     //{"id":2,"method":"order.put_market","params":[1,"BTCUSD",2,"0.02","0.002",""]}: 
     let responce = (await ApiCurryBase.post('/', method)).data;
+    if (responce.Expired==1) {
+      EventBus.$emit(EventNames.userLogout);
+    }
     responce.status = true;
     responce.data = responce.result;
     responce.data.message = 'success';
     responce.data.volume = responce.result.amount;
-    if (responce.Expired==1) {
-      EventBus.$emit(EventNames.userLogout);
-    }
-
     /* eslint-disable no-console */
     console.log(responce);
     /* eslint-enable no-console */
@@ -51,15 +50,15 @@ class TradeService {
       'params':params,
     };
     let responce = (await ApiCurryBase.post('/', method)).data;
+    if (responce.Expired==1) {
+      EventBus.$emit(EventNames.userLogout);
+    }
     /* eslint-disable no-console */
     console.log(responce);
     /* eslint-enable no-console */
     responce.status = true;
     responce.data = responce.result;
     responce.data.message = 'success';
-    if (responce.Expired==1) {
-      EventBus.$emit(EventNames.userLogout);
-    }
     return responce;
   }
 
