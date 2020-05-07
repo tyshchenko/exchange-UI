@@ -3,14 +3,12 @@
 <script>
 import Deposit from '@/components/Deposit/Deposit.vue';
 import Withdrawl from '@/components/Withdrawl/Withdrawl.vue';
-import BalanceTransfer from '@/components/BalanceTransfer/BalanceTransfer.vue';
 
 export default {
   name: 'modal-box',
   components: {
     Deposit,
     Withdrawl,
-    BalanceTransfer,
   },
   props: {
     internalComponent: {
