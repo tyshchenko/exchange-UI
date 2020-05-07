@@ -55,9 +55,6 @@ class WalletService {
   }
 
   async login(requestBody) {
-    /* eslint-disable no-console */
-    console.log(requestBody);
-    /* eslint-enable no-console */
     let params = [requestBody.login,requestBody.password,requestBody.otp,];
     let method = {
       'method': 'auth.login',
@@ -65,9 +62,6 @@ class WalletService {
       'params':params,
     };
     let responce = (await ApiCurryBase.post('/', method)).data;
-    /* eslint-disable no-console */
-    console.log(responce);
-    /* eslint-enable no-console */
     return responce;
   }
   
