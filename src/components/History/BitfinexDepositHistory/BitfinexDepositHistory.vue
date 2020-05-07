@@ -27,36 +27,36 @@ export default {
   },
   async created() {
     let data = [];
-    data = await HistoryService.bitfinexTransactionHistoryData('bitfinex');
+    data = await HistoryService.depositTransactionHistoryData();
     let newData = [];
-    if (data.data.error) {
+    if (data.error) {
       this.spinnerFlag = false;
       this.initialData = [];
       this.history = [];
-      this.displayText = 'Invalid API-KEY or API-KEYS not Entered.';
+      this.displayText = data.error;
       this.$showErrorMsg({
-        message: 'Notice: Invalid API-KEY or API-KEYS not Entered.',
+        message: data.error,
       });
     } else {
       data.data.forEach((val) => {
         this.spinnerFlag = false;
         let obj = {};
-        if(val[12]>0) {
+        if(val[5]>0) {
           obj.id = val[0] || '-';
           obj.currency = val[1] || '-';
           obj.currencyName = val[2] || '-';
-          obj.status = val[9] || '-';
-          obj.movementLastUpdated = new Date(val[6]) || '-';
-          obj.amount = val[12] || '-';
-          obj.fees = (val[13]* (-1)) || '-';
-          obj.destinationAddress = val[16] || '-';
-          obj.transactionHash = val[20] || '-';
+          obj.status = val[3] || '-';
+          obj.movementLastUpdated = new Date(val[4]) || '-';
+          obj.amount = val[5] || '-';
+          obj.fees = (val[6]* (-1)) || '-';
+          obj.destinationAddress = val[7] || '-';
+          obj.transactionHash = val[8] || '-';
           newData.push(obj);
         }
       });
     }
     this.initialData = newData;
-    if(this.history.length === 0 && this.displayText !== 'Invalid API-KEY or API-KEYS not Entered.')
+    if(this.history.length === 0)
       this.displayText = 'No Records Found.';
     this.updateData();
   },
