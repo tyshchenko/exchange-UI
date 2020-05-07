@@ -31,24 +31,21 @@ const vueRouter = new Router({
     meta: {
       pageTitle: 'Markets',
     },
-  },
-  {
+  }, {
     path: '/active-trades',
     name: 'active-trades-mobile',
     component: ActiveTradesMobile,
     meta: {
       pageTitle: 'Active Trades',
     },
-  },
-  {
+  }, {
     path: '/trade-modal',
     name: 'trade-modal-mobile',
     component: TradeModalMobile,
     meta: {
       pageTitle: 'Trade',
     },
-  },
-  {
+  }, {
     path: '/settings',
     component: Settings,
     children: [{
@@ -60,8 +57,7 @@ const vueRouter = new Router({
         needLogin: true,
       },
     }, ],
-  },
-  {
+  }, {
     path: '/balance',
     component: WalletSummary,
     name: 'wallet-summary',
@@ -69,8 +65,7 @@ const vueRouter = new Router({
       pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
       needLogin: true,
     },
-  },
-  {
+  }, {
     path: '/history',
     name: 'history',
     component: History,
