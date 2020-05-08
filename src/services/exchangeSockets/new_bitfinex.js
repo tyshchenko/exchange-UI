@@ -273,13 +273,21 @@ class Bitfinex {
       if (asks) {
         asks.forEach((item) => {
           let fask = chartData.asks.find(x => x.value == item.value);
-          if (fask) chartData.asks.find(x => x.value == item.value).volume = item.volume;
+          if (fask) { 
+            chartData.asks.find(x => x.value == item.value).volume = item.volume;
+          } else {
+            chartData.asks.push(item)
+          }
         });
       }
       if (bids) {
         bids.forEach((item) => {
           let fbid = chartData.bids.find(x => x.value == item.value);
-          if (fbid) chartData.bids.find(x => x.value == item.value).volume = item.volume;
+          if (fbid) {
+            chartData.bids.find(x => x.value == item.value).volume = item.volume;
+          } else {
+            chartData.bids.push(item)
+          }
         });
       }
       //chartData.asks.push(...asks);
