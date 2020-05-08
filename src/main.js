@@ -135,8 +135,6 @@ Vue.config.productionTip = false;
 
 if (!isLoggedIn) {
   EventBus.$emit(EventNames.userLogout);
-} else {
-  EventBus.$emit(EventNames.userLogin, { username: loggedInUser, mqttKey: mqttKey, });
 }
 
 new Vue({
@@ -147,6 +145,4 @@ new Vue({
 
 if (!isLoggedIn) {
   EventBus.$emit(EventNames.userLogout);
-} else {
-  EventBus.$emit(EventNames.userLogin, { username: loggedInUser, mqttKey: mqttKey, });
 }
