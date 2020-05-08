@@ -69,6 +69,8 @@ EventBus.$on(EventNames.userLogout, () => {
 });
 
 const isLoggedIn = LocalStorage.isUserLoggedIn();
+const loggedInUser = LocalStorage.get(Keys.username);
+const mqttKey = LocalStorage.get(Keys.mqtt);
 
 device.onmessage = (payload) => {
   const data = JSON.parse(payload.data);
@@ -133,6 +135,8 @@ Vue.config.productionTip = false;
 
 if (!isLoggedIn) {
   EventBus.$emit(EventNames.userLogout);
+} else {
+  EventBus.$emit(EventNames.userLogin, { username: loggedInUser, mqttKey: mqttKey, });
 }
 
 new Vue({
@@ -143,4 +147,6 @@ new Vue({
 
 if (!isLoggedIn) {
   EventBus.$emit(EventNames.userLogout);
+} else {
+  EventBus.$emit(EventNames.userLogin, { username: loggedInUser, mqttKey: mqttKey, });
 }
