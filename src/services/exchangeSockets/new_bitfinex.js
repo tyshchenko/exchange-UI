@@ -406,7 +406,7 @@ class Bitfinex {
       }
       if (method=='deals.update') {
         let data = dataObj.params[1];
-        if ( data.length > 2 ) {
+        if ( data.length > 25 ) {
           this.emitWorkerTrades(data, true);
         } else {
           this.emitWorkerTrades(data, false);
