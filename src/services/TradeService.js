@@ -29,7 +29,7 @@ class TradeService {
     //{"id":2,"method":"order.put_market","params":[1,"BTCUSD",2,"0.02","0.002",""]}: 
     let responce = (await ApiCurryBase.post('/', method)).data;
     if (responce.Expired==1) {
-      EventBus.$emit(EventNames.userLogout);
+      EventBus.$emit(EventNames.userSessionExpired);
     }
     responce.status = true;
     responce.data = responce.result;
@@ -51,7 +51,7 @@ class TradeService {
     };
     let responce = (await ApiCurryBase.post('/', method)).data;
     if (responce.Expired==1) {
-      EventBus.$emit(EventNames.userLogout);
+      EventBus.$emit(EventNames.userSessionExpired);
     }
     /* eslint-disable no-console */
     console.log(responce);
@@ -79,11 +79,8 @@ class TradeService {
 
     let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[mqttKey,'BTCUSD',0,50,],});
     let data = response.data;
-    /* eslint-disable no-console */
-    console.log(data.result.records);
-    /* eslint-enable no-console */
     if (data.Expired==1) {
-      EventBus.$emit(EventNames.userLogout);
+      EventBus.$emit(EventNames.userSessionExpired);
     }
     let outputdata = data.result.records.map(rt => ({
       id: rt.id,
@@ -113,7 +110,7 @@ class TradeService {
     console.log(data.result.records);
     /* eslint-enable no-console */
     if (data.Expired==1) {
-      EventBus.$emit(EventNames.userLogout);
+      EventBus.$emit(EventNames.userSessionExpired);
     }
     let outputdata = data.result.records.map(rt => ({
       id: rt.id,
@@ -142,7 +139,7 @@ class TradeService {
     let arr = [];
     let data = response.data;
     if (data.Expired==1) {
-      EventBus.$emit(EventNames.userLogout);
+      EventBus.$emit(EventNames.userSessionExpired);
     }
     arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available)),});
     arr.push({'wallet_type':'exchange','currency':'USD','locked_bal':Number(data.result.USD.freeze),'avail_bal':Number(data.result.USD.available),'total_bal':Number(data.result.USD.freeze) + Number(Number(data.result.USD.available)),});
