@@ -98,6 +98,7 @@ export default {
         tTime: new Date(rt.placedTime * 1000),
         amount: parseFloat(rt.amount),
         price_avg: parseFloat(rt.avgPrice),
+        price: parseFloat(rt.avgPrice),
         buyOrSell: rt.buyOrSell,
         exchange: rt.exchange,
         type: rt.orderType,
@@ -111,17 +112,3 @@ export default {
 </script>
 <style lang="scss" src="./style.scss" scoped>
 </style>
-      obj.symbol = val[3] || '-';
-      obj.MTS_CREATE = val[4] || '-';
-      obj.amount_orig = val[7] || '-';
-      obj.type = val[8] || '-';
-      obj.order_status = val[13] || '-';
-      obj.price = val[16] || '-';
-      obj.price_avg = val[17] || '-';
-      obj.price_trailing = val[18] || '-';
-      obj.price_aux_limit = val[19] || '-';
-      obj.hidden = (val[23] !== null) ? 'Yes' : 'No';
-      obj.notify = (val[24] !== null) ? 'Yes' : 'No';
-      newData.push(obj);
-    });
-
