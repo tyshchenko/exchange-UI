@@ -89,7 +89,7 @@ class TradeService {
   async getBalanceHistory() {
     let mqttKey = LocalStorage.get(Keys.mqtt);
 
-    let response = await ApiCurryBase.post('/', {'method': 'balance.history','id':1, 'params':[mqttKey,null,null,0,0,0,50,],});
+    let response = await ApiCurryBase.post('/', {'method': 'balance.history','id':1, 'params':[mqttKey,'','',0,0,0,50,],});
     let data = response.data;
     if (data.Expired==1) {
       EventBus.$emit(EventNames.userSessionExpired);
