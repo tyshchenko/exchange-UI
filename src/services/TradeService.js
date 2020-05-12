@@ -53,9 +53,6 @@ class TradeService {
     if (responce.Expired==1) {
       EventBus.$emit(EventNames.userSessionExpired);
     }
-    /* eslint-disable no-console */
-    console.log(responce);
-    /* eslint-enable no-console */
     responce.status = true;
     responce.data = responce.result;
     responce.data.message = 'success';
@@ -63,7 +60,30 @@ class TradeService {
   }
 
   async getRecentOrders() {
-    return (await ApiCurryBase.get('/get-recent-orders')).data;
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+
+    let response = await ApiCurryBase.post('/', {'method': 'market.user_deals','id':1, 'params':[mqttKey,'BTCUSD',0,50,],});
+    let data = response.data;
+    if (data.Expired==1) {
+      EventBus.$emit(EventNames.userSessionExpired);
+      return {data:[],};
+    } else {
+      /* eslint-disable no-console */
+      console.log(data);
+      /* eslint-enable no-console */
+      let outputdata = data.result.records.map(rt => ({
+        id: rt.id,
+        orderId: rt.id,
+        placedTime: rt.time,
+        amount: rt.amount,
+        avgPrice: rt.price,
+        buyOrSell: rt.side==2 ? 'buy' : 'sell',
+        role: rt.role==1 ? 'Maker' : 'Taker',
+        pair: 'BTCUSD',
+        fee: rt.fee,
+      }));
+      return {data:outputdata,};
+    }
   }
 
   async getActiveOrders() {

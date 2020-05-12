@@ -21,35 +21,24 @@ export default {
     };
   },
   async created() {
-    let data = [];
-    data = await HistoryService.bitfinexTradingHistoryData('bitfinex');
-    let newData = [];
-    if (data.data.error) {
-      this.spinnerFlag = false;
-      this.initialData = [];
-      this.history = [];
-      this.displayText = 'Invalid API-KEY or API-KEYS not Entered.';
-      this.$showErrorMsg({
-        message: 'Notice: Invalid API-KEY or API-KEYS not Entered.',
-      });
-    } else {
-      this.spinnerFlag = false;
-      data.data.forEach((val) => {
-        let obj = {};
-        obj.id = val[0] || '-';
-        obj.Pair = val[1] || '-';
-        obj.MTS_CREATE = val[2] || '-';
-        obj.ORDER_ID = val[3] || '-';
-        obj.EXEC_AMOUNT = val[4] || '-';
-        obj.EXEC_PRICE = val[5] || '-';
-        obj.ORDER_TYPE = val[6] || '-';
-        obj.ORDER_PRICE = val[7] || '-';
-        obj.MAKER = val[8] || '-';
-        obj.FEE = val[9] || '-';
-        obj.FEE_CURRENCY = val[10] || '-';
-        newData.push(obj);
-      });
-    }
+    let activeOrders = await TradeService.getActiveOrders();
+    this.initialData = this.mapActiveOrders(activeOrders.data);
+    this.spinnerFlag = false;
+    data.data.forEach((val) => {
+      let obj = {};
+      obj.id = val.id || '-';
+      obj.Pair = val.pair || '-';
+      obj.MTS_CREATE = new Date(val.placedTime * 1000) || '-';
+      obj.ORDER_ID = val.clientOrderId || '-';
+      obj.EXEC_AMOUNT = val.amount || '-';
+      obj.EXEC_PRICE = val.avgPrice || '-';
+      obj.ORDER_TYPE = val.buyOrSell || '-';
+      obj.ORDER_PRICE = val.avgPrice || '-';
+      obj.MAKER = val.role || '-';
+      obj.FEE = val.fee || '-';
+      obj.FEE_CURRENCY = 'BTC';
+      newData.push(obj);
+    });
     this.initialData = newData;
     if(this.history.length === 0 && this.displayText !== 'Invalid API-KEY or API-KEYS not Entered.')
       this.displayText = 'No Records Found.';
