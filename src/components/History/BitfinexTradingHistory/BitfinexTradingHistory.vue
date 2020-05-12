@@ -1,7 +1,7 @@
 <template src="./template.html"></template>
 
 <script>
-import HistoryService from '@/services/HistoryService.js';
+import TradeService from '@/services/TradeService';
 import Spinner from '@/components/Spinner/Spinner.vue';
 import { dateToDisplayDateTime, } from '@/utils/utility';
 
@@ -21,9 +21,11 @@ export default {
     };
   },
   async created() {
+    let data = [];
     let activeOrders = await TradeService.getActiveOrders();
-    this.initialData = this.mapActiveOrders(activeOrders.data);
+    data = this.mapActiveOrders(activeOrders.data);
     this.spinnerFlag = false;
+    let newData = [];
     data.data.forEach((val) => {
       let obj = {};
       obj.id = val.id || '-';
