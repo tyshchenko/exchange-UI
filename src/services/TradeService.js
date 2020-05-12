@@ -66,15 +66,8 @@ class TradeService {
     return (await ApiCurryBase.get('/get-recent-orders')).data;
   }
 
-  async getActiveOrders(exchange = '', pair = '') {
+  async getActiveOrders() {
     //get-active-orders
-    if (exchange) {
-      if (pair) { 
-        /* eslint-disable no-console */
-        console.log(exchange);
-        /* eslint-enable no-console */
-      }
-    }
     let mqttKey = LocalStorage.get(Keys.mqtt);
 
     let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[mqttKey,'BTCUSD',0,50,],});

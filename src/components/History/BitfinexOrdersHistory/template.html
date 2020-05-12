@@ -72,13 +72,11 @@
                 <tr>
                     <th id="tableHeaders">ID</th>
                     <th id="tableHeaders">Symbol</th>
-                    <th id="tableHeaders">MTS Create</th>
+                    <th id="tableHeaders">Created</th>
                     <th id="tableHeaders">Amount</th>
-                    <th id="tableHeaders">Original Amount</th>
+                    <th id="tableHeaders">Side</th>
                     <th id="tableHeaders">Type</th>
                     <th id="tableHeaders">Order Status</th>
-                    <th id="tableHeaders">Price Details</th>
-                    <th id="tableHeaders">Flags</th>
                 </tr>
             </thead>
             <tbody v-if="spinnerFlag">
@@ -88,25 +86,11 @@
                 <tr v-for="historyRow in history">
                     <td>{{ historyRow.id }}</td>
                     <td>{{ historyRow.symbol }}</td>
-                    <td>{{ formatDateTime(historyRow.MTS_CREATE) }}</td>
+                    <td>{{ formatDateTime(historyRow.tTime) }}</td>
                     <td>{{ historyRow.amount }}</td>
-                    <td>{{ historyRow.amount_orig }}</td>
+                    <td>{{ historyRow.buyOrSell }}</td>
                     <td>{{ historyRow.type }}</td>
                     <td>{{ historyRow.order_status }}</td>
-                    <td>
-                        <ul>
-                            <li>Price: {{ historyRow.price }}</li>
-                            <li>Average Price: {{ historyRow.price_avg }}</li>
-                            <li>Trailing Price: {{ historyRow.price_trailing }}</li>
-                            <li>Aux Limit Price: {{ historyRow.price_aux_limit }}</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Hidden: {{ historyRow.hidden }}</li>
-                            <li>Notify: {{ historyRow.notify }}</li>
-                        </ul>
-                    </td>
                 </tr>
                 <tr v-if="history.length === 0">
                     <td colspan="4">

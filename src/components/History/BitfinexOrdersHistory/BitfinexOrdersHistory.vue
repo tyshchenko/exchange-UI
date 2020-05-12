@@ -21,39 +21,9 @@ export default {
     };
   },
   async created() {
-    let data = [];
-    data = await HistoryService.bitfinexOrdersHistoryData('bitfinex');
-    let newData = [];
-    if (data.data.error) {
-      this.spinnerFlag = false;
-      this.initialData = [];
-      this.history = [];
-      this.displayText = 'Invalid API-KEY or API-KEYS not Entered.';
-      this.$showErrorMsg({
-        message: 'Notice: Invalid API-KEY or API-KEYS not Entered.',
-      });
-    } else {
-      this.spinnerFlag = false;
-      data.data.forEach((val) => {
-        let obj = {};
-        obj.id = val[0] || '-';
-        obj.symbol = val[3] || '-';
-        obj.MTS_CREATE = val[4] || '-';
-        obj.amount = val[6] || '-';
-        obj.amount_orig = val[7] || '-';
-        obj.type = val[8] || '-';
-        obj.order_status = val[13] || '-';
-        obj.price = val[16] || '-';
-        obj.price_avg = val[17] || '-';
-        obj.price_trailing = val[18] || '-';
-        obj.price_aux_limit = val[19] || '-';
-        obj.hidden = (val[23] !== null) ? 'Yes' : 'No';
-        obj.notify = (val[24] !== null) ? 'Yes' : 'No';
-        newData.push(obj);
-      });
-    }
-    this.initialData = newData;
-    if(this.history.length === 0 && this.displayText !== 'Invalid API-KEY or API-KEYS not Entered.')
+    let activeOrders = await TradeService.getActiveOrders();
+    this.initialData = this.mapActiveOrders(activeOrders.data);
+    if(this.history.length === 0)
       this.displayText = 'No Records Found.';
     this.updateData();
   },
@@ -121,10 +91,37 @@ export default {
       }
       this.updateData();
     },
+    mapActiveOrders(rtArr = []) {
+      return rtArr.map(rt => ({
+        id: rt.id,
+        orderId: rt.clientOrderId,
+        tTime: new Date(rt.placedTime * 1000),
+        amount: parseFloat(rt.amount),
+        price_avg: parseFloat(rt.avgPrice),
+        buyOrSell: rt.buyOrSell,
+        exchange: rt.exchange,
+        type: rt.orderType,
+        stopPrice: parseFloat(rt.stopPrice) || '--',
+        order_status: rt.status,
+        symbol: rt.pair,
+      }));
+    },
   },
 };
 </script>
 <style lang="scss" src="./style.scss" scoped>
 </style>
-
+      obj.symbol = val[3] || '-';
+      obj.MTS_CREATE = val[4] || '-';
+      obj.amount_orig = val[7] || '-';
+      obj.type = val[8] || '-';
+      obj.order_status = val[13] || '-';
+      obj.price = val[16] || '-';
+      obj.price_avg = val[17] || '-';
+      obj.price_trailing = val[18] || '-';
+      obj.price_aux_limit = val[19] || '-';
+      obj.hidden = (val[23] !== null) ? 'Yes' : 'No';
+      obj.notify = (val[24] !== null) ? 'Yes' : 'No';
+      newData.push(obj);
+    });
 

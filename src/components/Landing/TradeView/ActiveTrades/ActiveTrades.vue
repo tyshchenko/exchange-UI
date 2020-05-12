@@ -31,10 +31,6 @@ export default {
       let activeOrders = await TradeService.getActiveOrders();
       this.$store.commit('activeOrders', activeOrders.data);
       this.activeOrders = this.mapActiveOrders(activeOrders.data);
-      /* eslint-disable no-console */
-      console.log(this.activeOrders);
-      console.log(activeOrders.data);
-      /* eslint-enable no-console */
       this.activeOrders = activeOrders.data;
     },
     toggleOpen() {

@@ -95,14 +95,14 @@ export default {
   methods: {
     async getActiveOrders() {
       this.isUpdating = true;
-      this.activeOrders =  (await TradeService.getActiveOrders(this.selectedExchange.value,this.selectedPair.value)).data;
+      this.activeOrders =  (await TradeService.getActiveOrders()).data;
       this.openPositions =  (await TradeService.getOpenPositions(this.selectedMarginExchange.value)).data;
       this.isUpdating = false;
     },
     async getActiveOrdersByNotify(data) {
       if(data.data.updateType === 'at') {   
         this.isUpdating = true;
-        this.activeOrders =  (await TradeService.getActiveOrders(this.selectedExchange.value,this.selectedPair.value)).data;
+        this.activeOrders =  (await TradeService.getActiveOrders()).data;
         this.isUpdating = false;
       }
       if(data.data.updateType === 'pnl' && data.data.exchange.toLowerCase() === this.selectedMarginExchange.value.toLowerCase()) {   
