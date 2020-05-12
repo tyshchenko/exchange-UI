@@ -21,9 +21,7 @@ export default {
     };
   },
   async created() {
-    let data = [];
-    let activeOrders = await TradeService.getActiveOrders();
-    data = this.mapActiveOrders(activeOrders.data);
+    let data = await TradeService.getActiveOrders();
     this.spinnerFlag = false;
     let newData = [];
     data.data.forEach((val) => {

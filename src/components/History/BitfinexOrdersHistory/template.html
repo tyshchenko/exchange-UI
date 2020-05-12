@@ -88,7 +88,7 @@
                     <td>{{ historyRow.symbol }}</td>
                     <td>{{ formatDateTime(historyRow.tTime) }}</td>
                     <td>{{ historyRow.amount }}</td>
-                    <td :class="order.buyOrSell" >{{ historyRow.buyOrSell }}</td>
+                    <td :class="historyRow.buyOrSell" >{{ historyRow.buyOrSell }}</td>
                     <td>{{ historyRow.type }}</td>
                     <td>{{ historyRow.order_status }}</td>
                 </tr>
