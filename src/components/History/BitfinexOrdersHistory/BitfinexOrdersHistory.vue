@@ -23,6 +23,9 @@ export default {
   async created() {
     let activeOrders = await TradeService.getActiveOrders();
     this.initialData = this.mapActiveOrders(activeOrders.data);
+    /* eslint-disable no-console */
+    console.log(this.initialData);
+    /* eslint-enable no-console */
     if(this.history.length === 0)
       this.displayText = 'No Records Found.';
     this.updateData();
@@ -42,6 +45,9 @@ export default {
       });
       this.history = this.sortData(this.history);
       this.history = this.history.reverse();
+      /* eslint-disable no-console */
+      console.log(this.history);
+      /* eslint-enable no-console */
     },
     sortData(data) {
       switch(this.sortBy) {
