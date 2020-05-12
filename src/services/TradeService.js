@@ -85,7 +85,30 @@ class TradeService {
       return {data:outputdata,};
     }
   }
+  
+  async getBalanceHistory() {
+    let mqttKey = LocalStorage.get(Keys.mqtt);
 
+    let response = await ApiCurryBase.post('/', {'method': 'balance.history','id':1, 'params':[mqttKey,null,null,0,0,0,50,],});
+    let data = response.data;
+    if (data.Expired==1) {
+      EventBus.$emit(EventNames.userSessionExpired);
+      return {data:[],};
+    } else {
+      /* eslint-disable no-console */
+      console.log(data);
+      /* eslint-enable no-console */
+      let outputdata = data.result.records.map(rt => ({
+        time: rt.time,
+        asset: rt.asset,
+        business: rt.business,
+        change: rt.change,
+        balance: rt.balance,
+        detail: rt.detail,
+      }));
+      return {data:outputdata,};
+    }
+  }
   async getActiveOrders() {
     //get-active-orders
     let mqttKey = LocalStorage.get(Keys.mqtt);

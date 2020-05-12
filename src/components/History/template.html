@@ -18,13 +18,16 @@
                 <vk-tabs-item title="Positions">
                     <bitfinex-positions-history></bitfinex-positions-history>
                 </vk-tabs-item>
-                <vk-tabs-item title="Crypto Deposits ">
+                <vk-tabs-item title="Crypto Deposits">
                     <bitfinex-deposit-history></bitfinex-deposit-history>
                 </vk-tabs-item>
                 <vk-tabs-item title="Crypto Withdrawal">
                     <div>
                         <bitfinex-pending-withdrawal-history></bitfinex-pending-withdrawal-history>
                     </div>
+                </vk-tabs-item>
+                <vk-tabs-item title="Balance History">
+                    <balance-history></balance-history>
                 </vk-tabs-item>
             </vk-tabs>
         </div>
@@ -41,6 +44,7 @@
             <bitfinex-positions-history v-if="bitfinexActiveTab === 'Positions'"></bitfinex-positions-history>
             <bitfinex-deposit-history v-if="bitfinexActiveTab === 'Crypto Deposits'"></bitfinex-deposit-history>
             <bitfinex-pending-withdrawal-history v-if="bitfinexActiveTab === 'Crypto Withdrawal'"></bitfinex-pending-withdrawal-history>
+            <balance-history v-if="bitfinexActiveTab === 'Balance History'"></balance-history>
         </div>
     </div>
 </div>
