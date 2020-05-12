@@ -29,7 +29,7 @@ export default {
     if(this.history.length === 0)
       this.displayText = 'No Records Found.';
     this.updateData();
-    this.spinnerFlag: false,
+    this.spinnerFlag = false;
   },
   watch: {
     searchString: function() {
