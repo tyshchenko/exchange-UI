@@ -86,7 +86,7 @@
                     <td>{{ historyRow.ORDER_ID }}</td>
                     <td>{{ historyRow.EXEC_AMOUNT }}</td>
                     <td>{{ historyRow.EXEC_PRICE }}</td>
-                    <td>{{ historyRow.ORDER_TYPE }}</td>
+                    <td :class="historyRow.ORDER_TYPE">{{ historyRow.ORDER_TYPE }}</td>
                     <td>{{ historyRow.ORDER_PRICE }}</td>
                     <td>{{ historyRow.MAKER }}</td>
                     <td>{{ historyRow.FEE }}</td>

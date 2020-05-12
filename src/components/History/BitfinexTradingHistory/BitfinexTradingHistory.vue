@@ -21,7 +21,7 @@ export default {
     };
   },
   async created() {
-    let data = await TradeService.getActiveOrders();
+    let data = await TradeService.getRecentOrders();
     this.spinnerFlag = false;
     let newData = [];
     data.data.forEach((val) => {
