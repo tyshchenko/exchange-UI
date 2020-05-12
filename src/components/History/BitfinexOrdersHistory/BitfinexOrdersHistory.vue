@@ -1,7 +1,7 @@
 <template src="./template.html"></template>
 
 <script>
-import HistoryService from '@/services/HistoryService.js';
+import TradeService from '@/services/TradeService.js';
 import Spinner from '@/components/Spinner/Spinner.vue';
 import { dateToDisplayDateTime, } from '@/utils/utility';
 
