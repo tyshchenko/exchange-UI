@@ -55,6 +55,12 @@ tr td,
 tr th {
     text-align: center;
 }
+td.sell{
+  color:var(--red-color);
+}
+td.buy{
+  color:var(--green-color);
+}
 
 @media screen and (max-width: 768px) {
     table,
