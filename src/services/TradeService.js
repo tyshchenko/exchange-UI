@@ -95,9 +95,6 @@ class TradeService {
       EventBus.$emit(EventNames.userSessionExpired);
       return {data:[],};
     } else {
-      /* eslint-disable no-console */
-      console.log(data);
-      /* eslint-enable no-console */
       let outputdata = data.result.records.map(rt => ({
         time: rt.time,
         asset: rt.asset,
