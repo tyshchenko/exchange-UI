@@ -43,7 +43,7 @@
                             <td v-else>{{ trade.stopPrice }}</td>
                             
                             <td>{{ (trade.startMoney - Math.abs(liveTradePrice * trade.amount)) }}</td>                          
-                            <td>{{ trade.buyOrSell }}</td>
+                            <td :class="order.buyOrSell">{{ trade.buyOrSell }}</td>
 
                             <td>{{ trade.status }}</td>
                         </tr>

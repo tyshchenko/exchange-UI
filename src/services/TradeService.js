@@ -151,7 +151,7 @@ class TradeService {
         placedTime: rt.ctime,
         amount: rt.amount,
         startMoney: rt.freeze,
-        buyOrSell: rt.side==2 ? 'buy' : 'sell',
+        buyOrSell: rt.side==2 ? 'long' : 'short',
         exchange: 'XCoinBae',
         orderType: '',
         stopPrice:  rt.price,

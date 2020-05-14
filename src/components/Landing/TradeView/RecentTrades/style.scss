@@ -105,6 +105,13 @@ tr th {
   text-align: center;
 }
 
+td.long{
+  color:var(--red-color);
+}
+td.short{
+  color:var(--green-color);
+}
+
 .switch {
   position: relative;
   display: inline-block;
