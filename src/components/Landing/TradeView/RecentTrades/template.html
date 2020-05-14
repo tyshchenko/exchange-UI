@@ -26,6 +26,7 @@
                             <th>Buy/Sell</th>
 
                             <th>Status</th>
+                            <th>Close</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,6 +47,12 @@
                             <td :class="trade.buyOrSell">{{ trade.buyOrSell }}</td>
 
                             <td>{{ trade.status }}</td>
+                            <td>
+                                <a @click=cancelOrder(trade.id) href="javascript:undefined" class="os-semibold c-green">
+                                    <span class="mr5 text-underline">Close</span>
+                                    <i class="icons8-donate"></i>
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
