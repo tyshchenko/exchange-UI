@@ -134,6 +134,34 @@ class TradeService {
     }
   }
   
+  async getFuturesOrders() {
+    //get-active-orders
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+
+    let response = await ApiCurryBase.post('/', {'method': 'futures.pending','id':1, 'params':[mqttKey,'BTCUSD',0,50,],});
+    let data = response.data;
+    if (data.Expired==1) {
+      EventBus.$emit(EventNames.userSessionExpired);
+      return {data:[],};
+    } else {
+      let outputdata = data.result.records.map(rt => ({
+        id: rt.id,
+        clientOrderId: rt.id,
+        orderId: rt.id,
+        placedTime: rt.ctime,
+        amount: rt.amount,
+        avgPrice: rt.price,
+        buyOrSell: rt.side==2 ? 'buy' : 'sell',
+        exchange: 'XCoinBae',
+        orderType: '',
+        stopPrice:  rt.price,
+        status: rt.deal_stock>0 ? 'part.filled' : 'pending',
+        pair: rt.market,
+      }));
+      return {data:outputdata,};
+    }
+  }
+
   async getOpenPositions(exchange) {
     // return (await ApiCurryBase.post('/get-open-positions', {
     // exchange,

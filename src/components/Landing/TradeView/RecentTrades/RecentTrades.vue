@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     async getRecentTrades() {
-      let recentTrades = await TradeService.getRecentOrders();
+      let recentTrades = await TradeService.getFuturesOrders();
       recentTrades.status &&
         this.$store.commit('recentTrades', recentTrades.data);
     },
