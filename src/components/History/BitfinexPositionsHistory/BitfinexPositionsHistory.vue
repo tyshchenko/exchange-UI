@@ -34,7 +34,7 @@ export default {
       this.spinnerFlag = false;
       data.data.forEach((val) => {
         let obj = {};
-        obj.SYMBOL = val.pair, || '-';
+        obj.SYMBOL = val.pair || '-';
         obj.STATUS = val.status || '-';
         obj.AMOUNT = val.amount || '-';
         obj.BASE_PRICE = (parseFloat(val.startMoney) / parseFloat(val.amount)).toFixed(2) || '-';
