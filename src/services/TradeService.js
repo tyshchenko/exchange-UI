@@ -150,7 +150,7 @@ class TradeService {
         orderId: rt.id,
         placedTime: rt.ctime,
         amount: rt.amount,
-        avgPrice: rt.price,
+        avgPrice: rt.freeze,
         buyOrSell: rt.side==2 ? 'buy' : 'sell',
         exchange: 'XCoinBae',
         orderType: '',

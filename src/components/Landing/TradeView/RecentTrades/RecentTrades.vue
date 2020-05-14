@@ -32,8 +32,7 @@ export default {
   methods: {
     async getRecentTrades() {
       let recentTrades = await TradeService.getFuturesOrders();
-      recentTrades.status &&
-        this.$store.commit('recentTrades', recentTrades.data);
+      this.$store.commit('recentTrades', recentTrades.data);
     },
     toggleOpen() {
       this.$emit('toggle-open');
