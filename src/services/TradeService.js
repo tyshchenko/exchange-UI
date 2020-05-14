@@ -155,7 +155,7 @@ class TradeService {
         exchange: 'XCoinBae',
         orderType: '',
         stopPrice:  rt.price,
-        status: rt.deal_stock>0 ? 'part.filled' : 'pending',
+        status: rt.deal_stock>0 ? 'part.closed' : 'open',
         pair: rt.market,
       }));
       return {data:outputdata,};
