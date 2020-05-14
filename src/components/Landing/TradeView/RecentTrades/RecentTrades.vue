@@ -64,7 +64,7 @@ export default {
         amount: parseFloat(rt.amount),
         startMoney: parseFloat(rt.startMoney).toPrecision(2),
         stopPrice: parseFloat(rt.stopPrice).toPrecision(2),
-        openPrice: parseFloat(trade.startMoney / trade.amount).toPrecision(2),
+        openPrice: parseFloat(parseFloat(rt.startMoney) / parseFloat(rt.amount)).toPrecision(2),
         buyOrSell: rt.buyOrSell,
         exchange: rt.exchange,
         orderType: rt.orderType,
