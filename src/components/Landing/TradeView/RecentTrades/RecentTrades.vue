@@ -41,6 +41,22 @@ export default {
     formatDateTime(timestamp) {
       return dateToDisplayDateTime(new Date(timestamp));
     },
+    async cancelOrder(id) {
+      this.$store.commit('addLoaderTask', 1, false);
+      const response = await TradeService.cancelOrder({
+        orderId: id,
+      });
+      if (response.status) {
+        this.$showSuccessMsg({
+          message: response.data.message,
+        });
+      } else {
+        this.$showErrorMsg({
+          message: response.data.message,
+        });
+      }
+      this.$store.commit('removeLoaderTask', 1);
+    },
     mapRecentTrades(rtArr = []) {
       return rtArr.map(rt => ({
         id: rt.id,
