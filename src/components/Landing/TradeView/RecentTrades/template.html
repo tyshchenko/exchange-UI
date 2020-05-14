@@ -34,15 +34,15 @@
                             <td width="200">{{ formatDateTime(trade.placedTime) }}</td>
                             <td :class="trade.buyOrSell">{{ trade.buyOrSell }}</td>
                             <td>{{ trade.pair }}</td>
-                            <td>{{ trade.amount }}{{ trade.basePair }}</td>
+                            <td>{{ trade.amount }} {{ trade.basePair }}</td>
 
-                            <td v-if="!showTotal">{{ trade.startMoney }}{{ trade.quotePair }}</td>
+                            <td v-if="!showTotal">{{ trade.startMoney }} {{ trade.quotePair }}</td>
                             <td v-else>{{ trade.openPrice }}</td>
 
-                            <td v-if="!showTotal">{{ stopMoney }}{{ trade.quotePair }}</td>
+                            <td v-if="!showTotal">{{ trade.stopMoney }} {{ trade.quotePair }}</td>
                             <td v-else>{{ trade.stopPrice }}</td>
                             
-                            <td>{{ (trade.startMoney - Math.abs($store.state.liveTradePrice * trade.amount)).toFixed(2) }}{{ trade.quotePair }}</td>                          
+                            <td>{{ (trade.startMoney - Math.abs($store.state.liveTradePrice * trade.amount)).toFixed(2) }} {{ trade.quotePair }}</td>                          
                             
 
                             <td>{{ trade.status }}</td>
