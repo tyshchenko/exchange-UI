@@ -12,7 +12,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th width="50">Order ID</th>
+                            <th width="100">Order ID</th>
                             <th>Time</th>
                             <th>Order Type</th>
                             <th>Pair</th>
@@ -31,9 +31,9 @@
                     </thead>
                     <tbody>
                         <tr v-for="trade in recentTrades">
-                            <td width="50">{{ trade.orderId }}</td>
+                            <td width="100">{{ trade.orderId }}</td>
                             <td>{{ formatDateTime(trade.placedTime) }}</td>
-                            <td>{{ trade.orderType }}</td>
+                            <td :class="trade.buyOrSell">{{ trade.buyOrSell }}</td>
                             <td>{{ trade.pair }}</td>
                             <td>{{ trade.amount }}</td>
 
@@ -44,7 +44,7 @@
                             <td v-else>{{ trade.stopPrice }}</td>
                             
                             <td>{{ (trade.startMoney - Math.abs(liveTradePrice * trade.amount)) }}</td>                          
-                            <td :class="trade.buyOrSell">{{ trade.buyOrSell }}</td>
+                            
 
                             <td>{{ trade.status }}</td>
                             <td>
