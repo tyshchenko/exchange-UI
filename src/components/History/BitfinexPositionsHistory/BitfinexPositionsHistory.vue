@@ -1,7 +1,7 @@
 <template src="./template.html"></template>
 
 <script>
-import HistoryService from '@/services/HistoryService.js';
+import TradeService from '@/services/TradeService';
 import Spinner from '@/components/Spinner/Spinner.vue';
 import { dateToDisplayDateTime, } from '@/utils/utility';
 
@@ -22,38 +22,36 @@ export default {
   },
   async created() {
     let data = [];
-    data = await HistoryService.bitfinexPositionsHistoryData();
+    data = await TradeService.getFuturesOrders();
     let newData = [];
     if (data.data.error) {
       this.spinnerFlag = false;
       this.initialData = [];
       this.history = [];
-      this.displayText = 'Invalid API-KEY or API-KEYS not Entered.';
-      this.$showErrorMsg({
-        message: 'Notice: Invalid API-KEY or API-KEYS not Entered.',
-      });
+      this.displayText = '';
+
     } else {
       this.spinnerFlag = false;
       data.data.forEach((val) => {
         let obj = {};
-        obj.SYMBOL = val[0] || '-';
-        obj.STATUS = val[1] || '-';
-        obj.AMOUNT = val[2] || '-';
-        obj.BASE_PRICE = val[3] || '-';
-        obj.MARGIN_FUNDING = val[4] || '-';
-        obj.MARGIN_FUNDING_TYPE = val[5] || '-';
-        obj.PL = val[6] || '-';
-        obj.PL_PERC = val[7] || '-';
-        obj.PRICE_LIQ = val[8] || '-';
-        obj.LEVERAGE = val[9] || '-';
-        obj.ID = val[11] || '-';
-        obj.MTSCREATE = val[12] || '-';
-        obj.MTSUPDATE = val[13] || '-';
+        obj.SYMBOL = val.pair, || '-';
+        obj.STATUS = val.status || '-';
+        obj.AMOUNT = val.amount || '-';
+        obj.BASE_PRICE = (parseFloat(val.startMoney) / parseFloat(val.amount)).toFixed(2) || '-';
+        obj.MARGIN_FUNDING = parseFloat(val.startMoney).toFixed(2) || '-';
+        obj.MARGIN_FUNDING_TYPE = '-';
+        obj.PL =  '-';
+        obj.PL_PERC =  '-';
+        obj.PRICE_LIQ = parseFloat(val.stopPrice).toFixed(2) || '-';
+        obj.LEVERAGE = 10 || '-';
+        obj.ID = val.id || '-';
+        obj.MTSCREATE = new Date(val.placedTime * 1000) || '-';
+        obj.MTSUPDATE = new Date(val.placedTime * 1000) || '-';
         newData.push(obj); 
       });
     }
     this.initialData = newData;
-    if(this.history.length === 0 && this.displayText !== 'Invalid API-KEY or API-KEYS not Entered.')
+    if(this.history.length === 0)
       this.displayText = 'No Records Found.';
     this.updateData();
   },
