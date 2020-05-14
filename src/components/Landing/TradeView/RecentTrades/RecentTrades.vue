@@ -16,6 +16,7 @@ export default {
   data() {
     return {
       showTotal: false,
+      liveTradePrice: $store.state.liveTradePrice,
     };
   },
   mounted() {
