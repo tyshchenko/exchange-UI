@@ -50,7 +50,7 @@
                         </div> -->
                     </div>
 
-                    <div class="header-market-link-group uk-clearfix">
+                    <div class="header-market-link-group uk-clearfix  header-market-link">
                         <div class="navbar">
                             <!-- <div class="onoffswitch">
                   <span>Tournament Mode</span>
@@ -123,6 +123,18 @@
                                 <!-- <span>Wallets</span> -->
                             <!-- </router-link> -->
                         </div>
+                    </div>
+                    <div class="header-market-link-group uk-clearfix">
+
+
+                        <div class="header-market-link uk-clearfix">
+                            <div class="price-title">Liquidity {{ $store.state.liquidity }}</div>
+                            <div class="price-title">
+                                <span>Daily Volume {{Math.abs($store.state.volume24h) }}</span>
+                                <span>Monthly Volume {{ Math.abs($store.state.volumeMonth) }}</span>
+                            </div>
+                        </div>
+
                     </div>
                     <div id="statusDiv" style="color:var(--primary-text-color);">
                         <!-- <span class="dot" :class='serverStatusCode'></span>&nbsp;&nbsp;&nbsp;&nbsp;{{ getServerStatus() }} -->
