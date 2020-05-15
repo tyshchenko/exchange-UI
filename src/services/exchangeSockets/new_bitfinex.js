@@ -291,11 +291,11 @@ class Bitfinex {
       let notadded = true;
       recentTrades.forEach((item) => {
         if (item.id == data.id) {
-          item = data;
+          item = obj;
           notadded = false;
         }
       });
-      if (notadded) recentTrades.push(data);
+      if (notadded) recentTrades.push(obj);
       this.$store.commit('recentTrades', recentTrades);
     } else {
       let obj = {id: data.id,
@@ -315,11 +315,11 @@ class Bitfinex {
       let notadded = true;
       activeOrders.forEach((item) => {
         if (item.id == data.id) {
-          item = data;
+          item = obj;
           notadded = false;
         }
       });
-      if (notadded) recentTrades.push(data);
+      if (notadded) activeOrders.push(obj);
       this.$store.commit('activeOrders', activeOrders);
     }
     
