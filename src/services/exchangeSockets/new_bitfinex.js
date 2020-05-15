@@ -389,7 +389,9 @@ class Bitfinex {
     this.ExchangeDataEventBus.$emit('exchange-connected', store.getters.selectedExchange);
   }
 
-  handleClose() {}
+  handleClose() {
+    this.connectNew();
+  }
 
   handleError() {}
 
