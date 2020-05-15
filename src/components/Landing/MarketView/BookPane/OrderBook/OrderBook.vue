@@ -108,8 +108,8 @@ export default {
       }
     },
     roundPriceByPrecision(price, precision) {
-      let roundArray = [0,1,10,100];
-      let fractionDigitsArray = [1,1,1,1];
+      let roundArray = [0,1,10,100,];
+      let fractionDigitsArray = [1,1,1,1,];
       //returns price according to precesion
       let fractionDigits = fractionDigitsArray[precision];
       let round = roundArray[precision];
