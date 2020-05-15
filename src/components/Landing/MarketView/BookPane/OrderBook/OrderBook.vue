@@ -57,7 +57,7 @@ export default {
         precisionPass: this.count,
         precisionNumber: this.precisionNumber,
       });
-      this.timeout = setTimeout(() => this.scrollTopBookToBottom(), 2000);
+      this.timeout = setTimeout(() => this.scrollTopBookToBottom(), 1000);
     },
     scrollTopBookToBottom() {
       try {
@@ -175,7 +175,7 @@ export default {
       this.barAsk = this.asks[this.asks.length - 1].totalVolume;
       this.barBid = this.bids[this.bids.length - 1].totalVolume;
       this.$store.commit('liquidity', Math.floor(this.asks[this.asks.length - 1].totalVolume+this.bids[0].totalVolume));
-      this.timeout = setTimeout(() => this.scrollTopBookToBottom(), 2000);
+      this.timeout = setTimeout(() => this.scrollTopBookToBottom(), 1000);
       this.$store.commit('removeLoaderTask', 1);
     };
     this.bookUpdateListener = snap => {

@@ -67,7 +67,6 @@
                     <th id="tableHeaders">Change</th>
                     <th id="tableHeaders">Amount</th>
                     <th id="tableHeaders">Source</th>
-                    <th id="tableHeaders">Details</th>
                 </tr>
             </thead>
             <tbody v-if="spinnerFlag">
@@ -80,7 +79,6 @@
                     <td>{{ historyRow.change }}</td>
                     <td>{{ historyRow.balance }}</td>
                     <td>{{ historyRow.business }}</td>
-                    <td>{{ historyRow.detail }}</td>
                 </tr>
                 <tr v-if="history.length === 0">
                     <td colspan="4">
