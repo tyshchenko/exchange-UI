@@ -135,6 +135,7 @@ class Bitfinex {
 
   subscribePair(currencyPair) {
     let pair = keyMaps[`bitfinex-_-${currencyPair}`];
+    this.queryAuth();
     this.subscribeOrderBook(pair);
     this.subscribeTicker(pair);
     this.subscribeTrades(pair);
