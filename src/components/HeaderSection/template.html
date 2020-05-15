@@ -50,7 +50,7 @@
                         </div> -->
                     </div>
 
-                    <div class="header-market-link-group uk-clearfix  header-market-link">
+                    <div class="header-market-link-group uk-clearfix">
                         <div class="navbar">
                             <!-- <div class="onoffswitch">
                   <span>Tournament Mode</span>
@@ -124,19 +124,20 @@
                             <!-- </router-link> -->
                         </div>
                     </div>
+                    
+                    <div id="statusDiv" style="color:var(--primary-text-color);">
                     <div class="header-market-link-group uk-clearfix">
 
 
                         <div class="header-market-link uk-clearfix">
                             <div class="price-title">Liquidity {{ $store.state.liquidity }}</div>
-                            <div class="price-title">
+                            <div class="price">
                                 <span>Daily Volume {{Math.abs($store.state.volume24h) }}</span>
-                                <span>Monthly Volume {{ Math.abs($store.state.volumeMonth) }}</span>
+                                <span>Monthly Volume {{ Math.abs($store.state.liveTradePrice) }}</span>
                             </div>
                         </div>
 
                     </div>
-                    <div id="statusDiv" style="color:var(--primary-text-color);">
                         <!-- <span class="dot" :class='serverStatusCode'></span>&nbsp;&nbsp;&nbsp;&nbsp;{{ getServerStatus() }} -->
                         <a href="javascript:undefined" v-if="$store.getters.isLoggedIn" @click="logout" style="color:var(--primary-text-color);">
                             <span>
