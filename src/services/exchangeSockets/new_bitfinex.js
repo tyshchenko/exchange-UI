@@ -291,16 +291,16 @@ class Bitfinex {
       let notadded = true;
       recentTrades.forEach((item) => {
         if (item.id == data.id) {
-          item = obj;
+          if (data.deal_stock == 0) {
+            delete item;
+          } else {
+            item = obj;
+          }
           notadded = false;
         }
       });
-      if (notadded) recentTrades.push(obj);
+      if (notadded && data.deal_stock != 0) recentTrades.push(obj);
       store.commit('recentTrades', recentTrades);
-      /* eslint-disable no-console */
-      console.log(recentTrades);
-      /* eslint-enable no-console */
-
     } else {
       let obj = {id: data.id,
                  clientOrderId: data.id,
@@ -319,17 +319,17 @@ class Bitfinex {
       let notadded = true;
       activeOrders.forEach((item) => {
         if (item.id == data.id) {
-          item = obj;
+          if (data.deal_stock == 0) {
+            delete item;
+          } else {
+            item = obj;
+          }
           notadded = false;
         }
       });
-      if (notadded) activeOrders.push(obj);
+      if (notadded && data.deal_stock != 0) activeOrders.push(obj);
       store.commit('activeOrders', activeOrders);
-      /* eslint-disable no-console */
-      console.log(activeOrders);
-      /* eslint-enable no-console */
     }
-    
   }
 
   emitBooks(data) {
