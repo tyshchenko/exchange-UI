@@ -277,7 +277,7 @@ class Bitfinex {
           if (fask) { 
             chartData.asks.find(x => x.value == item.value).volume = item.volume;
           } else {
-            chartData.asks.push(item)
+            chartData.asks.push(item);
           }
         });
       }
@@ -287,7 +287,7 @@ class Bitfinex {
           if (fbid) {
             chartData.bids.find(x => x.value == item.value).volume = item.volume;
           } else {
-            chartData.bids.push(item)
+            chartData.bids.push(item);
           }
         });
       }
