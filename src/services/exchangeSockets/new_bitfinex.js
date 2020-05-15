@@ -137,6 +137,7 @@ class Bitfinex {
     this.subscribeOrderBook(pair);
     this.subscribeTicker(pair);
     this.subscribeTrades(pair);
+    this.subscribeStatus(pair);
     //this.queryOrderbook(pair);
     this.subscribeOrders(pair);
     //subscribeCandles(pair, '1m');
@@ -535,6 +536,17 @@ class Bitfinex {
     let data = {
       id: this.id,
       method: 'price.subscribe',
+      params: [symbol,], 
+    };
+    this.ctx.send(JSON.stringify(data));
+    this.id = this.id + 1;
+  }
+
+  subscribeStatus(pair) {
+    let symbol = pair;
+    let data = {
+      id: this.id,
+      method: 'state.subscribe',
       params: [symbol,], 
     };
     this.ctx.send(JSON.stringify(data));
