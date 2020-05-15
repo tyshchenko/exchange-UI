@@ -118,6 +118,9 @@ const store = new Vuex.Store({
     liquidity(state) {
       return state.liquidity;
     },
+    volume24h(state) {
+      return state.volume24h;
+    },
     tickerCache(state) {
       return state.tickerCache;
     },
@@ -231,6 +234,9 @@ const store = new Vuex.Store({
     },
     liveTradePrice(state, ltp) {
       state.liveTradePrice = ltp;
+    },
+    volume24h(state, ltp) {
+      state.volume24h = ltp;
     },
     liquidity(state, ltp) {
       state.liquidity = ltp;
