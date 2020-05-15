@@ -415,7 +415,7 @@ class Bitfinex {
       }
       if (method=='state.update') {
         let data = dataObj.params[1];
-        this.$store.commit('volume24h', Math.floor(data.volume));
+        store.commit('volume24h', Math.floor(data.volume));
       }
         
     }
