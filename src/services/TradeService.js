@@ -206,7 +206,7 @@ class TradeService {
       EventBus.$emit(EventNames.userSessionExpired);
       status = false;
     } else {
-      arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available)),});
+      arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':(Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available))).toFixed(2),});
       //arr.push({'wallet_type':'exchange','currency':'USD','locked_bal':Number(data.result.USD.freeze),'avail_bal':Number(data.result.USD.available),'total_bal':Number(data.result.USD.freeze) + Number(Number(data.result.USD.available)),});
     }
     return {'status':status,'message':'Balance','data':arr,};
