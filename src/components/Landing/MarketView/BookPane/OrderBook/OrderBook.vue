@@ -159,16 +159,16 @@ export default {
         bid: [],
       };
       parsedSnap.ask.forEach(i => {
-        this.saveSnapshotData(P0Data, i, precisionNumber, 'ask');
+        this.saveSnapshotData(P0Data, i, this.precisionNumber, 'ask');
       });
       parsedSnap.bid.forEach(i => {
-        this.saveSnapshotData(P0Data, i, precisionNumber, 'bid');
+        this.saveSnapshotData(P0Data, i, this.precisionNumber, 'bid');
       });
-      for (var key in P0Data.ask) {
-        P1Data.ask.push(P0Data.ask[key]);
+      for (let key_ask in P0Data.ask) {
+        P1Data.ask.push(P0Data.ask[key_ask]);
       }
-      for (var key in P0Data.bid) {
-        P1Data.bid.push(P0Data.bid[key]);
+      for (let key_bid in P0Data.bid) {
+        P1Data.bid.push(P0Data.bid[key_bid]);
       }
       this.asks = this.asksUpdater(P1Data);
       this.bids = this.bidsUpdater(P1Data);
@@ -189,16 +189,16 @@ export default {
         bid: [],
       };
       parsedSnap.ask.forEach(i => {
-        this.saveSnapshotData(P0Data, i, precisionNumber, 'ask');
+        this.saveSnapshotData(P0Data, i, this.precisionNumber, 'ask');
       });
       parsedSnap.bid.forEach(i => {
-        this.saveSnapshotData(P0Data, i, precisionNumber, 'bid');
+        this.saveSnapshotData(P0Data, i, this.precisionNumber, 'bid');
       });
-      for (var key in P0Data.ask) {
-        P1Data.ask.push(P0Data.ask[key]);
+      for (let key_ask in P0Data.ask) {
+        P1Data.ask.push(P0Data.ask[key_ask]);
       }
-      for (var key in P0Data.bid) {
-        P1Data.bid.push(P0Data.bid[key]);
+      for (let key_bid in P0Data.bid) {
+        P1Data.bid.push(P0Data.bid[key_bid]);
       }
       this.asks = this.asksUpdater(P1Data);
       this.bids = this.bidsUpdater(P1Data);

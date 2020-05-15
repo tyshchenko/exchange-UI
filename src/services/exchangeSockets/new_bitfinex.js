@@ -148,7 +148,7 @@ class Bitfinex {
     let data = {
       id: this.id,
       method: 'depth.subscribe',
-      params: [symbol,50,'0.1'],], //book
+      params: [symbol,50,'0.1',],], //book
     };
     this.ctx.send(JSON.stringify(data));
     this.id = this.id + 1;
