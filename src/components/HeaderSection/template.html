@@ -124,17 +124,7 @@
                             <!-- </router-link> -->
                         </div>
                     </div>
-                    <div class="header-market-link-group uk-clearfix" style="float: right;">
 
-
-                        <div class="header-market-link uk-clearfix">
-                            <div class="price">
-                                <label>Liquidity {{ $store.state.liquidity }}</label>
-                                <label>Daily Volume {{Math.abs($store.state.volume24h) }}</label>
-                            </div>
-                        </div>
-
-                    </div>
                     <div id="statusDiv" style="color:var(--primary-text-color);">
 
                         <!-- <span class="dot" :class='serverStatusCode'></span>&nbsp;&nbsp;&nbsp;&nbsp;{{ getServerStatus() }} -->
@@ -144,6 +134,17 @@
                             </span>
                             <span>Logout</span>
                         </a>
+
+                    </div>
+                    <div class="header-market-link-group uk-clearfix" style="float: right;">
+
+
+                        <div class="header-market-link uk-clearfix">
+                            <div class="price">
+                                <label>Liquidity {{ $store.state.liquidity }}</label>
+                                <label>Daily Volume {{Math.abs($store.state.volume24h) }}</label>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
