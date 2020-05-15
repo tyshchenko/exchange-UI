@@ -131,6 +131,7 @@ export default {
       this.bids = this.bidsUpdater(parsedSnap);
       this.barAsk = this.asks[this.asks.length - 1].totalVolume;
       this.barBid = this.bids[this.bids.length - 1].totalVolume;
+      this.$store.commit('liquidity', Math.floor(this.barAsk+this.barBid));
       this.timeout = setTimeout(() => this.scrollTopBookToBottom(), 2000);
       this.$store.commit('removeLoaderTask', 1);
     };

@@ -115,6 +115,9 @@ const store = new Vuex.Store({
     liveTradePrice(state) {
       return state.liveTradePrice;
     },
+    liquidity(state) {
+      return state.liquidity;
+    },
     tickerCache(state) {
       return state.tickerCache;
     },
@@ -228,6 +231,9 @@ const store = new Vuex.Store({
     },
     liveTradePrice(state, ltp) {
       state.liveTradePrice = ltp;
+    },
+    liquidity(state, ltp) {
+      state.liquidity = ltp;
     },
     tickerCache(state, ticker) {
       state.tickerCache = ticker;
