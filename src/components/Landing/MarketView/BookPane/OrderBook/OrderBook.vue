@@ -107,6 +107,29 @@ export default {
         return [];
       }
     },
+    roundPriceByPrecision(price, precision) {
+      let roundArray = [0,1,10,100];
+      let fractionDigitsArray = [1,1,1,1];
+      //returns price according to precesion
+      let fractionDigits = fractionDigitsArray[precision];
+      let round = roundArray[precision];
+      if (round == 0) {
+        return price.toFixed(fractionDigits);
+      } else {
+        return `${parseInt(price / round) * round}`;
+      }
+    },
+    saveSnapshotData(dataObj, snapshotData, precision, askOrBid) {
+      const roundedPrice = this.roundPriceByPrecision(parseFloat(snapshotData.value), precision);
+      if (!dataObj[askOrBid][roundedPrice]) {
+        dataObj[askOrBid][roundedPrice] = {value:roundedPrice,volume:parseFloat(snapshotData.volume),};
+      } else {
+        dataObj[askOrBid][roundedPrice].volume = dataObj[askOrBid][roundedPrice].volume + parseFloat(snapshotData.volume);
+      }
+      if (dataObj[askOrBid][roundedPrice].volume === 0) {
+        delete dataObj[askOrBid][roundedPrice];
+      }
+    },
   },
   watch: {
     parentHeight: function(newVal) {
@@ -127,8 +150,28 @@ export default {
     this.snapshotListener = snap => {
       this.showLoader = false;
       let parsedSnap = JSON.parse(JSON.stringify(snap));
-      this.asks = this.asksUpdater(parsedSnap);
-      this.bids = this.bidsUpdater(parsedSnap);
+      let P0Data = {
+        ask: {},
+        bid: {},
+      };
+      let P1Data = {
+        ask: [],
+        bid: [],
+      };
+      parsedSnap.ask.forEach(i => {
+        this.saveSnapshotData(P0Data, i, precisionNumber, 'ask');
+      });
+      parsedSnap.bid.forEach(i => {
+        this.saveSnapshotData(P0Data, i, precisionNumber, 'bid');
+      });
+      for (var key in P0Data.ask) {
+        P1Data.ask.push(P0Data.ask[key]);
+      }
+      for (var key in P0Data.bid) {
+        P1Data.bid.push(P0Data.bid[key]);
+      }
+      this.asks = this.asksUpdater(P1Data);
+      this.bids = this.bidsUpdater(P1Data);
       this.barAsk = this.asks[this.asks.length - 1].totalVolume;
       this.barBid = this.bids[this.bids.length - 1].totalVolume;
       this.$store.commit('liquidity', Math.floor(this.asks[this.asks.length - 1].totalVolume+this.bids[0].totalVolume));
@@ -137,8 +180,28 @@ export default {
     };
     this.bookUpdateListener = snap => {
       let parsedSnap = JSON.parse(JSON.stringify(snap));
-      this.asks = this.asksUpdater(parsedSnap);
-      this.bids = this.bidsUpdater(parsedSnap);
+      let P0Data = {
+        ask: {},
+        bid: {},
+      };
+      let P1Data = {
+        ask: [],
+        bid: [],
+      };
+      parsedSnap.ask.forEach(i => {
+        this.saveSnapshotData(P0Data, i, precisionNumber, 'ask');
+      });
+      parsedSnap.bid.forEach(i => {
+        this.saveSnapshotData(P0Data, i, precisionNumber, 'bid');
+      });
+      for (var key in P0Data.ask) {
+        P1Data.ask.push(P0Data.ask[key]);
+      }
+      for (var key in P0Data.bid) {
+        P1Data.bid.push(P0Data.bid[key]);
+      }
+      this.asks = this.asksUpdater(P1Data);
+      this.bids = this.bidsUpdater(P1Data);
       this.barAsk = this.asks[0].totalVolume;
       this.barBid = this.bids[this.bids.length - 1].totalVolume;
       this.$store.commit('liquidity', Math.floor(this.asks[this.asks.length - 1].totalVolume+this.bids[0].totalVolume));
