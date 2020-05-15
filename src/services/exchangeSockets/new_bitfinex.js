@@ -1,5 +1,6 @@
 import store from '@/store';
 import ExchangeDataEventBus from '@/eventBuses/exchangeData';
+import LocalStorage, { Keys, } from '@/utils/localStorage.js';
 import Worker from 'simple-web-worker';
 //import serialize from 'serialize-javascript';
 import keyMaps from '@/assets/json/keyMaps.js';
@@ -160,6 +161,17 @@ class Bitfinex {
       id: this.id,
       method: 'depth.query',
       params: [symbol,50,'0',], //book
+    };
+    this.ctx.send(JSON.stringify(data));
+    this.id = this.id + 1;
+  }
+
+  queryAuth() {
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    let data = {
+      id: this.id,
+      method: 'server.auth',
+      params: [mqttKey,'website',], //book
     };
     this.ctx.send(JSON.stringify(data));
     this.id = this.id + 1;
