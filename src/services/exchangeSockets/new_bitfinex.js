@@ -144,11 +144,17 @@ class Bitfinex {
   }
 
   subscribeOrderBook(pair) {
+    const {
+      precision,
+    } = this.state._constants;
+    let keys = ['P0', 'P1', 'P2', 'P3', ];
+    let depth = ['0.0001', '0.001', '0.01', '0.1', ];
+    let index = keys.indexOf(precision);
     let symbol = pair;
     let data = {
       id: this.id,
       method: 'depth.subscribe',
-      params: [symbol,50,'0.1',], //book
+      params: [symbol,50,depth[index],], //book
     };
     this.ctx.send(JSON.stringify(data));
     this.id = this.id + 1;
@@ -733,7 +739,7 @@ class Bitfinex {
     if (!connectionFlag) {
       return;
     }
-    this.unsubscribe(_constants.channelIDs.books);
+    this.unsubscribe('depth');
     let keys = ['P0', 'P1', 'P2', 'P3', ];
     let index = keys.indexOf(_constants.precision);
     if (key == 'minus') {
