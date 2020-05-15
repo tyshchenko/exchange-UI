@@ -177,7 +177,7 @@ class Bitfinex {
     };
     this.ctx.send(JSON.stringify(data));
     this.id = this.id + 1;
-    let pair = keyMaps[`bitfinex-_-${currencyPair}`];
+    let pair = this.state._constants.selectedPair.replace('/', '');
     setTimeout(() => this.subscribeOrders(pair), 3000)
   }
 
