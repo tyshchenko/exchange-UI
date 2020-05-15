@@ -297,6 +297,10 @@ class Bitfinex {
       });
       if (notadded) recentTrades.push(obj);
       this.$store.commit('recentTrades', recentTrades);
+      /* eslint-disable no-console */
+      console.log(recentTrades);
+      /* eslint-enable no-console */
+
     } else {
       let obj = {id: data.id,
                  clientOrderId: data.id,
@@ -321,6 +325,9 @@ class Bitfinex {
       });
       if (notadded) activeOrders.push(obj);
       this.$store.commit('activeOrders', activeOrders);
+      /* eslint-disable no-console */
+      console.log(activeOrders);
+      /* eslint-enable no-console */
     }
     
   }
