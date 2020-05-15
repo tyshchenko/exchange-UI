@@ -7,6 +7,7 @@ import keyMaps from '@/assets/json/keyMaps.js';
 import {
   dateToDisplayTime,
 } from '@/utils/utility';
+import EventBus, { EventNames, } from '@/eventBuses/default';
 
 class Bitfinex {
   constructor() {
@@ -176,6 +177,8 @@ class Bitfinex {
     };
     this.ctx.send(JSON.stringify(data));
     this.id = this.id + 1;
+    let pair = keyMaps[`bitfinex-_-${currencyPair}`];
+    setTimeout(() => this.subscribeOrders(pair), 3000)
   }
 
 
@@ -770,6 +773,7 @@ class Bitfinex {
     this.ExchangeDataEventBus.$on('unsubscribe-candles', () => this.unsubscribeCandleEvent());
     this.ExchangeDataEventBus.$on('resolve-candle-symbol', (symbol) => this.resolveSymbolFn(symbol));
     this.ExchangeDataEventBus.$on('get-all-symbols', () => this.symbolData());
+    this.EventBus.$on(this.EventNames.userLogin, () => this.queryAuth());
   }
 }
 
