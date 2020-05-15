@@ -274,7 +274,7 @@ class Bitfinex {
     //{"user": 9, "freeze": "0", "taker_fee": "0", "side": 2, "id": 13976578, "price": "9199.2", "market": "BTCUSD", "deal_stock": "0", "source": "", "deal_money": "0", "mtime": 1589577374.8883679, "type": 1, "ctime": 1589577374.8883679, "maker_fee": "0", "amount": "2.74", "left": "2.74", "deal_fee": "0"}
 
     if (data.type == 3) {
-      let recentTrades = this.$store.getters.recentTrades;
+      let recentTrades = store.getters.recentTrades;
       let obj = {id: data.id,
                  clientOrderId: data.id,
                  orderId: data.id,
@@ -296,7 +296,7 @@ class Bitfinex {
         }
       });
       if (notadded) recentTrades.push(obj);
-      this.$store.commit('recentTrades', recentTrades);
+      store.commit('recentTrades', recentTrades);
       /* eslint-disable no-console */
       console.log(recentTrades);
       /* eslint-enable no-console */
@@ -315,7 +315,7 @@ class Bitfinex {
                  status: data.deal_stock>0 ? 'part.filled' : 'pending',
                  pair: data.market,
       };
-      let activeOrders = this.$store.getters.activeOrders;
+      let activeOrders = store.getters.activeOrders;
       let notadded = true;
       activeOrders.forEach((item) => {
         if (item.id == data.id) {
@@ -324,7 +324,7 @@ class Bitfinex {
         }
       });
       if (notadded) activeOrders.push(obj);
-      this.$store.commit('activeOrders', activeOrders);
+      store.commit('activeOrders', activeOrders);
       /* eslint-disable no-console */
       console.log(activeOrders);
       /* eslint-enable no-console */
