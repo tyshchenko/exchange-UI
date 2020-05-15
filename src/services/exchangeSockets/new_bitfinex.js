@@ -773,7 +773,7 @@ class Bitfinex {
     this.ExchangeDataEventBus.$on('unsubscribe-candles', () => this.unsubscribeCandleEvent());
     this.ExchangeDataEventBus.$on('resolve-candle-symbol', (symbol) => this.resolveSymbolFn(symbol));
     this.ExchangeDataEventBus.$on('get-all-symbols', () => this.symbolData());
-    this.EventBus.$on(this.EventNames.userLogin, () => this.queryAuth());
+    EventBus.$on(EventNames.userLogin, () => this.queryAuth());
   }
 }
 
