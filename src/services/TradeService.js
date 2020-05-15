@@ -198,7 +198,7 @@ class TradeService {
 
   async getLedger() {
     let mqttKey = LocalStorage.get(Keys.mqtt);
-    let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[mqttKey,],});
+    let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[mqttKey,'BTC',],});
     let arr = [];
     let data = response.data;
     if (data.Expired==1) {
