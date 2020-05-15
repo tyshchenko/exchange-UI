@@ -49,9 +49,6 @@ export default {
     },
     activeTabChange(activeTab) {
       this.activeTab = activeTab;
-      /* eslint-disable no-console */
-      console.log(activeTab);
-      /* eslint-enable no-console */
       if (activeTab === 'Balance') {
         this.getBalance();
       }
