@@ -178,7 +178,7 @@ class Bitfinex {
     this.ctx.send(JSON.stringify(data));
     this.id = this.id + 1;
     let pair = this.state._constants.selectedPair.replace('/', '');
-    setTimeout(() => this.subscribeOrders(pair), 3000)
+    setTimeout(() => this.subscribeOrders(pair), 3000);
   }
 
 
@@ -276,18 +276,18 @@ class Bitfinex {
     if (data.type == 3) {
       let recentTrades = this.$store.getters.recentTrades;
       let obj = {id: data.id,
-        clientOrderId: data.id,
-        orderId: data.id,
-        placedTime: data.ctime,
-        amount: data.amount,
-        startMoney: data.freeze,
-        buyOrSell: data.side==2 ? 'long' : 'short',
-        exchange: 'XCoinBae',
-        orderType: '',
-        stopPrice:  data.price,
-        status: data.deal_stock>0 ? 'part.closed' : 'open',
-        pair: data.market,
-      }
+                 clientOrderId: data.id,
+                 orderId: data.id,
+                 placedTime: data.ctime,
+                 amount: data.amount,
+                 startMoney: data.freeze,
+                 buyOrSell: data.side==2 ? 'long' : 'short',
+                 exchange: 'XCoinBae',
+                 orderType: '',
+                 stopPrice:  data.price,
+                 status: data.deal_stock>0 ? 'part.closed' : 'open',
+                 pair: data.market,
+      };
       let notadded = true;
       recentTrades.forEach((item) => {
         if (item.id == data.id) {
@@ -299,18 +299,18 @@ class Bitfinex {
       this.$store.commit('recentTrades', recentTrades);
     } else {
       let obj = {id: data.id,
-        clientOrderId: data.id,
-        orderId: data.id,
-        placedTime: data.ctime,
-        amount: data.amount,
-        avgPrice: data.price,
-        buyOrSell: data.side==2 ? 'buy' : 'sell',
-        exchange: 'XCoinBae',
-        orderType: '',
-        stopPrice:  data.price,
-        status: data.deal_stock>0 ? 'part.filled' : 'pending',
-        pair: data.market,
-      }
+                 clientOrderId: data.id,
+                 orderId: data.id,
+                 placedTime: data.ctime,
+                 amount: data.amount,
+                 avgPrice: data.price,
+                 buyOrSell: data.side==2 ? 'buy' : 'sell',
+                 exchange: 'XCoinBae',
+                 orderType: '',
+                 stopPrice:  data.price,
+                 status: data.deal_stock>0 ? 'part.filled' : 'pending',
+                 pair: data.market,
+      };
       let activeOrders = this.$store.getters.activeOrders;
       let notadded = true;
       activeOrders.forEach((item) => {
