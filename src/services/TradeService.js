@@ -33,6 +33,7 @@ class TradeService {
     }
     if (responce.error) {
       responce.status = false;
+      responce.data = responce.error;
       responce.data.message = responce.error.message;
     } else {
       responce.status = true;
