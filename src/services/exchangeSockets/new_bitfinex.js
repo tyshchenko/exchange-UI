@@ -295,7 +295,7 @@ class Bitfinex {
           notadded = false;
         }
       });
-      if (notadded && data.deal_stock != 0) recentTrades.push(obj);
+      if (notadded) recentTrades.push(obj);
       store.commit('recentTrades', recentTrades);
     } else {
       let obj = {id: data.id,
@@ -319,7 +319,7 @@ class Bitfinex {
           notadded = false;
         }
       });
-      if (notadded && data.deal_stock != 0) activeOrders.push(obj);
+      if (notadded) activeOrders.push(obj);
       store.commit('activeOrders', activeOrders);
     }
   }
