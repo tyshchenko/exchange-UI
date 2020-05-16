@@ -289,13 +289,9 @@ class Bitfinex {
                  pair: data.market,
       };
       let notadded = true;
-      recentTrades.forEach(function(item, index, object) {
+      recentTrades.forEach((item) => {
         if (item.id == data.id) {
-          if (data.deal_stock == 0) {
-            object.splice(index, 1);
-          } else {
-            item = obj;
-          }
+          item = obj;
           notadded = false;
         }
       });
@@ -317,13 +313,9 @@ class Bitfinex {
       };
       let activeOrders = store.getters.activeOrders;
       let notadded = true;
-      activeOrders.forEach(function(item, index, object) {
+      activeOrders.forEach((item) => {
         if (item.id == data.id) {
-          if (data.deal_stock == 0) {
-            object.splice(index, 1);
-          } else {
-            item = obj;
-          }
+          item = obj;
           notadded = false;
         }
       });
