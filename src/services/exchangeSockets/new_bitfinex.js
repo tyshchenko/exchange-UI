@@ -288,6 +288,100 @@ class Bitfinex {
                  status: data.deal_stock>0 ? 'part.closed' : 'open',
                  pair: data.market,
       };
+      recentTrades.push(obj);
+      store.commit('recentTrades', recentTrades);
+    } else {
+      let obj = {id: data.id,
+                 clientOrderId: data.id,
+                 orderId: data.id,
+                 placedTime: data.ctime,
+                 amount: data.amount,
+                 avgPrice: data.price,
+                 buyOrSell: data.side==2 ? 'buy' : 'sell',
+                 exchange: 'XCoinBae',
+                 orderType: '',
+                 stopPrice:  data.price,
+                 status: data.deal_stock>0 ? 'part.filled' : 'pending',
+                 pair: data.market,
+      };
+      let activeOrders = store.getters.activeOrders;
+      activeOrders.push(obj);
+      store.commit('activeOrders', activeOrders);
+    }
+  }
+
+  emitUpdateOrder(data) {
+    //{"user": 9, "freeze": "0", "taker_fee": "0", "side": 2, "id": 13976578, "price": "9199.2", "market": "BTCUSD", "deal_stock": "0", "source": "", "deal_money": "0", "mtime": 1589577374.8883679, "type": 1, "ctime": 1589577374.8883679, "maker_fee": "0", "amount": "2.74", "left": "2.74", "deal_fee": "0"}
+
+    if (data.type == 3) {
+      let recentTrades = store.getters.recentTrades;
+      let obj = {id: data.id,
+                 clientOrderId: data.id,
+                 orderId: data.id,
+                 placedTime: data.ctime,
+                 amount: data.amount,
+                 startMoney: data.freeze,
+                 buyOrSell: data.side==2 ? 'long' : 'short',
+                 exchange: 'XCoinBae',
+                 orderType: '',
+                 stopPrice:  data.price,
+                 status: data.deal_stock>0 ? 'part.closed' : 'open',
+                 pair: data.market,
+      };
+      let notadded = true;
+      recentTrades.forEach((item) => {
+        if (item.id == data.id) {
+          item = obj;
+          notadded = false;
+        }
+      });
+      if (notadded) recentTrades.push(obj);
+      store.commit('recentTrades', recentTrades);
+    } else {
+      let obj = {id: data.id,
+                 clientOrderId: data.id,
+                 orderId: data.id,
+                 placedTime: data.ctime,
+                 amount: data.amount,
+                 avgPrice: data.price,
+                 buyOrSell: data.side==2 ? 'buy' : 'sell',
+                 exchange: 'XCoinBae',
+                 orderType: '',
+                 stopPrice:  data.price,
+                 status: data.deal_stock>0 ? 'part.filled' : 'pending',
+                 pair: data.market,
+      };
+      let activeOrders = store.getters.activeOrders;
+      let notadded = true;
+      activeOrders.forEach((item) => {
+        if (item.id == data.id) {
+          item = obj;
+          notadded = false;
+        }
+      });
+      if (notadded) activeOrders.push(obj);
+      store.commit('activeOrders', activeOrders);
+    }
+  }
+
+  emitCancelOrder(data) {
+    //{"user": 9, "freeze": "0", "taker_fee": "0", "side": 2, "id": 13976578, "price": "9199.2", "market": "BTCUSD", "deal_stock": "0", "source": "", "deal_money": "0", "mtime": 1589577374.8883679, "type": 1, "ctime": 1589577374.8883679, "maker_fee": "0", "amount": "2.74", "left": "2.74", "deal_fee": "0"}
+
+    if (data.type == 3) {
+      let recentTrades = store.getters.recentTrades;
+      let obj = {id: data.id,
+                 clientOrderId: data.id,
+                 orderId: data.id,
+                 placedTime: data.ctime,
+                 amount: data.amount,
+                 startMoney: data.freeze,
+                 buyOrSell: data.side==2 ? 'long' : 'short',
+                 exchange: 'XCoinBae',
+                 orderType: '',
+                 stopPrice:  data.price,
+                 status: data.deal_stock>0 ? 'part.closed' : 'open',
+                 pair: data.market,
+      };
       let notadded = true;
       recentTrades.forEach((item) => {
         if (item.id == data.id) {
@@ -479,7 +573,10 @@ class Bitfinex {
       }
       if (method=='order.update') {
         let data = dataObj.params[1];
-        this.emitOrder(data);
+        let updateevent = dataObj.params[0];
+        if (updateevent == 1) this.emitOrder(data);
+        if (updateevent == 2) this.emitUpdateOrder(data);
+        if (updateevent == 3) this.emitCancelOrder(data);
       }
       if (method=='deals.update') {
         let data = dataObj.params[1];
