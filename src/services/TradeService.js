@@ -31,13 +31,15 @@ class TradeService {
     if (responce.Expired==1) {
       EventBus.$emit(EventNames.userSessionExpired);
     }
-    responce.status = true;
-    responce.data = responce.result;
-    responce.data.message = 'success';
-    responce.data.volume = responce.result.amount;
-    /* eslint-disable no-console */
-    console.log(responce);
-    /* eslint-enable no-console */
+    if (responce.error) {
+      responce.status = false;
+      responce.data.message = responce.error.message;
+    } else {
+      responce.status = true;
+      responce.data = responce.result;
+      responce.data.message = 'success';
+      responce.data.volume = responce.result.amount;
+    }
     return responce;
   }
 
