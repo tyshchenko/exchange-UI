@@ -287,6 +287,7 @@ class Bitfinex {
                  stopPrice:  data.price,
                  status: data.deal_stock>0 ? 'part.closed' : 'open',
                  pair: data.market,
+                 znak: data.side==2 ? -1 : 1,
       };
       recentTrades.unshift(obj);
       store.commit('recentTrades', recentTrades);
@@ -327,6 +328,7 @@ class Bitfinex {
                  stopPrice:  data.price,
                  status: data.deal_stock>0 ? 'part.closed' : 'open',
                  pair: data.market,
+                 znak: data.side==2 ? -1 : 1,
       };
       let notadded = true;
       recentTrades.forEach((item) => {
