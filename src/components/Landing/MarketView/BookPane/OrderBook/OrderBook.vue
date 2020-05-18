@@ -33,8 +33,8 @@ export default {
   computed: {
     maxVol() {
       return Math.max(
-        this.asks[this.asks.length - 1].totalVolume,
-        this.bids[0].totalVolume
+        this.asks[0].totalVolume,
+        this.bids[this.bids.length - 1].totalVolume
       );
     },
   },
@@ -174,7 +174,7 @@ export default {
       this.bids = this.bidsUpdater(P1Data);
       this.barAsk = this.asks[this.asks.length - 1].totalVolume;
       this.barBid = this.bids[this.bids.length - 1].totalVolume;
-      this.$store.commit('liquidity', Math.floor(this.asks[this.asks.length - 1].totalVolume+this.bids[0].totalVolume));
+      this.$store.commit('liquidity', Math.floor(this.asks[0].totalVolume+this.bids[this.bids.length - 1].totalVolume));
       this.timeout = setTimeout(() => this.scrollTopBookToBottom(), 1000);
       this.$store.commit('removeLoaderTask', 1);
     };
@@ -204,7 +204,7 @@ export default {
       this.bids = this.bidsUpdater(P1Data);
       this.barAsk = this.asks[0].totalVolume;
       this.barBid = this.bids[this.bids.length - 1].totalVolume;
-      this.$store.commit('liquidity', Math.floor(this.asks[this.asks.length - 1].totalVolume+this.bids[0].totalVolume));
+      this.$store.commit('liquidity', Math.floor(this.asks[0].totalVolume+this.bids[this.bids.length - 1].totalVolume));
       this.showLoader = false;
     };
     this.reset = () => {
