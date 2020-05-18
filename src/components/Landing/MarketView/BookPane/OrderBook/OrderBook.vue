@@ -83,7 +83,7 @@ export default {
           }
           asks[parsedSnap.asks.length - (i + 1)] = parsedSnap.asks[i];
         }
-//         return asks.reverse();
+         return asks;
       } else {
         this.barAsk = 0;
         return [];
@@ -101,7 +101,7 @@ export default {
           }
           bids.push(parsedSnap.bids[i]);
         }
-//         return bids.reverse();
+         return bids;
       } else {
         this.barBid = 0;
         return [];
