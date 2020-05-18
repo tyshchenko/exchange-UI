@@ -20,6 +20,8 @@
                             <!-- <th>Fee</th> -->
                             <th v-if="!showTotal">Entry Money</th>
                             <th v-else>Entry Price</th>                            
+                            <th v-if="!showTotal">Margin 10x</th>
+                            <th v-else>Market Price</th>                            
                             <th v-if="!showTotal">Liquidation</th>
                             <th v-else>Liquidation Price</th>
                             <th>Profit/Loss</th>
@@ -38,6 +40,8 @@
 
                             <td v-if="!showTotal">{{ trade.startMoney }} {{ trade.quotePair }}</td>
                             <td v-else>{{ trade.openPrice }}</td>
+                            <td v-if="!showTotal">{{ (trade.amount / 10).toFixed(8) }} {{ trade.quotePair }}</td>
+                            <td v-else>{{ $store.state.liveTradePrice.toFixed(2) }}</td>
 
                             <td v-if="!showTotal">{{ trade.stopMoney }} {{ trade.quotePair }}</td>
                             <td v-else>{{ trade.stopPrice }}</td>
