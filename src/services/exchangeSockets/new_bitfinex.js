@@ -302,6 +302,7 @@ class Bitfinex {
                  exchange: 'XCoinBae',
                  orderType: '',
                  stopPrice:  data.price,
+                 filled:  data.deal_stock,
                  status: data.deal_stock>0 ? 'part.filled' : 'pending',
                  pair: data.market,
       };
@@ -349,6 +350,7 @@ class Bitfinex {
                  buyOrSell: data.side==2 ? 'buy' : 'sell',
                  exchange: 'XCoinBae',
                  orderType: '',
+                 filled:  data.deal_stock,
                  stopPrice:  data.price,
                  status: data.deal_stock>0 ? 'part.filled' : 'pending',
                  pair: data.market,
