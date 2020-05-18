@@ -13,11 +13,10 @@
                             <!-- <th>Order Type</th> -->
                             <th>Pair</th>
                             <th>Amount</th>
-                            <!-- <th>Fee</th> -->
+                            <th>Filled</th>
+                            <th>Remaining</th>
                             <th>Price</th>
-                            <th>Stop Price</th>
                             <th width="100">Buy/Sell</th>
-                            <th width="100">Exchange</th>
                             <th>Status</th>
                             <th>Cancel</th>
                         </tr>
@@ -30,11 +29,10 @@
                             <!-- <td>{{ order.orderType }}</td> -->
                             <td>{{ order.pair }}</td>
                             <td>{{ order.amount }}</td>
-                            <!-- <td>{{ trade.fee }}</td> -->
+                            <td>{{ order.filled }}</td>
+                            <td>{{ order.amount - order.filled }}</td>
                             <td>{{ order.avgPrice }}</td>
-                            <td>{{ order.stopPrice }}</td>
                             <td width="100" :class="order.buyOrSell">{{ order.buyOrSell }}</td>
-                            <td width="100">{{ order.exchange }}</td>
                             <td>{{ order.status }}</td>
                             <td>
                                 <a @click=cancelOrder(order.id) href="javascript:undefined" class="os-semibold c-red">
