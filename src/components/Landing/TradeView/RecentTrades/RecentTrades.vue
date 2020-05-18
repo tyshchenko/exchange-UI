@@ -73,6 +73,7 @@ export default {
         pair: rt.pair,
         basePair: 'BTC',
         quotePair: 'USD',
+        znak:rt.znak,
       }));
     },
   },

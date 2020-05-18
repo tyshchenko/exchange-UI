@@ -42,7 +42,7 @@
                             <td v-if="!showTotal">{{ trade.stopMoney }} {{ trade.quotePair }}</td>
                             <td v-else>{{ trade.stopPrice }}</td>
                             
-                            <td>{{ (trade.startMoney - Math.abs($store.state.liveTradePrice * trade.amount)).toFixed(2) }} {{ trade.quotePair }}</td>                          
+                            <td>{{ trade.znak * (trade.startMoney - Math.abs($store.state.liveTradePrice * trade.amount)).toFixed(2) }} {{ trade.quotePair }}</td>                          
                             
 
                             <td>{{ trade.status }}</td>
