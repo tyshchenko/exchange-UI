@@ -40,7 +40,7 @@
 
                             <td v-if="!showTotal">{{ trade.startMoney }} {{ trade.quotePair }}</td>
                             <td v-else>{{ trade.openPrice }}</td>
-                            <td v-if="!showTotal">{{ (trade.amount / 10).toFixed(8) }} {{ trade.quotePair }}</td>
+                            <td v-if="!showTotal">{{ (trade.amount / 10).toFixed(6) }} {{ trade.basePair }}</td>
                             <td v-else>{{ $store.state.liveTradePrice.toFixed(2) }}</td>
 
                             <td v-if="!showTotal">{{ trade.stopMoney }} {{ trade.quotePair }}</td>
