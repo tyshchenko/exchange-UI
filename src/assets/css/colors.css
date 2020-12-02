@@ -1,8 +1,8 @@
 :root {
-    --main-bg-color: #13151a;
-    --header-bg-color: #262830;
+    --main-bg-color: #191D27;
+    --header-bg-color: #191D27;
     --header-border-color: #415b62;
-    --tab-button-background-color: #2846A5;
+    --tab-button-background-color: #F7941D;
     --primary-text-color: #ffffff;
     --miner-sub-text-color: #909ca0;
     --mobile-bg-color: #415b62;
@@ -14,7 +14,7 @@
     --placeholder-color: #999999;
     --border-bottom-color: #1e2c31;
     --border-right-color : #445f66;
-    --tab-color: #2846A5;
+    --tab-color: #F7941D;
     --silder-bg-color: #d3d3d3; 
     --secondary-modal-bg-color :#0F1E23;
     --container-bg-color: #121E22;
