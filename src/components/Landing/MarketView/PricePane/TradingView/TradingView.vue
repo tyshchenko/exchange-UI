@@ -16,7 +16,7 @@ export default {
   name: 'trading-view',
   props: {
     symbol: {
-      default: 'CoinBae:BTC/USD',
+      default: 'CoinBae:BTC/ANKER',
       type: String,
     },
     interval: {
