@@ -14,8 +14,8 @@ const configurationData = {
   supported_resolutions: ['1D', '1W', '1M',],
   exchanges: [{
     value: 'Bitfinex',
-    name: 'Bitfinex',
-    desc: 'Bitfinex',
+    name: 'CoinBae',
+    desc: 'CoinBae',
   },
               {
                 // `exchange` argument for the `searchSymbols` method, if a user selects this exchange
