@@ -629,7 +629,7 @@ button:focus {
 }
 
 .uk-button-green:focus {
-  background-color: var(--green-color) !important;
+  background-color: var(--orange-color) !important;
   color: var(--primary-text-color) !important;
 }
 
@@ -683,4 +683,7 @@ button:focus {
 }
 .under_maintenance {
   margin-right: 10px;
+}
+input.form-ctrl {
+  background: var(--tab-color);
 }
