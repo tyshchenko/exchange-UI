@@ -98,12 +98,12 @@ export default {
       return;
     }
     const symbolInfo = {
-      name: symbolItem.symbol,
+      name: 'BTC/ANKER',
       description: symbolItem.description,
       type: symbolItem.type,
       session: '24x7',
       timezone: 'Etc/UTC',
-      exchange: symbolItem.exchange,
+      exchange: 'CoinBae',
       minmov: 1,
       pricescale: 100,
       has_intraday: false,
