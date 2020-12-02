@@ -7,7 +7,6 @@
     background:var(--sec-mobile-bg-color);
     color: var(--primary-text-color);
     text-transform:uppercase;
-    @include roundedCorners(40);
     &:hover{
       background:var(--mobile-bg-color);
       color: var(--primary-text-color);
@@ -16,7 +15,7 @@
 
   
   .uk-button-green,.uk-button-green:hover {
-    background-color:var(--green-color);
+    background-color:var(--orange-color);
     color: var(--primary-text-color);
   }
   
