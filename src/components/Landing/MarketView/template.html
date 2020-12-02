@@ -8,7 +8,7 @@
 		<button class="sidebar-trigger sidebar-col1-trigger" @click="sidebarTrigger('1')">
 			<i class="icons8-forward"></i>
 		</button>
-		<div class="sidebar-inner" >
+		<div class="sidebar-inner sidebar-border" >
 			<trade-pane class="sidebar-inner" />
 		</div>
 	</div>
@@ -19,12 +19,12 @@
 		<button class="sidebar-trigger sidebar-col2-trigger" @click="sidebarTrigger('2')">
 			<i class="icons8-forward"></i>
 		</button>
-		<div class="sidebar-inner">
+		<div class="sidebar-inner sidebar-border">
 			<book-pane class="sidebar-inner" />
 		</div>
 	</div>
 
-	<div class="stockchart-wrap">
+	<div class="stockchart-wrap sidebar-border">
 		<price-pane />
 	</div>
 </div>

@@ -7,7 +7,7 @@
   @include breakpoint(medium){
     position: relative;
     margin-left: 3px;
-    border-left: 1px solid var(--border-right-color);
+
     min-height: calc(100vh - 120px);
   }
 }
