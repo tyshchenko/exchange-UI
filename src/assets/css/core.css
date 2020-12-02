@@ -688,3 +688,6 @@ input.form-ctrl {
   background: var(--tab-color);
   padding: 0 20px;
 }
+.uk100 {
+  width: 100%;
+}
