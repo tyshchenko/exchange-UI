@@ -1,5 +1,5 @@
 <div class="trading-view">
     <div>
-        <div class="TVChartContainer" :id="containerId" />
+        <div v-bind:class="{ halfheight: $store.getters.isLoggedIn, fullheight: !$store.getters.isLoggedIn }"  width="100%" :id="containerId" />
     </div>
 </div>
