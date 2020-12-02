@@ -129,7 +129,7 @@
     width: 20px;
     font-size: 14px;
     padding: 0;
-    border: 1px solid var(--border-right-color);
+
     border-top: 0;
     border-bottom: 0;
     cursor: pointer;
@@ -141,4 +141,8 @@
   overflow: hidden;
   height: 100%;
   position: relative;
+  border: 1px solid var(--border-right-color);
+}
+.stockchart-wrap {
+  border: 1px solid var(--border-right-color);
 }
