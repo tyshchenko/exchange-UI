@@ -35,13 +35,25 @@ export default {
       default: '/charting_library/',
       type: String,
     },
+    chartsStorageUrl: {
+      default: 'https://saveload.tradingview.com',
+      type: String,
+    },
+    chartsStorageApiVersion: {
+      default: '1.1',
+      type: String,
+    },
+    clientId: {
+      default: 'tradingview.com',
+      type: String,
+    },
+    userId: {
+      default: 'public_user_id',
+      type: String,
+    },
     fullscreen: {
       default: false,
       type: Boolean,
-    },
-    theme: {
-      default: 'Dark',
-      type: String,
     },
     autosize: {
       default: true,
@@ -69,6 +81,7 @@ export default {
       user_id: this.userId,
       fullscreen: this.fullscreen,
       autosize: this.autosize,
+      theme:'Dark',
       studies_overrides: this.studiesOverrides,
     };
     const tvWidget = new window.TradingView.widget(widgetOptions);
