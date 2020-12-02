@@ -478,6 +478,8 @@
 .uk-tab {
   background: var(--tab-color);
   border-bottom: 1px solid var(--tab-color);
+  margin-right: -20px;
+  margin-top: -5px;
 }
 /* double icon css start */
 uk-icon [STROKE*="#"]:not(.uk-preserve),
