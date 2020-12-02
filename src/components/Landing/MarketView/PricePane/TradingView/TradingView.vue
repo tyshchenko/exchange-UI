@@ -2,7 +2,7 @@
 
 <script>
 import ExchangeDataEventBus from '@/eventBuses/exchangeData';
-import { widget } from './charting_library/charting_library';
+import { TradingView } from './charting_library/charting_library.standalone';
 
 function getLanguageFromURL() {
   const regex = new RegExp('[\\?&]lang=([^&#]*)');
@@ -83,7 +83,7 @@ export default {
       autosize: this.autosize,
       studies_overrides: this.studiesOverrides,
     };
-    const tvWidget = new widget(widgetOptions);
+    const tvWidget = new TradingView.widget(widgetOptions);
     this.tvWidget = tvWidget;
     tvWidget.onChartReady(() => {
       tvWidget.headerReady().then(() => {
