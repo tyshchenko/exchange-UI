@@ -686,4 +686,5 @@ button:focus {
 }
 input.form-ctrl {
   background: var(--tab-color);
+  padding: 0 20px;
 }
