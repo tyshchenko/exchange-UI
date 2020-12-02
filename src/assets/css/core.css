@@ -471,11 +471,14 @@
 
 .uk-tab > .uk-active > a {
   color: var(--primary-text-color);
-  border-color: var(--tab-color);
-  background: var(--tab-color);
+  border: none;
+  background: var(--main-bg-color);
 }
 /* Tab Bar CSS End */
-
+.uk-tab {
+  background: var(--tab-color);
+  border-bottom: 1px solid var(--tab-color);
+}
 /* double icon css start */
 uk-icon [STROKE*="#"]:not(.uk-preserve),
 .uk-icon [stroke*="#"]:not(.uk-preserve) {
