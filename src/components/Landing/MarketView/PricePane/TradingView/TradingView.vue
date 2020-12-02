@@ -55,6 +55,10 @@ export default {
       default: false,
       type: Boolean,
     },
+    theme: {
+      default: 'Dark',
+      type: String,
+    },
     autosize: {
       default: true,
       type: Boolean,
