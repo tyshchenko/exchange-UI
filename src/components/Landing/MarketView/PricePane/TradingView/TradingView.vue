@@ -16,7 +16,7 @@ export default {
   name: 'trading-view',
   props: {
     symbol: {
-      default: 'Bitfinex:BTC/USD',
+      default: 'CoinBae:BTC/USD',
       type: String,
     },
     interval: {
