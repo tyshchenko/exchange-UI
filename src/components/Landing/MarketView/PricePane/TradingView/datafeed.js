@@ -92,7 +92,7 @@ export default {
     const symbols = await getAllSymbols();
     const symbolItem = symbols.find(({
       full_name,
-    }) => full_name === symbolName);
+    }) => full_name === 'Bitfinex:BTC/USD');
     if (!symbolItem) {
       onResolveErrorCallback('cannot resolve symbol');
       return;
