@@ -24,8 +24,8 @@ export function parseFullSymbol(fullSymbol) {
   }
 
   return {
-    exchange: match[1],
-    fromSymbol: match[2],
-    toSymbol: match[3],
+    exchange: 'Bitfinex',
+    fromSymbol: 'BTC',
+    toSymbol: 'USD',
   };
 }
