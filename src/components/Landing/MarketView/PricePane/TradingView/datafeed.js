@@ -99,7 +99,7 @@ export default {
     }
     const symbolInfo = {
       name: 'BTC/ANKER',
-      description: symbolItem.description,
+      description: 'BTC/ANKER',
       type: symbolItem.type,
       session: '24x7',
       timezone: 'Etc/UTC',
