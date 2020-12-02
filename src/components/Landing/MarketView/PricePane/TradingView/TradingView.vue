@@ -1,4 +1,4 @@
-// <template src="./template.html"></template>
+<template src="./template.html"></template>
 
 <script>
 import ExchangeDataEventBus from '@/eventBuses/exchangeData';
