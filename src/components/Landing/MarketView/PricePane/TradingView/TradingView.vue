@@ -16,7 +16,7 @@ export default {
   name: 'trading-view',
   props: {
     symbol: {
-      default: 'AAPL',
+      default: 'BTC',
       type: String,
     },
     interval: {

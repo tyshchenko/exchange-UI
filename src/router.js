@@ -20,7 +20,7 @@ const vueRouter = new Router({
     name: 'home',
     component: Landing,
     meta: {
-      pageTitle: 'AnkerSwap',
+      pageTitle: 'CoinBae',
     },
   }, {
     path: '/markets',
@@ -48,7 +48,7 @@ const vueRouter = new Router({
     component: Settings,
     name: 'settings',
     meta: {
-      pageTitle: 'Settings - AnkerSwap.',
+      pageTitle: 'Settings - CoinBae.',
       needLogin: true,
     },
   }, {
@@ -56,7 +56,7 @@ const vueRouter = new Router({
     component: WalletSummary,
     name: 'wallet-summary',
     meta: {
-      pageTitle: 'Wallets - AnkerSwap.',
+      pageTitle: 'Wallets - CoinBae.',
       needLogin: true,
     },
   }, {
@@ -64,7 +64,7 @@ const vueRouter = new Router({
     name: 'history',
     component: History,
     meta: {
-      pageTitle: 'History - AnkerSwap.',
+      pageTitle: 'History - CoinBae.',
       needLogin: true,
     },
 
