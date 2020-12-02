@@ -2,7 +2,7 @@
 
 <script>
 import ExchangeDataEventBus from '@/eventBuses/exchangeData';
-import { widget } from './charting_library.standalone';
+import { widget } from './charting_library';
 
 function getLanguageFromURL() {
   const regex = new RegExp('[\\?&]lang=([^&#]*)');
