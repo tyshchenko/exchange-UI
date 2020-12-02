@@ -2,7 +2,7 @@
 
 <script>
 import ExchangeDataEventBus from '@/eventBuses/exchangeData';
-
+import Datafeed from './datafeed.js';
 
 function getLanguageFromURL() {
   const regex = new RegExp('[\\?&]lang=([^&#]*)');
@@ -16,7 +16,7 @@ export default {
   name: 'trading-view',
   props: {
     symbol: {
-      default: 'BTC',
+      default: 'Bitfinex:BTC/USD',
       type: String,
     },
     interval: {
@@ -68,7 +68,7 @@ export default {
     const widgetOptions = {
       symbol: this.symbol,
       // BEWARE: no trailing slash is expected in feed URL
-      datafeed: new window.Datafeeds.UDFCompatibleDatafeed(this.datafeedUrl),
+      datafeed: Datafeed,
       interval: this.interval,
       container_id: this.containerId,
       library_path: this.libraryPath,
