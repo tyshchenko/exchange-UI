@@ -15,9 +15,9 @@ class Bitfinex {
       _constants: {
         selectedExchange: store.getters.selectedExchange,
         // selectedPair: store.getters.selectedPair,
-        defaultPair: 'BTC/USD',
-        selectedPair: 'BTC/USD',
-        baseAddress: 'wss://trade.coinbae.org/ws/',
+        defaultPair: 'BTC/ANKER',
+        selectedPair: 'BTC/ANKER',
+        baseAddress: 'ws://134.209.199.242:8090',
         streams: ['trades', 'candles', 'books', 'ticker', ],
         channelIDs: {
           candles: '',
@@ -28,7 +28,7 @@ class Bitfinex {
         candlesIdArray: [],
         precision: 'P1',
         ethdata: {
-          name: 'ETH/USD',
+          name: 'ETH/ANKER',
           'exchange-traded': 'bitfinex',
           'exchange-listed': 'bitfinex',
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -55,7 +55,7 @@ class Bitfinex {
           data_status: 'streaming',
         },
         btcdata: {
-          name: 'BTC/USD',
+          name: 'BTC/ANKER',
           'exchange-traded': 'bitfinex',
           'exchange-listed': 'bitfinex',
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -276,7 +276,7 @@ class Bitfinex {
           if (fask) { 
             chartData.asks.find(x => x.value == item.value).volume = item.volume;
           } else {
-            chartData.asks.push(item)
+            chartData.asks.push(item);
           }
         });
       }
@@ -286,7 +286,7 @@ class Bitfinex {
           if (fbid) {
             chartData.bids.find(x => x.value == item.value).volume = item.volume;
           } else {
-            chartData.bids.push(item)
+            chartData.bids.push(item);
           }
         });
       }

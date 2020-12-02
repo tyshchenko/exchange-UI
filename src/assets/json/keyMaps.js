@@ -506,6 +506,7 @@ export default {
   'bitfinex-_-BTC/GBP': 'BTCGBP',
   'bitfinex-_-BTC/JPY': 'BTCJPY',
   'bitfinex-_-BTC/USD': 'BTCUSD',
+  'bitfinex-_-BTC/ANKER': 'BTCANKER',
   'bitfinex-_-BTC/USDT': 'BTCUST',
   'bitfinex-_-BTG/BTC': 'BTGBTC',
   'bitfinex-_-BTG/USD': 'BTGUSD',

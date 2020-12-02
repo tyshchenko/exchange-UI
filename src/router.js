@@ -20,7 +20,7 @@ const vueRouter = new Router({
     name: 'home',
     component: Landing,
     meta: {
-      pageTitle: 'Futures trading Platform | CoinBae - Trade, Love, Crypto.',
+      pageTitle: 'AnkerSwap',
     },
   }, {
     path: '/markets',
@@ -48,7 +48,7 @@ const vueRouter = new Router({
     component: Settings,
     name: 'settings',
     meta: {
-      pageTitle: 'Settings - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
+      pageTitle: 'Settings - AnkerSwap.',
       needLogin: true,
     },
   }, {
@@ -56,7 +56,7 @@ const vueRouter = new Router({
     component: WalletSummary,
     name: 'wallet-summary',
     meta: {
-      pageTitle: 'Wallets - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
+      pageTitle: 'Wallets - AnkerSwap.',
       needLogin: true,
     },
   }, {
@@ -64,7 +64,7 @@ const vueRouter = new Router({
     name: 'history',
     component: History,
     meta: {
-      pageTitle: 'History - Futures trading Platform | CoinBae - Trade, Love, Crypto.',
+      pageTitle: 'History - AnkerSwap.',
       needLogin: true,
     },
 

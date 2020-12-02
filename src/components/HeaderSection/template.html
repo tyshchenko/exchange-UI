@@ -4,7 +4,7 @@
         <div id="mobile-header" data-uk-sticky>
             <div class="page-mask sidemenu-trigger" v-bind:class="{ active: $store.getters.sidebarOpen, close: $store.getters.sidebarOpen  }"></div>
             <div class="header-links">
-                <a href="https://coinbae.org/" target="_blank" class="logo">
+                <a href="/" target="_blank" class="logo">
                     <img src="@/assets/logo.png" alt="">
                 </a>
                 <a href="javascript:undefined" class="sidemenu-trigger" @click="onTriggerClick">
@@ -27,7 +27,7 @@
                     </div> -->
                     <div class="header-market-link-group uk-clearfix">
                         <!-- <div class="header-market-link-label">{{ $store.getters.formattedSelectedExchange }}</div> -->
-                        <div class="header-market-link-label"><a href="https://coinbae.org/">CoinBae</a></div>
+                        <div class="header-market-link-label"><a href="/">AnkerSwap</a></div>
                         <div class="header-market-link uk-clearfix">
                             <div class="price-title">{{ $store.state.selectedPair }}</div>
                             <div class="price">
