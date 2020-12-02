@@ -87,18 +87,6 @@ export default {
     this.tvWidget = tvWidget;
     tvWidget.onChartReady(() => {
       tvWidget.headerReady().then(() => {
-        const button = tvWidget.createButton();
-        button.setAttribute('title', 'Click to show a notification popup');
-        button.classList.add('apply-common-tooltip');
-        button.addEventListener('click', () => tvWidget.showNoticeDialog({
-            title: 'Notification',
-            body: 'TradingView Charting Library API works correctly',
-            callback: () => {
-              // eslint-disable-next-line no-console
-              console.log('Noticed!');
-            },
-          }));
-        button.innerHTML = 'Check API';
       });
     });
   },
