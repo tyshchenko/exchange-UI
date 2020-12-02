@@ -43,7 +43,7 @@ const store = new Vuex.Store({
     isPhoneVerified: true, //change to true to enable phone verification
     isKycVerified: false,
     sidebarOpen: false,
-    tradePaneClosed: true,
+    tradePaneClosed: false,
     bookPaneClosed: false,
     liveTradePrice: 0,
     tickerCache: {},
