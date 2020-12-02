@@ -1,6 +1,6 @@
 import { parseFullSymbol, } from './helpers.js';
 
-const socket = new WebSocket('wss://streamer.cryptocompare.com');
+const socket = new io('wss://streamer.cryptocompare.com');
 const channelToSubscription = new Map();
 
 socket.on('connect', () => {
