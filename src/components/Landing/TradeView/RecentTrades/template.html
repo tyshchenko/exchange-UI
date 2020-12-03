@@ -25,7 +25,7 @@
                             <th v-else>Total Fee</th>
                             <th>Exchange Fee</th>
                             <th>Buy/Sell</th>
-                            <th>Exchange</th>
+                            
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -47,7 +47,7 @@
                             <td v-else-if="(trade.basePair === trade.exchangeFeeCurrency)">{{ trade.exchangeFeeString }}</td>
                             <td v-else>{{ (trade.amount * trade.exchangeFee) + " " + trade.exchangeFeeCurrency }}</td>                          
                             <td>{{ trade.buyOrSell }}</td>
-                            <td>{{ trade.exchange }}</td>
+                            
                             <td>{{ trade.status }}</td>
                         </tr>
                     </tbody>
