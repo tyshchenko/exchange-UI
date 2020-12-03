@@ -14,11 +14,11 @@ class TradeService {
       side = 2;
     }
     let mqttKey = LocalStorage.get(Keys.mqtt);
-    let params = [mqttKey,'BTCANKER',side,requestBody.amount,'0.00','',];
+    let params = [mqttKey,'ANKERBTC',side,requestBody.amount,'0.00','',];
     let type = 'order.put_market';
     if (requestBody.type == 'limit') {
       type = 'order.put_limit';
-      params = [mqttKey,'BTCANKER',side,requestBody.amount,requestBody.price,'0.00','0.00','',];
+      params = [mqttKey,'ANKERBTC',side,requestBody.amount,requestBody.price,'0.00','0.00','',];
     }
     let method = {
       'method': type,
@@ -26,7 +26,7 @@ class TradeService {
       'params':params,
     };
     //equestBody: {pair: "BTC/USD", type: "market", exc: "bitfinex", bos: "buy", amount: "1", moe: "market"}
-    //{"id":2,"method":"order.put_market","params":[1,"BTCANKER",2,"0.02","0.002",""]}: 
+    //{"id":2,"method":"order.put_market","params":[1,"ANKERBTC",2,"0.02","0.002",""]}: 
     let responce = (await ApiCurryBase.post('/', method)).data;
     if (responce.Expired==1) {
       EventBus.$emit(EventNames.userSessionExpired);
@@ -43,7 +43,7 @@ class TradeService {
 
   async cancelOrder(requestBody) {
     let mqttKey = LocalStorage.get(Keys.mqtt);
-    let params = [mqttKey,'BTCANKER',requestBody.orderId,];
+    let params = [mqttKey,'ANKERBTC',requestBody.orderId,];
     let method = {
       'method': 'order.cancel',
       'id':1,
@@ -77,7 +77,7 @@ class TradeService {
     }
     let mqttKey = LocalStorage.get(Keys.mqtt);
 
-    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[mqttKey,'BTCANKER',0,50,],});
+    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[mqttKey,'ANKERBTC',0,50,],});
     let data = response.data;
     if (data.Expired==1) {
       EventBus.$emit(EventNames.userSessionExpired);
@@ -106,7 +106,7 @@ class TradeService {
     // exchange,
     // })).data;
     let mqttKey = LocalStorage.get(Keys.mqtt);
-    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[mqttKey,'BTCANKER',0,50,],});
+    let response = await ApiCurryBase.post('/', {'method': 'order.pending','id':1, 'params':[mqttKey,'ANKERBTC',0,50,],});
     let data = response.data;
     /* eslint-disable no-console */
     console.log(data.result.records);

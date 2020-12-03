@@ -15,8 +15,8 @@ class Bitfinex {
       _constants: {
         selectedExchange: store.getters.selectedExchange,
         // selectedPair: store.getters.selectedPair,
-        defaultPair: 'BTC/ANKER',
-        selectedPair: 'BTC/ANKER',
+        defaultPair: 'ANKER/BTC',
+        selectedPair: 'ANKER/BTC',
         baseAddress: 'ws://134.209.199.242:8090',
         streams: ['trades', 'candles', 'books', 'ticker', ],
         channelIDs: {
@@ -28,7 +28,7 @@ class Bitfinex {
         candlesIdArray: [],
         precision: 'P1',
         ethdata: {
-          name: 'ETH/ANKER',
+          name: 'ANKER/ETH',
           'exchange-traded': 'bitfinex',
           'exchange-listed': 'bitfinex',
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -55,7 +55,7 @@ class Bitfinex {
           data_status: 'streaming',
         },
         btcdata: {
-          name: 'BTC/ANKER',
+          name: 'ANKER/BTC',
           'exchange-traded': 'bitfinex',
           'exchange-listed': 'bitfinex',
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,

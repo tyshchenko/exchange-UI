@@ -98,8 +98,8 @@ export default {
       return;
     }
     const symbolInfo = {
-      name: 'BTC/ANKER',
-      description: 'BTC/ANKER',
+      name: 'ANKER/BTC',
+      description: 'ANKER/BTC',
       type: symbolItem.type,
       session: '24x7',
       timezone: 'Etc/UTC',
