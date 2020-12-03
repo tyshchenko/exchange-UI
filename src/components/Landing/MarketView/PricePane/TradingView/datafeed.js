@@ -13,20 +13,10 @@ const lastBarsCache = new Map();
 const configurationData = {
   supported_resolutions: ['1D', '1W', '1M',],
   exchanges: [{
-    value: 'Bitfinex',
+    value: 'CoinBae',
     name: 'CoinBae',
     desc: 'CoinBae',
   },
-              {
-                // `exchange` argument for the `searchSymbols` method, if a user selects this exchange
-                value: 'Kraken',
-
-                // filter name
-                name: 'Kraken',
-
-                // full exchange name displayed in the filter popup
-                desc: 'Kraken bitcoin exchange',
-              },
   ],
   symbols_types: [{
     name: 'crypto',
@@ -39,7 +29,7 @@ const configurationData = {
 };
 
 async function getAllSymbols() {
-  const data = await makeApiRequest('data/v3/all/exchanges');
+  const data = await makeApiRequest('api/all/exchanges');
   let allSymbols = [];
 
   for (const exchange of configurationData.exchanges) {
@@ -92,18 +82,18 @@ export default {
     const symbols = await getAllSymbols();
     const symbolItem = symbols.find(({
       full_name,
-    }) => full_name === 'Bitfinex:BTC/USD');
+    }) => full_name === symbolName);
     if (!symbolItem) {
       onResolveErrorCallback('cannot resolve symbol');
       return;
     }
     const symbolInfo = {
-      name: 'ANKER/BTC',
-      description: 'ANKER/BTC',
+      name: symbolItem.symbol,
+      description: symbolItem.description,
       type: symbolItem.type,
       session: '24x7',
       timezone: 'Etc/UTC',
-      exchange: 'CoinBae',
+      exchange: symbolItem.exchange,
       minmov: 1,
       pricescale: 100,
       has_intraday: false,
@@ -130,7 +120,7 @@ export default {
 			.map(name => `${name}=${encodeURIComponent(urlParameters[name])}`)
 			.join('&');
     try {
-      const data = await makeApiRequest(`data/histoday?${query}`);
+      const data = await makeApiRequest(`api/kline?${query}`);
       if (data.Response && data.Response === 'Error' || data.Data.length === 0) {
         // "noData" should be set if there is no data in the requested period.
         onHistoryCallback([], {
