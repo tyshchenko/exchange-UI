@@ -33,13 +33,16 @@ class TradeService {
     if (responce.Expired==1) {
       EventBus.$emit(EventNames.userSessionExpired);
     }
-    responce.status = true;
-    responce.data = responce.result;
-    responce.data.message = 'success';
-    responce.data.volume = responce.result.amount;
-    /* eslint-disable no-console */
-    console.log(responce);
-    /* eslint-enable no-console */
+    if (responce.error) {
+      responce.status = false;
+      responce.data = responce.error;
+      responce.data.message = responce.error.message;
+    } else {
+      responce.status = true;
+      responce.data = responce.result;
+      responce.data.message = 'success';
+      responce.data.volume = responce.result.amount;
+    }
     return responce;
   }
 
@@ -65,9 +68,52 @@ class TradeService {
   }
 
   async getRecentOrders() {
-    return (await ApiCurryBase.get('/get-recent-orders')).data;
-  }
+    let mqttKey = LocalStorage.get(Keys.mqtt);
 
+    let response = await ApiCurryBase.post('/', {'method': 'market.user_deals','id':1, 'params':[mqttKey,'ANKERBTC',0,50,],});
+    let data = response.data;
+    if (data.Expired==1) {
+      EventBus.$emit(EventNames.userSessionExpired);
+      return {data:[],};
+    } else {
+      /* eslint-disable no-console */
+      console.log(data);
+      /* eslint-enable no-console */
+      let outputdata = data.result.records.map(rt => ({
+        id: rt.id,
+        orderId: rt.id,
+        placedTime: rt.time,
+        amount: rt.amount,
+        avgPrice: rt.price,
+        buyOrSell: rt.side==2 ? 'buy' : 'sell',
+        role: rt.role==1 ? 'Maker' : 'Taker',
+        pair: 'ANKERBTC',
+        fee: rt.fee,
+      }));
+      return {data:outputdata,};
+    }
+  }
+  
+  async getBalanceHistory() {
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+
+    let response = await ApiCurryBase.post('/', {'method': 'balance.history','id':1, 'params':[mqttKey,'','',0,0,0,50,],});
+    let data = response.data;
+    if (data.Expired==1) {
+      EventBus.$emit(EventNames.userSessionExpired);
+      return {data:[],};
+    } else {
+      let outputdata = data.result.records.map(rt => ({
+        time: rt.time,
+        asset: rt.asset,
+        business: rt.business,
+        change: rt.change,
+        balance: rt.balance,
+        detail: rt.detail,
+      }));
+      return {data:outputdata,};
+    }
+  }
   async getActiveOrders(exchange = '', pair = '') {
     //get-active-orders
     if (exchange) {
@@ -96,6 +142,7 @@ class TradeService {
         exchange: 'XCoinBae',
         orderType: '',
         stopPrice:  rt.price,
+        filled:  rt.deal_stock,
         status: rt.deal_stock>0 ? 'part.filled' : 'pending',
         pair: rt.market,
       }));
@@ -142,12 +189,15 @@ class TradeService {
     let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[mqttKey,],});
     let arr = [];
     let data = response.data;
+    let status = true;
     if (data.Expired==1) {
       EventBus.$emit(EventNames.userSessionExpired);
+      status = false;
+    } else {
+      arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available)),});
+      arr.push({'wallet_type':'exchange','currency':'ANKER','locked_bal':Number(data.result.ANKER.freeze),'avail_bal':Number(data.result.ANKER.available),'total_bal':Number(data.result.ANKER.freeze) + Number(Number(data.result.ANKER.available)),});
     }
-    arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available)),});
-    arr.push({'wallet_type':'exchange','currency':'ANKER','locked_bal':Number(data.result.ANKER.freeze),'avail_bal':Number(data.result.ANKER.available),'total_bal':Number(data.result.ANKER.freeze) + Number(Number(data.result.ANKER.available)),});
-    return {'status':true,'message':'Balance','data':arr,};
+    return {'status':status,'message':'Balance','data':arr,};
   }
 
   async getPairsList() {

@@ -71,6 +71,7 @@ export default {
         orderType: rt.orderType,
         stopPrice: parseFloat(rt.stopPrice) || '--',
         status: rt.status,
+        filled: rt.filled,
         pair: rt.pair,
       }));
     },

@@ -1,11 +1,13 @@
 import store from '@/store';
 import ExchangeDataEventBus from '@/eventBuses/exchangeData';
+import LocalStorage, { Keys, } from '@/utils/localStorage.js';
 import Worker from 'simple-web-worker';
 //import serialize from 'serialize-javascript';
 import keyMaps from '@/assets/json/keyMaps.js';
 import {
   dateToDisplayTime,
 } from '@/utils/utility';
+import EventBus, { EventNames, } from '@/eventBuses/default';
 
 class Bitfinex {
   constructor() {
@@ -134,9 +136,11 @@ class Bitfinex {
 
   subscribePair(currencyPair) {
     let pair = keyMaps[`bitfinex-_-${currencyPair}`];
+    this.queryAuth();
     this.subscribeOrderBook(pair);
     this.subscribeTicker(pair);
     this.subscribeTrades(pair);
+    this.subscribeStatus(pair);
     //this.queryOrderbook(pair);
     this.subscribeOrders(pair);
     //subscribeCandles(pair, '1m');
@@ -162,6 +166,19 @@ class Bitfinex {
     };
     this.ctx.send(JSON.stringify(data));
     this.id = this.id + 1;
+  }
+
+  queryAuth() {
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    let data = {
+      id: this.id,
+      method: 'server.auth',
+      params: [mqttKey,'website',], //book
+    };
+    this.ctx.send(JSON.stringify(data));
+    this.id = this.id + 1;
+    let pair = this.state._constants.selectedPair.replace('/', '');
+    setTimeout(() => this.subscribeOrders(pair), 3000);
   }
 
 
@@ -250,6 +267,116 @@ class Bitfinex {
         this.ExchangeDataEventBus.$emit('liveTrades', obj);
       });
       //this.ExchangeDataEventBus.$emit('snapshotTrades', arr);
+    }
+  }
+
+  emitOrder(data) {
+    //{"user": 9, "freeze": "0", "taker_fee": "0", "side": 2, "id": 13976578, "price": "9199.2", "market": "BTCUSD", "deal_stock": "0", "source": "", "deal_money": "0", "mtime": 1589577374.8883679, "type": 1, "ctime": 1589577374.8883679, "maker_fee": "0", "amount": "2.74", "left": "2.74", "deal_fee": "0"}
+
+    if (data.type == 3) {
+      let recentTrades = store.getters.recentTrades;
+      let obj = {id: data.id,
+                 clientOrderId: data.id,
+                 orderId: data.id,
+                 placedTime: data.ctime,
+                 amount: data.amount,
+                 startMoney: data.freeze,
+                 buyOrSell: data.side==2 ? 'long' : 'short',
+                 exchange: 'XCoinBae',
+                 orderType: '',
+                 stopPrice:  data.price,
+                 status: data.deal_stock>0 ? 'part.closed' : 'open',
+                 pair: data.market,
+                 znak: data.side==2 ? -1 : 1,
+      };
+      recentTrades.unshift(obj);
+      store.commit('recentTrades', recentTrades);
+    } else {
+      let obj = {id: data.id,
+                 clientOrderId: data.id,
+                 orderId: data.id,
+                 placedTime: data.ctime,
+                 amount: data.amount,
+                 avgPrice: data.price,
+                 buyOrSell: data.side==2 ? 'buy' : 'sell',
+                 exchange: 'XCoinBae',
+                 orderType: '',
+                 stopPrice:  data.price,
+                 filled:  data.deal_stock,
+                 status: data.deal_stock>0 ? 'part.filled' : 'pending',
+                 pair: data.market,
+      };
+      let activeOrders = store.getters.activeOrders;
+      activeOrders.unshift(obj);
+      store.commit('activeOrders', activeOrders);
+    }
+  }
+
+  emitUpdateOrder(data) {
+    //{"user": 9, "freeze": "0", "taker_fee": "0", "side": 2, "id": 13976578, "price": "9199.2", "market": "BTCUSD", "deal_stock": "0", "source": "", "deal_money": "0", "mtime": 1589577374.8883679, "type": 1, "ctime": 1589577374.8883679, "maker_fee": "0", "amount": "2.74", "left": "2.74", "deal_fee": "0"}
+
+    if (data.type == 3) {
+      let recentTrades = store.getters.recentTrades;
+      let obj = {id: data.id,
+                 clientOrderId: data.id,
+                 orderId: data.id,
+                 placedTime: data.ctime,
+                 amount: data.amount,
+                 startMoney: data.freeze,
+                 buyOrSell: data.side==2 ? 'long' : 'short',
+                 exchange: 'XCoinBae',
+                 orderType: '',
+                 stopPrice:  data.price,
+                 status: data.deal_stock>0 ? 'part.closed' : 'open',
+                 pair: data.market,
+                 znak: data.side==2 ? -1 : 1,
+      };
+      let notadded = true;
+      recentTrades.forEach((item) => {
+        if (item.id == data.id) {
+          item = obj;
+          notadded = false;
+        }
+      });
+      if (notadded) recentTrades.unshift(obj);
+      store.commit('recentTrades', recentTrades);
+    } else {
+      let obj = {id: data.id,
+                 clientOrderId: data.id,
+                 orderId: data.id,
+                 placedTime: data.ctime,
+                 amount: data.amount,
+                 avgPrice: data.price,
+                 buyOrSell: data.side==2 ? 'buy' : 'sell',
+                 exchange: 'XCoinBae',
+                 orderType: '',
+                 filled:  data.deal_stock,
+                 stopPrice:  data.price,
+                 status: data.deal_stock>0 ? 'part.filled' : 'pending',
+                 pair: data.market,
+      };
+      let activeOrders = store.getters.activeOrders;
+      let notadded = true;
+      activeOrders.forEach((item) => {
+        if (item.id == data.id) {
+          item = obj;
+          notadded = false;
+        }
+      });
+      if (notadded) activeOrders.unshift(obj);
+      store.commit('activeOrders', activeOrders);
+    }
+  }
+
+  emitCancelOrder(data) {
+    if (data.type == 3) {
+      let recentTrades = store.getters.recentTrades;
+      let newTempArr = recentTrades.filter(item => item.id !== data.id);
+      store.commit('recentTrades', newTempArr);
+    } else {
+      let activeOrders = store.getters.activeOrders;
+      let newTempArr = activeOrders.filter(item => item.id !== data.id);
+      store.commit('activeOrders', newTempArr);
     }
   }
 
@@ -388,7 +515,9 @@ class Bitfinex {
     this.ExchangeDataEventBus.$emit('exchange-connected', store.getters.selectedExchange);
   }
 
-  handleClose() {}
+  handleClose() {
+    this.connectNew();
+  }
 
   handleError() {}
 
@@ -404,6 +533,13 @@ class Bitfinex {
         let data = dataObj.params[1];
         this.makeTickerResponse(data);
       }
+      if (method=='order.update') {
+        let data = dataObj.params[1];
+        let updateevent = dataObj.params[0];
+        if (updateevent == 1) this.emitOrder(data);
+        if (updateevent == 2) this.emitUpdateOrder(data);
+        if (updateevent == 3) this.emitCancelOrder(data);
+      }
       if (method=='deals.update') {
         let data = dataObj.params[1];
         if ( data.length > 25 ) {
@@ -412,7 +548,10 @@ class Bitfinex {
           this.emitWorkerTrades(data, false);
         }
       }
-        
+      if (method=='state.update') {
+        let data = dataObj.params[1];
+        store.commit('volume24h', Math.floor(data.volume));
+      }
     }
     // let event = dataObj.result;
     // const {
@@ -535,6 +674,17 @@ class Bitfinex {
     let data = {
       id: this.id,
       method: 'price.subscribe',
+      params: [symbol,], 
+    };
+    this.ctx.send(JSON.stringify(data));
+    this.id = this.id + 1;
+  }
+
+  subscribeStatus(pair) {
+    let symbol = pair;
+    let data = {
+      id: this.id,
+      method: 'state.subscribe',
       params: [symbol,], 
     };
     this.ctx.send(JSON.stringify(data));
@@ -715,7 +865,7 @@ class Bitfinex {
     if (!connectionFlag) {
       return;
     }
-    this.unsubscribe(_constants.channelIDs.books);
+//    this.unsubscribe(_constants.channelIDs.books);
     let keys = ['P0', 'P1', 'P2', 'P3', ];
     let index = keys.indexOf(_constants.precision);
     if (key == 'minus') {
@@ -727,8 +877,8 @@ class Bitfinex {
         _constants.precision = keys[index + 1];
       }
     }
-    let pair = _constants.selectedPair.replace('/', '');
-    this.subscribeOrderBook(pair);
+//    let pair = _constants.selectedPair.replace('/', '');
+//    this.subscribeOrderBook(pair);
   }
 
   initListeners() {
@@ -742,6 +892,7 @@ class Bitfinex {
     this.ExchangeDataEventBus.$on('unsubscribe-candles', () => this.unsubscribeCandleEvent());
     this.ExchangeDataEventBus.$on('resolve-candle-symbol', (symbol) => this.resolveSymbolFn(symbol));
     this.ExchangeDataEventBus.$on('get-all-symbols', () => this.symbolData());
+    EventBus.$on(EventNames.userLogin, () => this.queryAuth());
   }
 }
 
