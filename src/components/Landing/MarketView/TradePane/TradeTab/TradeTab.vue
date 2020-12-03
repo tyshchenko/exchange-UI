@@ -21,7 +21,7 @@ export default {
     return {
       activeTab: 'Market',
       selectedPair: 'BTC/USD',
-      tabs: ['Market', 'Limit','Stop Limit','Stop Market',],
+      tabs: ['Market', 'Limit',],
       preActive: 'Market',
     };
   },

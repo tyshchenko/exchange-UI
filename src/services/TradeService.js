@@ -10,15 +10,17 @@ class TradeService {
     console.log(requestBody);
     /* eslint-enable no-console */
     let side = 1;
+    let amount = requestBody.amount;
     if (requestBody.bos =='buy') {
       side = 2;
+      amount = requestBody.btcamount;
     }
     let mqttKey = LocalStorage.get(Keys.mqtt);
-    let params = [mqttKey,'ANKERBTC',side,requestBody.amount,'0.00','',];
+    let params = [mqttKey,requestBody.pair,side,amount,'0.00','',];
     let type = 'order.put_market';
     if (requestBody.type == 'limit') {
       type = 'order.put_limit';
-      params = [mqttKey,'ANKERBTC',side,requestBody.amount,requestBody.price,'0.00','0.00','',];
+      params = [mqttKey,requestBody.pair,side,requestBody.amount,requestBody.price,'0.00','0.00','',];
     }
     let method = {
       'method': type,

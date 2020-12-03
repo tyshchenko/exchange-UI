@@ -11,9 +11,9 @@ export default {
     return {
       showConfirm: false,
       formData: {
-        pair: 'BTC/USD',
+        pair: 'ANKERBTC',
         type: 'limit',
-        exc: 'bitfinex',
+        exc: 'coinbae',
         bos: 'buy',
         amount: undefined,
         price: undefined,

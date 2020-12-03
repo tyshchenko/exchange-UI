@@ -11,11 +11,12 @@ export default {
     return {
       showConfirm: false,
       formData: {
-        pair: 'BTC/USD',
+        pair: 'ANKERBTC',
         type: 'market',
-        exc: 'bitfinex',
+        exc: 'coinbae',
         bos: 'buy',
         amount: undefined,
+        btcamount: undefined,
         moe: 'market',
       },
       fees: {
@@ -83,6 +84,7 @@ export default {
     cancelTrade() {
       this.formData.amount = undefined;
       this.showConfirm = false;
+      this.formData.btcamount = undefined;
     },
 
     validateQty(errorsArray, placeholder, value) {
@@ -98,6 +100,7 @@ export default {
     async makeTrade() {
       this.showLoader = true;
       this.formData.pair = this.$store.getters.selectedPair;
+      this.formData.btcamount = (Number(this.$store.getters.buyPrice) * (Number(this.formData.amount)) || 0).toFixed(8) || 0;
       const response = await TradeService.placeNewOrder(this.formData);
       setTimeout(() => {
         if(!response) {
@@ -124,10 +127,10 @@ export default {
   },
   computed: {
     estimatedPriceBuy() {
-      return (Number(this.$store.getters.buyPrice) * (Number(this.formData.amount)) || 0).toFixed(2) || 0;
+      return (Number(this.$store.getters.buyPrice) * (Number(this.formData.amount)) || 0).toFixed(6) || 0;
     },
     estimatedPriceSell() {
-      return (Number(this.$store.getters.sellPrice) * (Number(this.formData.amount)) || 0).toFixed(2)  || 0;
+      return (Number(this.$store.getters.sellPrice) * (Number(this.formData.amount)) || 0).toFixed(6)  || 0;
     },
   },
   created() {
