@@ -75,10 +75,7 @@ export default {
       locale: getLanguageFromURL() || 'en',
       disabled_features: [],
       enabled_features: [],
-      charts_storage_url: this.chartsStorageUrl,
-      charts_storage_api_version: this.chartsStorageApiVersion,
-      client_id: this.clientId,
-      user_id: this.userId,
+
       fullscreen: this.fullscreen,
       autosize: this.autosize,
       theme:'Dark',

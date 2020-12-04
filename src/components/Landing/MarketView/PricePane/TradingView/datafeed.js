@@ -68,10 +68,10 @@ function getPeriod(resolution) {
       period = '86400';
       break;
     case '1W':
-      period = '86400';
+      period = '604800';
       break;
     case '1M':
-      period = '86400';
+      period = '2000000';
       break;
     default:
       throw new Error('unknown interval');
