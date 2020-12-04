@@ -89,13 +89,14 @@ export default {
     }
     const symbolInfo = {
       name: symbolItem.symbol,
+      ticker: symbolItem.symbol,
       description: symbolItem.description,
       type: symbolItem.type,
       session: '24x7',
       timezone: 'Etc/UTC',
       exchange: symbolItem.exchange,
       minmov: 1,
-      pricescale: 100,
+      pricescale: 100000000,
       has_intraday: true,
 
       intraday_multipliers: ['5', '15', '30', '60', 'D', 'W', 'M',],
