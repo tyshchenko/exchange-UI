@@ -73,7 +73,7 @@ export default {
       container_id: this.containerId,
       library_path: this.libraryPath,
       locale: getLanguageFromURL() || 'en',
-      disabled_features: ['use_localstorage_for_settings','left_toolbar','header_widget','context_menus','timeframes_toolbar','control_bar','study_templates'],
+      disabled_features: [],
       enabled_features: [],
       charts_storage_url: this.chartsStorageUrl,
       charts_storage_api_version: this.chartsStorageApiVersion,
