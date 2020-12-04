@@ -20,7 +20,7 @@ export default {
       type: String,
     },
     interval: {
-      default: 'D',
+      default: '30',
       type: String,
     },
     containerId: {
@@ -69,7 +69,7 @@ export default {
       symbol: this.symbol,
       // BEWARE: no trailing slash is expected in feed URL
       datafeed: Datafeed,
-
+      interval: this.interval,
       container_id: this.containerId,
       library_path: this.libraryPath,
       locale: getLanguageFromURL() || 'en',
