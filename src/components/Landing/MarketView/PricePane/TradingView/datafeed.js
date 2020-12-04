@@ -50,33 +50,33 @@ async function getAllSymbols() {
 }
 
 function getPeriod(resolution) {
-    let period
-    switch(resolution) {
-      case '5':
-        period = '300'
-        break
-      case '15':
-        period = '900'
-        break
-      case '30':
-        period = '1800'
-        break
-      case '60':
-        period = '3600'
-        break
-      case '1D':
-        period = '86400'
-        break
-      case '1W':
-        period = '86400'
-        break
-      case '1M':
-        period = '86400'
-        break
-      default:
-        throw new Error('unknown interval')
-    }
-    return period
+  let period;
+  switch(resolution) {
+    case '5':
+      period = '300';
+      break;
+    case '15':
+      period = '900';
+      break;
+    case '30':
+      period = '1800';
+      break;
+    case '60':
+      period = '3600';
+      break;
+    case '1D':
+      period = '86400';
+      break;
+    case '1W':
+      period = '86400';
+      break;
+    case '1M':
+      period = '86400';
+      break;
+    default:
+      throw new Error('unknown interval');
+  }
+  return period;
 }
 export default {
   onReady: (callback) => {
@@ -199,7 +199,7 @@ export default {
   },
   
   
-    // optional methods
+  // optional methods
   calculateHistoryDepth: (resolution, resolutionBack, intervalBack) => {},
 
   getMarks: (symbolInfo, startDate, endDate, onDataCallback, resolution) => {},
