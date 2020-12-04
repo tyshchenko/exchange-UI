@@ -11,7 +11,7 @@ import {
 const lastBarsCache = new Map();
 
 const configurationData = {
-  supported_resolutions: ['15', '30', '1H', '1D', '1W', '1M',],
+  supported_resolutions: ['5', '15', '30', '1H', '1D', '1W', '1M',],
   exchanges: [{
     value: 'CoinBae',
     name: 'CoinBae',
@@ -96,11 +96,12 @@ export default {
       exchange: symbolItem.exchange,
       minmov: 1,
       pricescale: 100,
-      has_intraday: false,
+      has_intraday: true,
       has_no_volume: true,
-      has_weekly_and_monthly: false,
+      intraday_multipliers: ['5', '15', '30', '60', 'D', 'W', 'M',],
+      has_weekly_and_monthly: true,
       supported_resolutions: configurationData.supported_resolutions,
-      volume_precision: 2,
+      volume_precision: 7,
       data_status: 'streaming',
     };
 
