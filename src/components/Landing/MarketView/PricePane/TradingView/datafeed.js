@@ -3,10 +3,7 @@ import {
   generateSymbol,
   parseFullSymbol,
 } from './helpers.js';
-import {
-  subscribeOnStream,
-  unsubscribeFromStream,
-} from './streaming.js';
+
 
 const lastBarsCache = new Map();
 
