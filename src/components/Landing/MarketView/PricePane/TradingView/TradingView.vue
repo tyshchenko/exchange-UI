@@ -20,7 +20,7 @@ export default {
       type: String,
     },
     interval: {
-      default: '15m',
+      default: '15',
       type: String,
     },
     containerId: {

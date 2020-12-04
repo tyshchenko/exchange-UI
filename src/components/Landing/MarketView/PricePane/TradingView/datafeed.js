@@ -11,7 +11,7 @@ import {
 const lastBarsCache = new Map();
 
 const configurationData = {
-  supported_resolutions: ['15m', '1D', '1W', '1M',],
+  supported_resolutions: ['15', '1D', '1W', '1M',],
   exchanges: [{
     value: 'CoinBae',
     name: 'CoinBae',
