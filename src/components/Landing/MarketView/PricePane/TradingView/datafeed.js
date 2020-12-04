@@ -117,6 +117,7 @@ export default {
       tsym: parsedSymbol.toSymbol,
       toTs: to,
       limit: 2000,
+      resolution: resolution,
     };
     const query = Object.keys(urlParameters)
 			.map(name => `${name}=${encodeURIComponent(urlParameters[name])}`)
@@ -163,17 +164,21 @@ export default {
     subscribeUID,
     onResetCacheNeededCallback,
   ) => {
-    subscribeOnStream(
-      symbolInfo,
-      resolution,
-      onRealtimeCallback,
-      subscribeUID,
-      onResetCacheNeededCallback,
-      lastBarsCache.get(symbolInfo.full_name),
-    );
+    
   },
 
   unsubscribeBars: (subscriberUID) => {
-    unsubscribeFromStream(subscriberUID);
+    
   },
+  
+  
+    // optional methods
+  calculateHistoryDepth: (resolution, resolutionBack, intervalBack) => {},
+
+  getMarks: (symbolInfo, startDate, endDate, onDataCallback, resolution) => {},
+
+  getTimeScaleMarks: (symbolInfo, startDate, endDate, onDataCallback, resolution) => {},
+
+  getServerTime: cb => {},
+  
 };
