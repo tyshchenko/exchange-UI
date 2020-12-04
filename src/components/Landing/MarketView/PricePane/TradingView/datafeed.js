@@ -49,6 +49,35 @@ async function getAllSymbols() {
   return allSymbols;
 }
 
+function getPeriod(resolution) {
+    let period
+    switch(resolution) {
+      case '5':
+        period = '300'
+        break
+      case '15':
+        period = '900'
+        break
+      case '30':
+        period = '1800'
+        break
+      case '60':
+        period = '3600'
+        break
+      case '1D':
+        period = '86400'
+        break
+      case '1W':
+        period = '86400'
+        break
+      case '1M':
+        period = '86400'
+        break
+      default:
+        throw new Error('unknown interval')
+    }
+    return period
+}
 export default {
   onReady: (callback) => {
     setTimeout(() => callback(configurationData));
@@ -114,7 +143,7 @@ export default {
       tsym: parsedSymbol.toSymbol,
       toTs: to,
       limit: 2000,
-      resolution: resolution,
+      resolution: getPeriod(resolution),
     };
     const query = Object.keys(urlParameters)
 			.map(name => `${name}=${encodeURIComponent(urlParameters[name])}`)
@@ -178,4 +207,6 @@ export default {
 
   getServerTime: cb => {},
   
+
+
 };
