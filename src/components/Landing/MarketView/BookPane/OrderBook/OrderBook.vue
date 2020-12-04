@@ -217,7 +217,7 @@ export default {
       }
       this.asks = [];
       this.bids = [];
-      this.precisionNumber = 1;
+      this.precisionNumber = 3;
     };
     this.liveTradeListener = liveTrade => {
       if (liveTrade.buyOrSell == 'sell') {
