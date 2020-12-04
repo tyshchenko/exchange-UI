@@ -71,7 +71,7 @@ function getPeriod(resolution) {
       period = '604800';
       break;
     case '1M':
-      period = '2000000';
+      period = '604800';
       break;
     default:
       throw new Error('unknown interval');
