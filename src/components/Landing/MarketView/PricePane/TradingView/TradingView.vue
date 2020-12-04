@@ -69,7 +69,7 @@ export default {
       symbol: this.symbol,
       // BEWARE: no trailing slash is expected in feed URL
       datafeed: Datafeed,
-      interval: this.interval,
+
       container_id: this.containerId,
       library_path: this.libraryPath,
       locale: getLanguageFromURL() || 'en',
