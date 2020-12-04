@@ -24,7 +24,7 @@ export default {
       timeout: '',
       showLoader: true,
       sum: 0,
-      precisionNumber: 1,
+      precisionNumber: 3,
       count: 1,
       barAsk: 0,
       barBid: 0,
@@ -108,15 +108,15 @@ export default {
       }
     },
     roundPriceByPrecision(price, precision) {
-      let roundArray = [0.01,0.0001,0.000001,0.00000001,];
-      let fractionDigitsArray = [2,4,6,8,];
+      let roundArray = [0.00001,0.000001,0.0000001,0.00000001,];
+      let fractionDigitsArray = [5,6,7,8,];
       //returns price according to precesion
       let fractionDigits = fractionDigitsArray[precision];
       let round = roundArray[precision];
       if (round == 0) {
         return price.toFixed(fractionDigits);
       } else {
-        return `${parseInt(price / round) * round}`;
+        return (parseInt(price / round) * round).toFixed(fractionDigits);
       }
     },
     saveSnapshotData(dataObj, snapshotData, precision, askOrBid) {
