@@ -141,6 +141,7 @@ export default {
       e: parsedSymbol.exchange,
       fsym: parsedSymbol.fromSymbol,
       tsym: parsedSymbol.toSymbol,
+      fromTS: from,
       toTs: to,
       limit: 2000,
       resolution: getPeriod(resolution),
