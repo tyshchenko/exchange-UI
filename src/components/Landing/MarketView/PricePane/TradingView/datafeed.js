@@ -98,7 +98,7 @@ export default {
       minmov: 1,
       pricescale: 100000000,
       has_intraday: true,
-
+      has_empty_bars: true,
       intraday_multipliers: ['5', '15', '30', '60', 'D', 'W', 'M',],
       has_weekly_and_monthly: true,
       supported_resolutions: configurationData.supported_resolutions,
@@ -139,6 +139,7 @@ export default {
             high: bar.high,
             open: bar.open,
             close: bar.close,
+            volume: bar.volumefrom,
           },];
         }
       });
