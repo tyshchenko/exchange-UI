@@ -109,18 +109,18 @@ export default {
     const symbolItem = symbols.find(({
       full_name,
     }) => full_name === symbolName);
-    if (!symbolItem) {
-      onResolveErrorCallback('cannot resolve symbol');
-      return;
-    }
+//     if (!symbolItem) {
+//       onResolveErrorCallback('cannot resolve symbol');
+//       return;
+//     }
     const symbolInfo = {
-      name: symbolItem.symbol,
-      ticker: symbolItem.symbol,
-      description: symbolItem.description,
-      type: symbolItem.type,
+      name: 'ANKER/BTC',
+      ticker: 'ANKER/BTC',
+      description: 'ANKER/BTC',
+      type: 'crypto',
       session: '24x7',
       timezone: 'Etc/UTC',
-      exchange: symbolItem.exchange,
+      exchange: 'CoinBae',
       minmov: 1,
       pricescale: 100000000,
       has_intraday: true,
