@@ -61,7 +61,7 @@ export default {
     },
     studiesOverrides: {
       type: Object,
-    }
+    },
   },
   tvWidget: null,
   mounted() {
@@ -98,7 +98,7 @@ export default {
     }
     ExchangeDataEventBus.$emit('unsubscribe-candles');
     ExchangeDataEventBus.$off('snapshotCandles');
-  }
+  },
 };
 </script>
 

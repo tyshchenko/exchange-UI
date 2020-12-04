@@ -865,7 +865,7 @@ class Bitfinex {
     if (!connectionFlag) {
       return;
     }
-//    this.unsubscribe(_constants.channelIDs.books);
+    //    this.unsubscribe(_constants.channelIDs.books);
     let keys = ['P0', 'P1', 'P2', 'P3', ];
     let index = keys.indexOf(_constants.precision);
     if (key == 'minus') {
@@ -877,8 +877,8 @@ class Bitfinex {
         _constants.precision = keys[index + 1];
       }
     }
-//    let pair = _constants.selectedPair.replace('/', '');
-//    this.subscribeOrderBook(pair);
+    //    let pair = _constants.selectedPair.replace('/', '');
+    //    this.subscribeOrderBook(pair);
   }
 
   initListeners() {
