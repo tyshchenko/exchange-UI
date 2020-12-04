@@ -84,15 +84,15 @@ export default {
       theme:'Dark',
       studies_overrides: this.studiesOverrides,
       overrides: {
-          "paneProperties.background": "#131722",
-          "paneProperties.vertGridProperties.color": "#363c4e",
-          "paneProperties.horzGridProperties.color": "#363c4e",
-          "symbolWatermarkProperties.transparency": 90,
-          "scalesProperties.textColor" : "#AAA",
-          "mainSeriesProperties.candleStyle.wickUpColor": '#336854',
-          "mainSeriesProperties.candleStyle.wickDownColor": '#7f323f',
+        'paneProperties.background': '#131722',
+        'paneProperties.vertGridProperties.color': '#363c4e',
+        'paneProperties.horzGridProperties.color': '#363c4e',
+        'symbolWatermarkProperties.transparency': 90,
+        'scalesProperties.textColor' : '#AAA',
+        'mainSeriesProperties.candleStyle.wickUpColor': '#336854',
+        'mainSeriesProperties.candleStyle.wickDownColor': '#7f323f',
       },
-   };
+    };
     const tvWidget = new window.TradingView.widget(widgetOptions);
     this.tvWidget = tvWidget;
     tvWidget.onChartReady(() => {
