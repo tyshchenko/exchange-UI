@@ -13,6 +13,7 @@ export default {
   data() {
     return {
       showLoader: false,
+      showLogin: true,
       formData: {
         login: (loggedInUser) ? loggedInUser : '',
         password: '',
@@ -44,6 +45,9 @@ export default {
     showDepositModal() {
       this.$store.commit('closeSidebar');
       this.$emit('show-withdrawl-modal');
+    },
+    forgpass() {
+      this.showLogin = false;
     },
     showWithdrawlModal() {
       this.$store.commit('closeSidebar');
