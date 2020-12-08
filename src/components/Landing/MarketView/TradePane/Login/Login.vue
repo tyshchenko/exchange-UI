@@ -63,12 +63,18 @@ export default {
           message: response.Result,
         });
       } else {
+        /* eslint-disable no-console */
+        console.log(responce);
+        /* eslint-enable no-console */
+        if (response.Status == 100) {
+          this.showOTP = true;
+          /* eslint-disable no-console */
+          console.log(responce);
+          /* eslint-enable no-console */
+        }
         this.$showErrorMsg({
           message: response.Result,
         });
-        if (response.Status == 100) {
-          this.showOTP = true;
-        }
       }
       this.showLogin = true;
     },
