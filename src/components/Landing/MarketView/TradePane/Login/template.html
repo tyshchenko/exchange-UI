@@ -1,43 +1,65 @@
 <div class="limit-order">
   <div v-if="showLogin">
-    <div class="uk-grid uk-grid-small f1-form-grid">
-        <div class="uk-width-1-1">
-            <div class="form-grp">
-                <div class="form-elm">
-                    <input class="form-ctrl" type="text" placeholder="Login" v-model="formData.login">
-                    <span><i class="fas fa-user"></i></span>
-                </div>
-            </div>
-        </div>
+    <div v-if="showOTP">
+      <div class="uk-grid uk-grid-small f1-form-grid">
+          <div class="uk-width-1-1">
+              <div class="form-grp">
+                  <div class="form-elm">
+                      <input class="form-ctrl" type="text" placeholder="2FA" v-model="formData.otp">
+                      <span><i class="fas fa-key"></i></span>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="uk-grid uk-grid-small f1-form-grid">
+          <div v-if="showLoader" class="uk-width-1-1 center">
+              <img src="https://image.ibb.co/dc02hd/30.gif" />
+          </div>
+          <div v-else class="uk-width-1-1">
+                  <button class="uk-button uk-button-green uk100" @click="login">login</button>
+          </div>
+      </div>
     </div>
+    <div v-else >
+      <div class="uk-grid uk-grid-small f1-form-grid">
+          <div class="uk-width-1-1">
+              <div class="form-grp">
+                  <div class="form-elm">
+                      <input class="form-ctrl" type="text" placeholder="Login" v-model="formData.login">
+                      <span><i class="fas fa-user"></i></span>
+                  </div>
+              </div>
+          </div>
+      </div>
 
-    <div class="uk-grid uk-grid-small f1-form-grid">
-        <div class="uk-width-1-1">
-            <div class="form-grp">
-                <div class="form-elm">
-                    <input class="form-ctrl" type="password" placeholder="Password" v-model="formData.password">
-                    <span><i class="fas fa-lock"></i></span>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div class="uk-grid uk-grid-small f1-form-grid">
+          <div class="uk-width-1-1">
+              <div class="form-grp">
+                  <div class="form-elm">
+                      <input class="form-ctrl" type="password" placeholder="Password" v-model="formData.password">
+                      <span><i class="fas fa-lock"></i></span>
+                  </div>
+              </div>
+          </div>
+      </div>
 
 
-    <div class="uk-grid uk-grid-small f1-form-grid">
-        <div v-if="showLoader" class="uk-width-1-1 center">
-            <img src="https://image.ibb.co/dc02hd/30.gif" />
-        </div>
-        <div v-else class="uk-width-1-1">
-                <button class="uk-button uk-button-green uk100" @click="login">login</button>
-        </div>
-    </div>
-    <div class="uk-grid uk-grid-small f1-form-grid">
-        <div class="uk-width-1-1">
-                <a class="uk100" @click="forgpass">Forgot password?</a>
-        </div>
+      <div class="uk-grid uk-grid-small f1-form-grid">
+          <div v-if="showLoader" class="uk-width-1-1 center">
+              <img src="https://image.ibb.co/dc02hd/30.gif" />
+          </div>
+          <div v-else class="uk-width-1-1">
+                  <button class="uk-button uk-button-green uk100" @click="login">login</button>
+          </div>
+      </div>
+      <div class="uk-grid uk-grid-small f1-form-grid">
+          <div class="uk-width-1-1">
+                  <a class="uk100" @click="forgpass">Forgot password?</a>
+          </div>
+      </div>
     </div>
   </div>
-  <div v-else="showLogin">
+  <div v-else >
     <div class="uk-grid uk-grid-small f1-form-grid">
         <div class="uk-width-1-1">
             <div class="form-grp">

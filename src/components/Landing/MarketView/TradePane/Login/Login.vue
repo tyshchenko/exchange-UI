@@ -14,6 +14,7 @@ export default {
     return {
       showLoader: false,
       showLogin: true,
+      showOTP: false,
       formData: {
         login: (loggedInUser) ? loggedInUser : '',
         password: '',
@@ -66,8 +67,7 @@ export default {
           message: response.Result,
         });
         if (response.Status == 100) {
-          this.$store.commit('closeSidebar');
-          this.$emit('show-deposit-modal');
+          this.showOTP = true;
         }
       }
       this.showLogin = true;
