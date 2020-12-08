@@ -33,8 +33,8 @@ export default {
   computed: {
     maxVol() {
       return Math.max(
-        this.asks[this.asks.length - 1].totalVolume,
-        this.bids[0].totalVolume
+        this.asks[0].totalVolume,
+        this.bids[this.bids.length - 1].totalVolume
       );
     },
   },
@@ -83,7 +83,7 @@ export default {
           }
           asks[parsedSnap.asks.length - (i + 1)] = parsedSnap.asks[i];
         }
-        return asks.reverse();
+        return asks;
       } else {
         this.barAsk = 0;
         return [];
@@ -101,7 +101,7 @@ export default {
           }
           bids.push(parsedSnap.bids[i]);
         }
-        return bids.reverse();
+        return bids;
       } else {
         this.barBid = 0;
         return [];
@@ -174,7 +174,7 @@ export default {
       this.bids = this.bidsUpdater(P1Data);
       this.barAsk = this.asks[0].totalVolume;
       this.barBid = this.bids[this.bids.length - 1].totalVolume;
-      this.$store.commit('liquidity', (( Math.abs(this.asks[this.asks.length - 1].totalVolume) + Math.abs(this.bids[0].totalVolume) )*Math.abs(this.price)).toFixed(2));
+      this.$store.commit('liquidity', (( Math.abs(this.asks[0].totalVolume) + Math.abs(this.bids[this.bids.length - 1].totalVolume) )*Math.abs(this.price)).toFixed(2));
       this.timeout = setTimeout(() => this.scrollTopBookToBottom(), 1000);
       this.$store.commit('removeLoaderTask', 1);
     };
@@ -204,7 +204,7 @@ export default {
       this.bids = this.bidsUpdater(P1Data);
       this.barAsk = this.asks[0].totalVolume;
       this.barBid = this.bids[this.bids.length - 1].totalVolume;
-      this.$store.commit('liquidity', (( Math.abs(this.asks[this.asks.length - 1].totalVolume) + Math.abs(this.bids[0].totalVolume) )*Math.abs(this.price)).toFixed(2));
+      this.$store.commit('liquidity', (( Math.abs(this.asks[0].totalVolume) + Math.abs(this.bids[this.bids.length - 1].totalVolume) )*Math.abs(this.price)).toFixed(2));
       this.showLoader = false;
     };
     this.reset = () => {
