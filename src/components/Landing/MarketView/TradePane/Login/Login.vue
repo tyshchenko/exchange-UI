@@ -52,7 +52,7 @@ export default {
     backforgpass() {
       this.showLogin = true;
     },
-    sendforgpass() {
+    async sendforgpass() {
       this.$showSuccessMsg({
         message: 'Sending request ... ',
       });
