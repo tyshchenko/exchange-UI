@@ -28,6 +28,7 @@ export default {
         message: 'Executing Login Procedure ... ',
       });
       const response = await WalletService.login(this.formData);
+      this.showOTP = false;
       if (response.Status == 1) {
         EventBus.$emit(EventNames.userLogin, { username: this.formData.login, mqttKey: response.Userid, });
         this.$showSuccessMsg({
@@ -37,9 +38,14 @@ export default {
         this.$showErrorMsg({
           message: response.Result,
         });
+        /* eslint-disable no-console */
+        console.log(response);
+        /* eslint-enable no-console */
         if (response.Status == 100) {
-          this.$store.commit('closeSidebar');
-          this.$emit('show-deposit-modal');
+          this.showOTP = true;
+          /* eslint-disable no-console */
+          console.log(response);
+          /* eslint-enable no-console */
         }
       }
     },
