@@ -65,6 +65,17 @@ class WalletService {
     return responce;
   }
   
+  async restorerequest(requestBody) {
+    let params = [requestBody.login,];
+    let method = {
+      'method': 'auth.restore',
+      'id':1,
+      'params':params,
+    };
+    let responce = (await ApiCurryBase.post('/', method)).data;
+    return responce;
+  }
+  
   async register(requestBody) {
     /* eslint-disable no-console */
     console.log(requestBody);

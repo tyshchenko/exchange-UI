@@ -56,7 +56,7 @@ export default {
       this.$showSuccessMsg({
         message: 'Sending request ... ',
       });
-      const response = await WalletService.login(this.formData);
+      const response = await WalletService.restorerequest(this.formData);
       if (response.Status == 1) {
         this.$showSuccessMsg({
           message: response.Result,
