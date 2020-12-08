@@ -30,6 +30,84 @@
       <div class="noShow noHorizontal"> 
     <div id="ob-hello1" class="uk-visible@m" :style="{ 'max-height': tableHeight }" >
       
+          <table style="">
+              <thead class="uk-hidden">
+                <tr>
+                  <th>&nbsp;</th>
+                  <th>&nbsp;</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="ask of asks" v-if="Number((ask.volume)) != 0">
+                  <td class="c-white" style="position: relative;">{{ask.value}}
+                    <div :style="{
+                                      background: 'red',
+                                      position: 'absolute',
+                                      top: 0,
+                                      border: '2px solid #d279a6',
+                                      bottom: 0,
+                                      left: 0,
+                                      right: 0,
+                                      overflow: 'visible',
+                                      width: (((Number(ask.totalVolume)/Number(maxVol))*308)) + '%',
+                                      opacity: .25
+                                    }"></div>
+                  </td>
+                  <td class="uk-text-center">{{Number((ask.volume).toFixed(6))}}</td>
+                  <td class="cumulativeSumField">{{ Number((ask.totalVolume).toFixed(6)) }}</td>
+                </tr>
+              </tbody>
+            </table>
+    </div>
+    <div id="ob-hello1" class="uk-hidden@m" data-simplebar data-simplebar-auto-hide="false" :style="{ 'max-height': tableHeight }">
+      
+          <table style="">
+              <thead class="uk-hidden">
+                <tr>
+                  <th>&nbsp;</th>
+                  <th>&nbsp;</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="ask of asks" v-if="Number((ask.volume)) != 0">
+                  <td class="c-white" style="position: relative;">{{ask.value}}
+                    <div :style="{
+                                      background: 'red',
+                                      position: 'absolute',
+                                      top: 0,
+                                      border: '2px solid #d279a6',
+                                      bottom: 0,
+                                      left: 0,
+                                      right: 0,
+                                      overflow: 'visible',
+                                      width: (((Number(ask.totalVolume)/Number(maxVol))*308)) + '%',
+                                      opacity: .25
+                                    }"></div>
+                  </td>
+                  <td class="uk-text-center">{{Number((ask.volume).toFixed(6))}}</td>
+                  <td class="cumulativeSumField">{{ Number((ask.totalVolume).toFixed(6)) }}</td>
+                </tr>
+              </tbody>
+            </table>
+</div>
+    <div>
+          <div v-show="price !== 0" v-bind:class="{
+            'ob-center-text-red': price < 0, 
+            'ob-center-text-green': price > 0 
+        }"
+              class="ob-center-text">
+              <span class="ob-center-text-green" style="font-size: 12px;  font-weight: 100;">{{$store.state.buyPrice}}</span>
+              <br>
+              <span  style="font-size: 14px;  font-weight: 800;">{{Math.abs(price)
+              }} {{ $store.state.selectedPair.split('/')[1] }}</span>
+              <br>
+              <span class="ob-center-text-red" style="font-size: 12px;  font-weight: 100;">{{$store.state.sellPrice}}</span></div>
+      </div>
+    <br><br>
+
+    <div id="ob-hello2" data-simplebar data-simplebar-auto-hide="false" :style="{ 'max-height': tableHeight }">
           <table>
               <thead class="uk-hidden">
                 <tr>
@@ -57,85 +135,6 @@
                   </td>
                   <td class="uk-text-center">{{Number((bid.volume).toFixed(6))}}</td>
                   <td class="cumulativeSumField">{{ Number((bid.totalVolume).toFixed(6)) }}</td>
-                </tr>
-              </tbody>
-            </table>
-    </div>
-    <div id="ob-hello1" class="uk-hidden@m" data-simplebar data-simplebar-auto-hide="false" :style="{ 'max-height': tableHeight }">
-      
-      <table>
-          <thead class="uk-hidden">
-            <tr>
-              <th>&nbsp;</th>
-              <th>&nbsp;</th>
-              <th>&nbsp;</th>
-  
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(bid,index) of bids" v-if="Number((bid.volume)) != 0">
-              <td class="c-white" style="position: relative;">{{bid.value}}
-                <div :style="{
-                      background: 'green',
-                      position: 'absolute',
-                      border: '2px solid #39e600',
-                      top: 0,
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      overflow: 'visible',
-                      width: (((Number(bid.totalVolume)/Number(maxVol))*308)) + '%',
-                      opacity: .25
-                    }"></div>
-              </td>
-              <td class="uk-text-center">{{Number((bid.volume).toFixed(6))}}</td>
-              <td class="cumulativeSumField">{{ Number((bid.totalVolume).toFixed(6)) }}</td>
-            </tr>
-          </tbody>
-        </table>
-</div>
-    <div>
-          <div v-show="price !== 0" v-bind:class="{
-            'ob-center-text-red': price < 0, 
-            'ob-center-text-green': price > 0 
-        }"
-              class="ob-center-text">
-              <span class="ob-center-text-green" style="font-size: 12px;  font-weight: 100;">{{$store.state.buyPrice}}</span>
-              <br>
-              <span  style="font-size: 14px;  font-weight: 800;">{{Math.abs(price)
-              }} {{ $store.state.selectedPair.split('/')[1] }}</span>
-              <br>
-              <span class="ob-center-text-red" style="font-size: 12px;  font-weight: 100;">{{$store.state.sellPrice}}</span></div>
-      </div>
-    <br><br>
-
-    <div id="ob-hello2" data-simplebar data-simplebar-auto-hide="false" :style="{ 'max-height': tableHeight }">
-          <table style="">
-              <thead class="uk-hidden">
-                <tr>
-                  <th>&nbsp;</th>
-                  <th>&nbsp;</th>
-                  <th>&nbsp;</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="ask of asks" v-if="Number((ask.volume)) != 0">
-                  <td class="c-white" style="position: relative;">{{ask.value}}
-                    <div :style="{
-                                      background: 'red',
-                                      position: 'absolute',
-                                      top: 0,
-                                      border: '2px solid #d279a6',
-                                      bottom: 0,
-                                      left: 0,
-                                      right: 0,
-                                      overflow: 'visible',
-                                      width: (((Number(ask.totalVolume)/Number(maxVol))*308)) + '%',
-                                      opacity: .25
-                                    }"></div>
-                  </td>
-                  <td class="uk-text-center">{{Number((ask.volume).toFixed(6))}}</td>
-                  <td class="cumulativeSumField">{{ Number((ask.totalVolume).toFixed(6)) }}</td>
                 </tr>
               </tbody>
             </table>
