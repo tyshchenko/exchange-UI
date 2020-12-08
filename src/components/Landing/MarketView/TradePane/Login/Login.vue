@@ -49,6 +49,29 @@ export default {
     forgpass() {
       this.showLogin = false;
     },
+    backforgpass() {
+      this.showLogin = true;
+    },
+    sendforgpass() {
+      this.$showSuccessMsg({
+        message: 'Sending request ... ',
+      });
+      const response = await WalletService.login(this.formData);
+      if (response.Status == 1) {
+        this.$showSuccessMsg({
+          message: response.Result,
+        });
+      } else {
+        this.$showErrorMsg({
+          message: response.Result,
+        });
+        if (response.Status == 100) {
+          this.$store.commit('closeSidebar');
+          this.$emit('show-deposit-modal');
+        }
+      }
+      this.showLogin = true;
+    },
     showWithdrawlModal() {
       this.$store.commit('closeSidebar');
       this.$emit('show-deposit-modal');
