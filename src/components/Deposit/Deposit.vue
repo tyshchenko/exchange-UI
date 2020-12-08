@@ -10,8 +10,8 @@ export default {
   },
   data () {
     return {
-      activeTab: 'XCoinBae',
-      tabs: ['XCoinBae',],
+      activeTab: 'Cryptocurrency',
+      tabs: ['Cryptocurrency',],
     };
   },
   methods: {
