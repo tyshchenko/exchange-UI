@@ -1,7 +1,7 @@
 <div class="deposit">
     <div class="uk-margin-medium-top uk-visible@m">
         <vk-tabs align="center">
-            <vk-tabs-item title="Cryptocurrency">
+            <vk-tabs-item title="CRYPTO">
                 <bitfinex-deposit-address></bitfinex-deposit-address>
             </vk-tabs-item>
         </vk-tabs>
@@ -13,6 +13,6 @@
                 <vk-nav-item v-for="tab of tabs" :key="tab" :title="tab" @click="onDropDownTabChange(tab)"></vk-nav-item>
             </vk-nav-dropdown>
         </vk-dropdown>
-        <bitfinex-deposit-address v-if="activeTab === 'Cryptocurrency'"></bitfinex-deposit-address>
+        <bitfinex-deposit-address v-if="activeTab === 'CRYPTO'"></bitfinex-deposit-address>
     </div>
 </div>
