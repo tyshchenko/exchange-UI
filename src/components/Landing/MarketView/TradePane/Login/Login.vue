@@ -64,12 +64,12 @@ export default {
         });
       } else {
         /* eslint-disable no-console */
-        console.log(responce);
+        console.log(response);
         /* eslint-enable no-console */
         if (response.Status == 100) {
           this.showOTP = true;
           /* eslint-disable no-console */
-          console.log(responce);
+          console.log(response);
           /* eslint-enable no-console */
         }
         this.$showErrorMsg({
