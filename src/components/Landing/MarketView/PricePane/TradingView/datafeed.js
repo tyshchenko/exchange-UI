@@ -113,10 +113,10 @@ export default {
     const symbolItem = symbols.find(({
       full_name,
     }) => full_name === symbolName);
-//     if (!symbolItem) {
-//       onResolveErrorCallback('cannot resolve symbol');
-//       return;
-//     }
+    //     if (!symbolItem) {
+    //       onResolveErrorCallback('cannot resolve symbol');
+    //       return;
+    //     }
     const symbolInfo = {
       name: 'ANKER/BTC',
       ticker: 'ANKER/BTC',
