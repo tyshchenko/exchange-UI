@@ -30,11 +30,11 @@
                         <div class="header-market-link-label"><a href="/">CoinBae</a></div>
                         <div class="header-market-link uk-clearfix">
 
-                            <div class="price-title dropdown">
-                                <button  class="dropbtn">{{ $store.state.selectedPair }} <i class="fa fa-caret-down"></i></button>
+                            <div class="dropdown"  style="float: left;">
+                                <button  class="dropbtn"  style="font-size: 14px;">{{ $store.state.selectedPair }} <i class="fa fa-caret-down"></i></button>
                                 <div class="dropdown-content">
-                                    <a href="javascript:undefined" @click="changepair(ANKER/BTC)">ANKER/BTC</a>
-                                    <a href="javascript:undefined" @click="changepair(ETH/BTC)">ETH/BTC</a>
+                                    <a style="color: var(--orange-color);" href="javascript:undefined" @click="changepair(ANKER/BTC)">ANKER/BTC</a>
+                                    <a style="color: var(--orange-color);" href="javascript:undefined" @click="changepair(ETH/BTC)">ETH/BTC</a>
                                 </div>
                             </div>
                             <div class="price">

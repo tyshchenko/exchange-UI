@@ -4,6 +4,7 @@
 import { ModelSelect, } from 'vue-search-select';
 import WalletService from '@/services/WalletService.js';
 import EventBus, { EventNames, } from '@/eventBuses/default';
+import ExchangeDataEventBus from '@/eventBuses/exchangeData';
 
 export default {
   name: 'header-section',
@@ -46,6 +47,13 @@ export default {
     showWithdrawlModal() {
       this.$store.commit('closeSidebar');
       this.$emit('show-deposit-modal');
+    },
+    changepair(pair) {
+      this.$store.commit('selectedPair', pair);
+      ExchangeDataEventBus.$emit(
+        'change-symbol',
+        pair
+      );
     },
     async refreshBalances(){
       await WalletService.refreshWalletBalances();
