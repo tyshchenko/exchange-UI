@@ -39,7 +39,7 @@ export default {
         });
       } else {
         this.spinnerFlag = false;
-        this.initialData = this.sortingData(data.data);
+        this.initialData = [];
         data.data.forEach((val) => {
           let obj = {};
           if(val[5]>0) {
