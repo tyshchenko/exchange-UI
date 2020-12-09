@@ -15,6 +15,9 @@ class TradeService {
     if (requestBody.pair =='ANKER/BTC') {
       pair = 'ANKERBTC';
     }
+    if (requestBody.pair =='ETH/BTC') {
+      pair = 'ETHBTC';
+    }
     if (requestBody.bos =='buy') {
       side = 2;
       amount = requestBody.btcamount;
@@ -200,6 +203,7 @@ class TradeService {
     } else {
       arr.push({'wallet_type':'exchange','currency':'BTC','locked_bal':Number(data.result.BTC.freeze),'avail_bal':Number(data.result.BTC.available),'total_bal':Number(data.result.BTC.freeze) + Number(Number(data.result.BTC.available)),});
       arr.push({'wallet_type':'exchange','currency':'ANKER','locked_bal':Number(data.result.ANKER.freeze),'avail_bal':Number(data.result.ANKER.available),'total_bal':Number(data.result.ANKER.freeze) + Number(Number(data.result.ANKER.available)),});
+      arr.push({'wallet_type':'exchange','currency':'ETH','locked_bal':Number(data.result.ETH.freeze),'avail_bal':Number(data.result.ETH.available),'total_bal':Number(data.result.ETH.freeze) + Number(Number(data.result.ETH.available)),});
     }
     return {'status':status,'message':'Balance','data':arr,};
   }
