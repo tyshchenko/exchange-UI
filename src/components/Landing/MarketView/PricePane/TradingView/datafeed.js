@@ -27,20 +27,8 @@ const configurationData = {
 
 async function getAllSymbols() {
   let allSymbols = [
-    {
-      description: 'ANKER/BTC',
-      ​​exchange: 'CoinBae',
-      ​​full_name: 'CoinBae:ANKER/BTC',
-      ​​symbol: 'ANKER/BTC',
-      ​​type: 'crypto',
-    },
-    {
-      description: 'ETH/BTC',
-      ​​exchange: 'CoinBae',
-      ​​full_name: 'CoinBae:ETH/BTC',
-      ​​symbol: 'ETH/BTC',
-      ​​type: 'crypto',
-    },
+    {description:'ANKER/BTC',exchange:'CoinBae',full_name:'CoinBae:ANKER/BTC',symbol:'ANKER/BTC',type:'crypto',},
+    {description:'ETH/BTC',exchange:'CoinBae',full_name:'CoinBae:ETH/BTC',symbol:'ETH/BTC',type:'crypto',},
   ];
   return allSymbols;
 }
