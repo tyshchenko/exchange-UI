@@ -26,30 +26,22 @@ const configurationData = {
 };
 
 async function getAllSymbols() {
-  const data = await makeApiRequest('api/all/exchanges');
-  let allSymbols = [];
-
-  for (const exchange of configurationData.exchanges) {
-    const pairs = data.Data[exchange.value].pairs;
-
-    for (const leftPairPart of Object.keys(pairs)) {
-      const symbols = pairs[leftPairPart].map(rightPairPart => {
-        const symbol = generateSymbol(exchange.value, leftPairPart, rightPairPart);
-        return {
-          symbol: symbol.short,
-          full_name: symbol.full,
-          description: symbol.short,
-          exchange: exchange.value,
-          type: 'crypto',
-        };
-      });
-      allSymbols = [...allSymbols, ...symbols,];
-    }
-  }
-  /* eslint-disable no-console */
-  console.log(allSymbols);
-  /* eslint-enable no-console */
-  
+  let allSymbols = [
+    {
+      description: "ANKER/BTC",
+      ​​exchange: "CoinBae",
+      ​​full_name: "CoinBae:ANKER/BTC",
+      ​​symbol: "ANKER/BTC",
+      ​​type: "crypto",
+    },
+    {
+      description: "ETH/BTC",
+      ​​exchange: "CoinBae",
+      ​​full_name: "CoinBae:ETH/BTC",
+      ​​symbol: "ETH/BTC",
+      ​​type: "crypto",
+    },
+  ];
   return allSymbols;
 }
 
@@ -111,16 +103,16 @@ export default {
   ) => {
     const symbols = await getAllSymbols();
     const symbolItem = symbols.find(({
-      full_name,
-    }) => full_name === symbolName);
+      ​​symbol,
+    }) => ​​symbol === symbolName);
     //     if (!symbolItem) {
     //       onResolveErrorCallback('cannot resolve symbol');
     //       return;
     //     }
     const symbolInfo = {
-      name: 'ANKER/BTC',
-      ticker: 'ANKER/BTC',
-      description: 'ANKER/BTC',
+      name: symbolItem.​​symbol,
+      ticker: symbolItem.​​symbol,
+      description: symbolItem.description,
       type: 'crypto',
       session: '24x7',
       timezone: 'Etc/UTC',
