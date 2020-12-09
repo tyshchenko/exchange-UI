@@ -49,6 +49,9 @@ export default {
       this.$emit('show-deposit-modal');
     },
     changepair(pair) {
+      /* eslint-disable no-console */
+      console.log(pair);
+      /* eslint-enable no-console */
       this.$store.commit('selectedPair', pair);
       ExchangeDataEventBus.$emit(
         'change-symbol',
