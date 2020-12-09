@@ -1,8 +1,6 @@
 <template src="./template.html"></template>
 
 <script>
-// import '@/services/exchangeSockets/bequant';
-// import '@/services/exchangeSockets/bitfinex';
 import ExchangeDataEventBus from '@/eventBuses/exchangeData';
 import PriceAnalysis from './PriceAnalysis/PriceAnalysis.vue';
 import TradingView from './TradingView/TradingView.vue';

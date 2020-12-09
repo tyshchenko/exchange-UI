@@ -2,7 +2,6 @@
 
 <script>
 import ExchangeDataEventBus from '@/eventBuses/exchangeData';
-import pairs from '../../../../../assets/json/keyMaps';
 import TradeService from '@/services/TradeService';
 import EventBus, {
   EventNames,
@@ -31,7 +30,6 @@ export default {
       this.showLoader = true;
       this.pair = this.$store.getters.selectedPair;
       this.exc = this.$store.getters.selectedExchange.toLowerCase();
-      this.excPair = pairs[`${this.exc}-_-${this.pair}`];
       this.balance =(await TradeService.getLedger()).data;
       this.showMarginInfo = false;
       this.showLoader= false;
@@ -41,7 +39,6 @@ export default {
         this.showLoader = true;
         this.pair = this.$store.getters.selectedPair;
         this.exc = this.$store.getters.selectedExchange.toLowerCase();
-        this.excPair = pairs[`${this.exc}-_-${this.pair}`];
         this.balance =(await TradeService.getLedger()).data;
         this.showMarginInfo = false;
         this.showLoader= false;
