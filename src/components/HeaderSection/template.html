@@ -29,7 +29,14 @@
                         <!-- <div class="header-market-link-label">{{ $store.getters.formattedSelectedExchange }}</div> -->
                         <div class="header-market-link-label"><a href="/">CoinBae</a></div>
                         <div class="header-market-link uk-clearfix">
-                            <div class="price-title">{{ $store.state.selectedPair }}</div>
+
+                            <div class="dropdown">
+                                <button  class="price-title dropbtn">{{ $store.state.selectedPair }}<i class="fa fa-caret-down"></i></button>
+                                <div class="dropdown-content">
+                                    <a href="javascript:undefined" @click="changepair(ANKER/BTC)">ANKER/BTC</a>
+                                    <a href="javascript:undefined" @click="changepair(ETH/BTC)">ETH/BTC</a>
+                                </div>
+                            </div>
                             <div class="price">
                                 <span>{{Math.abs($store.state.liveTradePrice) }}</span>
                                 <label>{{ $store.state.selectedPair.split('/')[1] }}</label>
