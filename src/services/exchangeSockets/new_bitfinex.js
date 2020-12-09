@@ -3,7 +3,7 @@ import ExchangeDataEventBus from '@/eventBuses/exchangeData';
 import LocalStorage, { Keys, } from '@/utils/localStorage.js';
 import Worker from 'simple-web-worker';
 //import serialize from 'serialize-javascript';
-import keyMaps from '@/assets/json/keyMaps.js';
+
 import {
   dateToDisplayTime,
 } from '@/utils/utility';
@@ -135,7 +135,7 @@ class Bitfinex {
   }
 
   subscribePair(currencyPair) {
-    let pair = keyMaps[`bitfinex-_-${currencyPair}`];
+    let pair = currencyPair.replace('/', '');
     this.queryAuth();
     this.subscribeOrderBook(pair);
     this.subscribeTicker(pair);
@@ -710,7 +710,7 @@ class Bitfinex {
       return;
     }
 
-    let pair = keyMaps[`bitfinex-_-${symbol}`];
+    let pair = symbol.replace('/', '');
 
     let xperiod = '1m';
 
