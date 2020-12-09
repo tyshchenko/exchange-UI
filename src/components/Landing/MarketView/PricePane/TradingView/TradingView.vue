@@ -89,6 +89,18 @@ export default {
       });
     });
   },
+  methods: {
+    changeSymbol(symbol) {
+      this.symbol = symbol;
+      /* eslint-disable no-console */
+      console.log(symbol);
+      console.log(this.symbol);
+      /* eslint-enable no-console */
+    },
+  },
+  created() {
+    this.ExchangeDataEventBus.$on('change-symbol', (pair) => this.changeSymbol(pair));
+  },
   destroyed() {
     if (this.tvWidget !== null) {
       this.tvWidget.remove();
@@ -96,6 +108,7 @@ export default {
     }
     ExchangeDataEventBus.$emit('unsubscribe-candles');
     ExchangeDataEventBus.$off('snapshotCandles');
+    ExchangeDataEventBus.$off('change-symbol', this.changeSymbol);
   },
 };
 </script>
