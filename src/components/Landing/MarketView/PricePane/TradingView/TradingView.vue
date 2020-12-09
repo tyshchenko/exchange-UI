@@ -66,7 +66,7 @@ export default {
   tvWidget: null,
   mounted() {
     const widgetOptions = {
-      symbol: this.symbol,
+      symbol: this.$store.state.selectedPair,
       // BEWARE: no trailing slash is expected in feed URL
       datafeed: Datafeed,
       interval: this.interval,
@@ -89,18 +89,6 @@ export default {
       });
     });
   },
-  methods: {
-    changeSymbol(symbol) {
-      this.symbol = symbol;
-      /* eslint-disable no-console */
-      console.log(symbol);
-      console.log(this.symbol);
-      /* eslint-enable no-console */
-    },
-  },
-  created() {
-    ExchangeDataEventBus.$on('change-symbol', (pair) => this.changeSymbol(pair));
-  },
   destroyed() {
     if (this.tvWidget !== null) {
       this.tvWidget.remove();
@@ -108,7 +96,6 @@ export default {
     }
     ExchangeDataEventBus.$emit('unsubscribe-candles');
     ExchangeDataEventBus.$off('snapshotCandles');
-    ExchangeDataEventBus.$off('change-symbol', this.changeSymbol);
   },
 };
 </script>
