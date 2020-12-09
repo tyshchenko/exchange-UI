@@ -99,7 +99,7 @@ export default {
     },
   },
   created() {
-    this.ExchangeDataEventBus.$on('change-symbol', (pair) => this.changeSymbol(pair));
+    ExchangeDataEventBus.$on('change-symbol', (pair) => this.changeSymbol(pair));
   },
   destroyed() {
     if (this.tvWidget !== null) {
