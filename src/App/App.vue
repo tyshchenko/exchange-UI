@@ -31,9 +31,6 @@ import ExchangeDataEventBus from '@/eventBuses/exchangeData';
 import HeaderSection from '@/components/HeaderSection/HeaderSection.vue';
 import SideMenu from '@/components/SideMenu/SideMenu.vue';
 import ModalBox from '@/components/ModalBox/ModalBox.vue';
-// import TradeModal from '@/components/TradeModal/TradeModal.vue';
-//import ActiveTrades from '@/components/ActiveTrades/ActiveTrades.vue';
-// import TournamentModal from '@/components/ModalBox/TournamentModal.vue';
 import LocalStorage from '@/utils/localStorage.js';
 import Vuikit from 'vuikit';
 import Notifications from 'vue-notification';
@@ -53,8 +50,6 @@ export default {
     HeaderSection,
     SideMenu,
     ModalBox,
-    //    TradeModal,
-    //    ActiveTrades,
   },
   data() {
     return {

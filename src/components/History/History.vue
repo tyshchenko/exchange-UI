@@ -25,7 +25,7 @@ export default {
       selectedExchange: 'bitfinex',
       bitfinexFlag: true,
       bitfinexActiveTab: 'Orders',
-      bitfinexTabs: ['Orders', 'Trading', 'Positions', 'Crypto Deposits', 'Crypto Withdrawal',],
+      bitfinexTabs: ['Orders', 'Trading', 'Crypto Deposits', 'Crypto Withdrawal',],
 
     };
   },
