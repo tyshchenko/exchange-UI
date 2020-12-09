@@ -46,6 +46,10 @@ async function getAllSymbols() {
       allSymbols = [...allSymbols, ...symbols,];
     }
   }
+  /* eslint-disable no-console */
+  console.log(allSymbols);
+  /* eslint-enable no-console */
+  
   return allSymbols;
 }
 
