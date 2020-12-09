@@ -91,15 +91,15 @@ export default {
   ) => {
     const symbols = await getAllSymbols();
     const symbolItem = symbols.find(({
-      ​​symbol,
-    }) => ​​symbol === symbolName);
+      symbol,
+    }) => symbol === symbolName);
     //     if (!symbolItem) {
     //       onResolveErrorCallback('cannot resolve symbol');
     //       return;
     //     }
     const symbolInfo = {
-      name: symbolItem.​​symbol,
-      ticker: symbolItem.​​symbol,
+      name: symbolItem.symbol,
+      ticker: symbolItem.symbol,
       description: symbolItem.description,
       type: 'crypto',
       session: '24x7',
