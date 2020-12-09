@@ -8,7 +8,7 @@ export default {
   name: 'crypto-withdrawls',
   data() {
     return {
-      supportedCoins: ['btc', 'anker',],
+      supportedCoins: ['btc', 'eth', 'anker', ],
       formValue: {
         amount: '',
         recievingAddress: '',
