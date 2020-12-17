@@ -108,7 +108,7 @@ export default {
         });
       }
     /* eslint-disable no-console */
-    console.log(otpSent);
+    console.log(this.otpSent);
     /* eslint-enable no-console */
       this.$store.commit('removeLoaderTask', 1);
     },
