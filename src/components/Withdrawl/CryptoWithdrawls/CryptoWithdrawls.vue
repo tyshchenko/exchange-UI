@@ -93,6 +93,10 @@ export default {
           validationErrors.push(...(response.data.errors || []));
         }
       }
+    /* eslint-disable no-console */
+    console.log(validationErrors);
+    /* eslint-enable no-console */
+
       if (validationErrors.length) {
         this.$showErrorMsg({
           message: stringArrayToHtmlList(validationErrors),
@@ -103,6 +107,9 @@ export default {
           message: 'OTP Sent to your registered Email Id.',
         });
       }
+    /* eslint-disable no-console */
+    console.log(otpSent);
+    /* eslint-enable no-console */
       this.$store.commit('removeLoaderTask', 1);
     },
     cancelWithdrawl() {
