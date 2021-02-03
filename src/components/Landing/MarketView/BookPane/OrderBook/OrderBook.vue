@@ -174,8 +174,9 @@ export default {
       }
       this.asks = this.asksUpdater(P1Data);
       this.bids = this.bidsUpdater(P1Data);
-
-      this.$store.commit('liquidity', (( Math.abs(this.asks[0].totalVolume) + Math.abs(this.bids[this.bids.length - 1].totalVolume) )*Math.abs(this.price)).toFixed(2));
+      if ( this.bids.length > 0 && this.asks.length > 0 ) {
+        this.$store.commit('liquidity', (( Math.abs(this.asks[0].totalVolume) + Math.abs(this.bids[this.bids.length - 1].totalVolume) )*Math.abs(this.price)).toFixed(2));
+      }
       this.timeout = setTimeout(() => this.scrollTopBookToBottom(), 1000);
       this.$store.commit('removeLoaderTask', 1);
     };
@@ -204,8 +205,9 @@ export default {
       this.asks = this.asksUpdater(P1Data);
       this.bids = this.bidsUpdater(P1Data);
 
-      
-      this.$store.commit('liquidity', (( Math.abs(this.asks[0].totalVolume) + Math.abs(this.bids[this.bids.length - 1].totalVolume) )*Math.abs(this.price)).toFixed(2));
+      if ( this.bids.length > 0 && this.asks.length > 0 ) {
+        this.$store.commit('liquidity', (( Math.abs(this.asks[0].totalVolume) + Math.abs(this.bids[this.bids.length - 1].totalVolume) )*Math.abs(this.price)).toFixed(2));
+      }
       this.showLoader = false;
     };
     this.reset = () => {
