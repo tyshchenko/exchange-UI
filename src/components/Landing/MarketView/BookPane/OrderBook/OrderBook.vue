@@ -39,6 +39,11 @@ export default {
     },
   },
   methods: {
+    setprices(selectedprice) {
+      ExchangeDataEventBus.$emit('selectedprice', {
+        price: selectedprice,
+      });
+    },
     precision(key) {
       ExchangeDataEventBus.$emit('precision', {
         key,
