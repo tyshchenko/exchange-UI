@@ -1,7 +1,7 @@
 <template src="./template.html"></template>
 
 <script>
-import HistoryService from '@/services/HistoryService.js';
+import TradeService from '@/services/TradeService';
 import Spinner from '@/components/Spinner/Spinner.vue';
 import { dateToDisplayDateTime, } from '@/utils/utility';
 
@@ -21,40 +21,8 @@ export default {
     };
   },
   async created() {
-    let data = [];
-    data = await HistoryService.bitfinexOrdersHistoryData('bitfinex');
-    let newData = [];
-    if (data.data.error) {
-      this.spinnerFlag = false;
-      this.initialData = [];
-      this.history = [];
-      this.displayText = 'Invalid API-KEY or API-KEYS not Entered.';
-      this.$showErrorMsg({
-        message: 'Notice: Invalid API-KEY or API-KEYS not Entered.',
-      });
-    } else {
-      this.spinnerFlag = false;
-      data.data.forEach((val) => {
-        let obj = {};
-        obj.id = val[0] || '-';
-        obj.symbol = val[3] || '-';
-        obj.MTS_CREATE = val[4] || '-';
-        obj.amount = val[6] || '-';
-        obj.amount_orig = val[7] || '-';
-        obj.type = val[8] || '-';
-        obj.order_status = val[13] || '-';
-        obj.price = val[16] || '-';
-        obj.price_avg = val[17] || '-';
-        obj.price_trailing = val[18] || '-';
-        obj.price_aux_limit = val[19] || '-';
-        obj.hidden = (val[23] !== null) ? 'Yes' : 'No';
-        obj.notify = (val[24] !== null) ? 'Yes' : 'No';
-        newData.push(obj);
-      });
-    }
-    this.initialData = newData;
-    if(this.history.length === 0 && this.displayText !== 'Invalid API-KEY or API-KEYS not Entered.')
-      this.displayText = 'No Records Found.';
+    let activeOrders = await TradeService.getActiveOrders();
+    this.initialData = this.mapActiveOrders(activeOrders.data);
     this.updateData();
   },
   watch: {
@@ -120,6 +88,23 @@ export default {
         this.sortBy = value;
       }
       this.updateData();
+    },
+    mapActiveOrders(rtArr = []) {
+      return rtArr.map(rt => ({
+        id: rt.id,
+        orderId: rt.clientOrderId,
+        MTS_CREATE: new Date(rt.placedTime * 1000),
+        amount: parseFloat(rt.amount),
+        amount_orig: parseFloat(rt.amount),
+        price_avg: parseFloat(rt.avgPrice),
+        type: rt.buyOrSell,
+        exchange: rt.exchange,
+        orderType: rt.orderType,
+        price: parseFloat(rt.stopPrice) || '--',
+        order_status: rt.status,
+        filled: rt.filled,
+        symbol: rt.pair,
+      }));
     },
   },
 };

@@ -97,14 +97,12 @@
                         <ul>
                             <li>Price: {{ historyRow.price }}</li>
                             <li>Average Price: {{ historyRow.price_avg }}</li>
-                            <li>Trailing Price: {{ historyRow.price_trailing }}</li>
-                            <li>Aux Limit Price: {{ historyRow.price_aux_limit }}</li>
                         </ul>
                     </td>
                     <td>
                         <ul>
-                            <li>Hidden: {{ historyRow.hidden }}</li>
-                            <li>Notify: {{ historyRow.notify }}</li>
+                            <li>{{ historyRow.filled }}</li>
+                            <li>{{ historyRow.orderType }}</li>
                         </ul>
                     </td>
                 </tr>
