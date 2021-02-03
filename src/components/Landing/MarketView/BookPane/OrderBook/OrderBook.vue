@@ -83,6 +83,7 @@ export default {
           }
           asks[parsedSnap.asks.length - (i + 1)] = parsedSnap.asks[i];
         }
+        this.barAsk = asks[0].totalVolume;
         return asks;
       } else {
         this.barAsk = 0;
@@ -101,6 +102,7 @@ export default {
           }
           bids.push(parsedSnap.bids[i]);
         }
+        this.barBid = bids[bids.length - 1].totalVolume;
         return bids;
       } else {
         this.barBid = 0;
@@ -172,8 +174,7 @@ export default {
       }
       this.asks = this.asksUpdater(P1Data);
       this.bids = this.bidsUpdater(P1Data);
-      this.barAsk = this.asks[0].totalVolume;
-      this.barBid = this.bids[this.bids.length - 1].totalVolume;
+
       this.$store.commit('liquidity', (( Math.abs(this.asks[0].totalVolume) + Math.abs(this.bids[this.bids.length - 1].totalVolume) )*Math.abs(this.price)).toFixed(2));
       this.timeout = setTimeout(() => this.scrollTopBookToBottom(), 1000);
       this.$store.commit('removeLoaderTask', 1);
@@ -202,8 +203,8 @@ export default {
       }
       this.asks = this.asksUpdater(P1Data);
       this.bids = this.bidsUpdater(P1Data);
-      this.barAsk = this.asks[0].totalVolume;
-      this.barBid = this.bids[this.bids.length - 1].totalVolume;
+
+      
       this.$store.commit('liquidity', (( Math.abs(this.asks[0].totalVolume) + Math.abs(this.bids[this.bids.length - 1].totalVolume) )*Math.abs(this.price)).toFixed(2));
       this.showLoader = false;
     };
