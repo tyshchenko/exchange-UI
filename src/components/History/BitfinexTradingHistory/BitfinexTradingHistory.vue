@@ -102,7 +102,7 @@ export default {
         MAKER: rt.orderType,
         EXEC_PRICE: parseFloat(rt.stopPrice) || '--',
         order_status: rt.status,
-        filled: rt.filled,
+        fee: rt.fee,
         Pair: rt.pair,
       }));
     },
