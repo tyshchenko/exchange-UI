@@ -24,8 +24,10 @@ export default {
     let activeOrders = await TradeService.getActiveOrders();
     this.initialData = this.mapActiveOrders(activeOrders.data);
     this.updateData();
+    /* eslint-disable no-console */
     console.log(this.initialData);
     console.log(this.history);
+    /* eslint-enable no-console */
   },
   watch: {
     searchString: function() {

@@ -35,6 +35,11 @@ export default {
       recentTrades.status &&
         this.$store.commit('recentTrades', recentTrades.data);
       this.recentTrades = this.mapRecentTrades(recentTrades.data);
+      /* eslint-disable no-console */
+      console.log(this.recentTrades.data);
+      console.log(recentTrades);
+      /* eslint-enable no-console */
+
     },
     toggleOpen() {
       this.$emit('toggle-open');
