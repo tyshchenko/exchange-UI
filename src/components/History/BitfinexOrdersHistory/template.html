@@ -81,10 +81,8 @@
                     <th id="tableHeaders">Flags</th>
                 </tr>
             </thead>
-            <tbody v-if="spinnerFlag">
-                <spinner id="spinner" />
-            </tbody>
-            <tbody v-else>
+
+            <tbody>
                 <tr v-for="historyRow in history">
                     <td>{{ historyRow.id }}</td>
                     <td>{{ historyRow.symbol }}</td>
@@ -106,11 +104,7 @@
                         </ul>
                     </td>
                 </tr>
-                <tr v-if="history.length === 0">
-                    <td colspan="4">
-                        {{ displayText }}
-                    </td>
-                </tr>
+
             </tbody>
         </table>
     </div>
