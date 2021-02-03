@@ -102,7 +102,7 @@
               <br>
               <span  style="font-size: 14px;  font-weight: 800;">{{Math.abs(price)}} {{ $store.state.selectedPair.split('/')[1] }}</span>
               <br>
-              <span class="ob-center-text-green" style="font-size: 12px;  font-weight: 100;" >{{$store.state.buyPrice}}</span></div>
+              <span class="ob-center-text-green" style="font-size: 12px;  font-weight: 100;" @click="setprices($store.state.buyPrice)" >{{$store.state.buyPrice}}</span></div>
               
       </div>
     <br><br>
