@@ -431,8 +431,8 @@ class Bitfinex {
       chartData.bids.sort(function(a, b) {
         return a.value - b.value;
       });
-      chartData.asks = chartData.asks.filter(i => i.volume > 0.00001 && i.value > 0.0001).splice(0, 25);
-      chartData.bids = chartData.bids.filter(i => i.volume > 0.00001 && i.value > 0.0001).splice(-25);
+      //chartData.asks = chartData.asks.filter(i => i.volume > 0.00001 && i.value > 0.0001).splice(0, 25);
+      //chartData.bids = chartData.bids.filter(i => i.volume > 0.00001 && i.value > 0.0001).splice(-25);
       this.ExchangeDataEventBus.$emit('updateOrderbook', JSON.parse(JSON.stringify(chartData)));
     } else {
       bids.reverse();
