@@ -1,7 +1,7 @@
 <template src="./template.html"></template>
 
 <script>
-import HistoryService from '@/services/HistoryService.js';
+import TradeService from '@/services/TradeService';
 import Spinner from '@/components/Spinner/Spinner.vue';
 import { dateToDisplayDateTime, } from '@/utils/utility';
 
@@ -22,37 +22,8 @@ export default {
   },
   async created() {
     let data = [];
-    data = await HistoryService.bitfinexTradingHistoryData('bitfinex');
-    let newData = [];
-    if (data.data.error) {
-      this.spinnerFlag = false;
-      this.initialData = [];
-      this.history = [];
-      this.displayText = 'Invalid API-KEY or API-KEYS not Entered.';
-      this.$showErrorMsg({
-        message: 'Notice: Invalid API-KEY or API-KEYS not Entered.',
-      });
-    } else {
-      this.spinnerFlag = false;
-      data.data.forEach((val) => {
-        let obj = {};
-        obj.id = val[0] || '-';
-        obj.Pair = val[1] || '-';
-        obj.MTS_CREATE = val[2] || '-';
-        obj.ORDER_ID = val[3] || '-';
-        obj.EXEC_AMOUNT = val[4] || '-';
-        obj.EXEC_PRICE = val[5] || '-';
-        obj.ORDER_TYPE = val[6] || '-';
-        obj.ORDER_PRICE = val[7] || '-';
-        obj.MAKER = val[8] || '-';
-        obj.FEE = val[9] || '-';
-        obj.FEE_CURRENCY = val[10] || '-';
-        newData.push(obj);
-      });
-    }
-    this.initialData = newData;
-    if(this.history.length === 0 && this.displayText !== 'Invalid API-KEY or API-KEYS not Entered.')
-      this.displayText = 'No Records Found.';
+    let recentTrades = await TradeService.getRecentOrders();
+    this.initialData = this.mapRecentTrades(recentTrades.data);
     this.updateData();
   },
   watch: {
@@ -117,6 +88,23 @@ export default {
         this.sortBy = value;
       }
       this.updateData();
+    },
+    mapRecentTrades(rtArr = []) {
+      return rtArr.map(rt => ({
+        id: rt.id,
+        orderId: rt.clientOrderId,
+        MTS_CREATE: new Date(rt.placedTime * 1000),
+        amount: parseFloat(rt.amount),
+        amount_orig: parseFloat(rt.amount),
+        price_avg: parseFloat(rt.avgPrice),
+        type: rt.buyOrSell,
+        exchange: rt.exchange,
+        orderType: rt.orderType,
+        price: parseFloat(rt.stopPrice) || '--',
+        order_status: rt.status,
+        filled: rt.filled,
+        symbol: rt.pair,
+      }));
     },
   },
 };

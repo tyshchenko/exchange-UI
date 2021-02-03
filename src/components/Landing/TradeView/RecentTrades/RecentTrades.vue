@@ -34,6 +34,7 @@ export default {
       let recentTrades = await TradeService.getRecentOrders();
       recentTrades.status &&
         this.$store.commit('recentTrades', recentTrades.data);
+      this.recentTrades = this.mapRecentTrades(recentTrades.data);
     },
     toggleOpen() {
       this.$emit('toggle-open');
@@ -65,8 +66,8 @@ export default {
     },
   },
   destroyed() {
-    // EventBus.$off(EventNames.userLogin, this.userLoginListener);
-    // EventBus.$off(EventNames.userLogout, this.userLogoutListener);
+    EventBus.$off(EventNames.userLogin, this.userLoginListener);
+    EventBus.$off(EventNames.userLogout, this.userLogoutListener);
   },
 };
 </script>
