@@ -46,12 +46,12 @@ export default {
         obj.id = val[0] || '-';
         obj.currency = val[1] || '-';
         obj.currencyName = val[2] || '-';
-        obj.status = val[9] || '-';
-        obj.movementLastUpdated = new Date(val[6]) || '-';
-        obj.amount = val[12] || '-';
-        obj.fees = (val[13]* (-1)) || '-';
-        obj.destinationAddress = val[16] || '-';
-        obj.transactionHash = val[20] || '-';
+        obj.status = val[3] || '-';
+        obj.movementLastUpdated = new Date(val[4]) || '-';
+        obj.amount = val[5] || '-';
+        obj.fees = (val[6]* (-1)) || '-';
+        obj.destinationAddress = val[7] || '-';
+        obj.transactionHash = val[8] || '-';
         newData.push(obj);
         // }
       });
