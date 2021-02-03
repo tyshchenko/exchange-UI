@@ -24,7 +24,9 @@ export default {
     let data = [];
     let recentTrades = await TradeService.getRecentOrders();
     this.initialData = this.mapRecentTrades(recentTrades.data);
+    console.log(this.initialData);
     this.updateData();
+    console.log(this.history);
   },
   watch: {
     searchString: function() {
