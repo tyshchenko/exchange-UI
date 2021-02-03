@@ -45,7 +45,7 @@ export default {
       this.getStatus(this.formData.exc);
     }, 5000);
     ExchangeDataEventBus.$on('change-symbol', this.changeSymbol);
-
+    ExchangeDataEventBus.$on('selectedprice', this.changePrice);
     this.getStatus('auto');
   },
   methods: {
@@ -128,10 +128,14 @@ export default {
     changeSymbol() {
       this.formData.exc = 'auto';
     },
+    changePrice = price => {
+      this.formData.price = price;
+    },
   },
   destroyed() {
     clearInterval(this.watcher);
     ExchangeDataEventBus.$off('change-symbol', this.changeSymbol);
+    ExchangeDataEventBus.$off('selectedprice', this.changePrice);
   },
 };
 </script>
