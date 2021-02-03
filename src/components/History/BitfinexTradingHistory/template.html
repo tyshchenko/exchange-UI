@@ -71,8 +71,7 @@
                     <th id="tableHeaders">Order Type</th>
                     <th id="tableHeaders">Order Price</th>
                     <th id="tableHeaders">Maker</th>
-                    <th id="tableHeaders">Fee</th>
-                    <th id="tableHeaders">Fee Currency</th>
+
                 </tr>
             </thead>
             <tbody v-if="spinnerFlag">
@@ -89,8 +88,7 @@
                     <td :class="historyRow.ORDER_TYPE">{{ historyRow.ORDER_TYPE }}</td>
                     <td>{{ historyRow.ORDER_PRICE }}</td>
                     <td>{{ historyRow.MAKER }}</td>
-                    <td>{{ historyRow.FEE }}</td>
-                    <td>{{ historyRow.FEE_CURRENCY }}</td>
+
                 </tr>
                 <tr v-if="history.length === 0">
                     <td colspan="4">
