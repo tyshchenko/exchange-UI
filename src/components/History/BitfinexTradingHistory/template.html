@@ -65,12 +65,12 @@
                     <th id="tableHeaders">ID</th>
                     <th id="tableHeaders">Pair</th>
                     <th id="tableHeaders">Execution Time</th>
-                    <th id="tableHeaders">Order ID</th>
+
                     <th id="tableHeaders">Execution Amount</th>
-                    <th id="tableHeaders">Execution Price</th>
+
                     <th id="tableHeaders">Order Type</th>
                     <th id="tableHeaders">Order Price</th>
-                    <th id="tableHeaders">Maker</th>
+
                     <th id="tableHeaders">Fee</th>
 
                 </tr>
@@ -80,13 +80,13 @@
                     <td>{{ historyRow.id }}</td>
                     <td>{{ historyRow.Pair }}</td>
                     <td>{{ formatDateTime(historyRow.MTS_CREATE) }}</td>
-                    <td>{{ historyRow.ORDER_ID }}</td>
+
                     <td>{{ historyRow.EXEC_AMOUNT }}</td>
-                    <td>{{ historyRow.EXEC_PRICE }}</td>
+
                     <td :class="historyRow.ORDER_TYPE">{{ historyRow.ORDER_TYPE }}</td>
                     <td>{{ historyRow.ORDER_PRICE }}</td>
-                    <td>{{ historyRow.MAKER }}</td>
-                    <td>{{ historyRow.FEE }}</td>
+
+                    <td>{{ historyRow.fee }}</td>
 
                 </tr>
             </tbody>
