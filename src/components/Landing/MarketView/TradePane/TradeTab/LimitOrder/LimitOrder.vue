@@ -128,7 +128,7 @@ export default {
     changeSymbol() {
       this.formData.exc = 'auto';
     },
-    changePrice = price => {
+    changePrice(price) {
       this.formData.price = price;
     },
   },
