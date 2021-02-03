@@ -440,10 +440,10 @@ class Bitfinex {
       chartData.bids = bids;
       this.ExchangeDataEventBus.$emit('snapshotOrderbook', JSON.parse(JSON.stringify(chartData)));
     }
-    if (chartData.asks) {
+    if ( chartData.asks && chartData.asks.length > 0 ) {
       store.state.sellPrice = chartData.asks[0].value;
     }
-    if (chartData.bids) {
+    if ( chartData.bids && chartData.bids.length > 0 ) {
       store.state.buyPrice = chartData.bids[chartData.bids.length - 1].value;
     }
   }
