@@ -40,7 +40,7 @@
               </thead>
               <tbody>
                 <tr v-for="ask of asks" v-if="Number((ask.volume)) != 0">
-                  <td class="c-white" style="position: relative;"  @click="setprices({{ask.value}})">{{ask.value}}
+                  <td class="c-white" style="position: relative;" >{{ask.value}}
                     <div :style="{
                                       background: 'red',
                                       position: 'absolute',
@@ -72,7 +72,7 @@
               </thead>
               <tbody>
                 <tr v-for="ask of asks" v-if="Number((ask.volume)) != 0">
-                  <td class="c-white" style="position: relative;"  @click="setprices({{ask.value}})" >{{ask.value}}
+                  <td class="c-white" style="position: relative;" >{{ask.value}}
                     <div :style="{
                                       background: 'red',
                                       position: 'absolute',
@@ -119,7 +119,7 @@
               </thead>
               <tbody>
                 <tr v-for="(bid,index) of bids" v-if="Number((bid.volume)) != 0">
-                  <td class="c-white" style="position: relative;"  @click="setprices({{bid.value}})" >{{bid.value}}
+                  <td class="c-white" style="position: relative;" >{{bid.value}}
                     <div :style="{
                           background: 'green',
                           position: 'absolute',
