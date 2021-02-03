@@ -24,9 +24,7 @@ export default {
     let data = [];
     let recentTrades = await TradeService.getRecentOrders();
     this.initialData = this.mapRecentTrades(recentTrades.data);
-    /* eslint-disable no-console */
-    console.log(this.initialData);
-    /* eslint-enable no-console */
+
     this.updateData();
     /* eslint-disable no-console */
     console.log(this.history);
