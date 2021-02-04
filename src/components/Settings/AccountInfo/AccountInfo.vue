@@ -3,6 +3,7 @@
 
 <script>
 import LocalStorage, { Keys, } from '@/utils/localStorage.js';
+import ExchangeDataEventBus from '@/eventBuses/exchangeData';
 
 const loggedInUser = LocalStorage.get(Keys.username);
 
@@ -17,10 +18,16 @@ export default {
   },
   methods: {
     gotokyc() {
-      this.activeTab = 'KYC';
+      ExchangeDataEventBus.$emit(
+        'sett-activeTab',
+        'KYC'
+      );
     },
     goto2fa() {
-      this.activeTab = 'Security';
+      ExchangeDataEventBus.$emit(
+        'sett-activeTab',
+        'Security'
+      );
     },
   },
 };
