@@ -6,7 +6,7 @@ import AccountInfo from '@/components/Settings/AccountInfo/AccountInfo.vue';
 import ReceivingAddress from '@/components/Settings/ReceivingAddress/ReceivingAddress.vue';
 import SendMoney from '@/components/Settings/SendMoney/SendMoney.vue';
 import Security from '@/components/Settings/Security/Security.vue';
-import KYC from '@/components/Settings/KYC/KYC.vue';
+import Kyc from '@/components/Settings/KYC/KYC.vue';
 
 
 export default {
@@ -15,7 +15,7 @@ export default {
     AccountInfo,
     ReceivingAddress,
     SendMoney,
-    KYC,
+    Kyc,
     Security,
   },
   data () {
