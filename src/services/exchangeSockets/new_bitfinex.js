@@ -181,6 +181,25 @@ class Bitfinex {
     setTimeout(() => this.subscribeOrders(pair), 3000);
   }
 
+  queryLogout() {
+    let symbol = this.state._constants.selectedPair.replace('/', '');
+    let data = {
+      id: this.id,
+      method: 'order.unsubscribe',
+      params: [symbol,], 
+    };
+    this.ctx.send(JSON.stringify(data));
+    this.id = this.id + 1;
+    let data = {
+      id: this.id,
+      method: 'server.auth',
+      params: ['','website',], //book
+    };
+    this.ctx.send(JSON.stringify(data));
+    this.id = this.id + 1;
+
+  }
+
 
   subscribeTrades(pair) {
     let symbol = pair;
@@ -893,6 +912,7 @@ class Bitfinex {
     this.ExchangeDataEventBus.$on('resolve-candle-symbol', (symbol) => this.resolveSymbolFn(symbol));
     this.ExchangeDataEventBus.$on('get-all-symbols', () => this.symbolData());
     EventBus.$on(EventNames.userLogin, () => this.queryAuth());
+    EventBus.$on(EventNames.userLogout, () => this.queryLogout());
   }
 }
 
