@@ -15,6 +15,14 @@ export default {
       displayFlag: false,
     };
   },
+  methods: {
+    gotokyc() {
+      this.activeTab = 'KYC';
+    },
+    goto2fa() {
+      this.activeTab = 'Security';
+    },
+  },
 };
 
 </script>
