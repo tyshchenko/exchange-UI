@@ -93,9 +93,9 @@ export default {
           validationErrors.push(...(response.data.errors || []));
         }
       }
-    /* eslint-disable no-console */
-    console.log(validationErrors);
-    /* eslint-enable no-console */
+      /* eslint-disable no-console */
+      console.log(validationErrors);
+      /* eslint-enable no-console */
 
       if (validationErrors.length) {
         this.$showErrorMsg({
@@ -107,9 +107,9 @@ export default {
           message: 'OTP Sent to your registered Email Id.',
         });
       }
-    /* eslint-disable no-console */
-    console.log(this.otpSent);
-    /* eslint-enable no-console */
+      /* eslint-disable no-console */
+      console.log(this.otpSent);
+      /* eslint-enable no-console */
       this.$store.commit('removeLoaderTask', 1);
     },
     cancelWithdrawl() {

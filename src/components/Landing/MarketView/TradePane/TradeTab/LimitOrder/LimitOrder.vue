@@ -129,7 +129,7 @@ export default {
       this.formData.exc = 'auto';
     },
     changePrice(price) {
-      this.formData.price = price['price'];
+      this.formData.price = price.price;
     },
   },
   destroyed() {
