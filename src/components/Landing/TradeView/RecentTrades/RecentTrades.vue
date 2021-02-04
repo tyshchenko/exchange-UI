@@ -26,14 +26,18 @@ export default {
   },
   computed: {
     recentTrades() {
+      /* eslint-disable no-console */
+      console.log(this.$store.getters.recentTrades);
+      /* eslint-enable no-console */
       return this.mapRecentTrades(this.$store.getters.recentTrades);
     },
   },
   methods: {
     async getRecentTrades() {
       let recentTrades = await TradeService.getRecentOrders();
-      recentTrades.status &&
+      if (recentTrades.data) {
         this.$store.commit('recentTrades', recentTrades.data);
+      }
       this.recentTrades = this.mapRecentTrades(recentTrades.data);
       /* eslint-disable no-console */
       console.log(this.recentTrades);
@@ -51,18 +55,15 @@ export default {
       return rtArr.map(rt => ({
         id: rt.id,
         orderId: rt.clientOrderId,
-        tTime: new Date(rt.tTime * 1000),
+        tTime: new Date(rt.placedTime * 1000),
         amount: parseFloat(rt.amount),
         avgPrice: parseFloat(rt.avgPrice),
-        feeString: `${parseFloat(rt.fee)} ${rt.feeCurrency}`,
+        feeString: `${parseFloat(rt.fee)} ${(rt.pair.split('/'))[1]}`,
         fee: parseFloat(rt.fee),
-        feeCurrency: rt.feeCurrency,
+        feeCurrency: (rt.pair.split('/'))[1],
         buyOrSell: rt.buyOrSell,
         exchange: rt.exchange,
         orderType: rt.orderType,
-        exchangeFeeString: `${parseFloat(rt.exchangeFee)} ${rt.exchangeFeeCurrency}`,
-        exchangeFee: parseFloat(rt.exchangeFee),
-        exchangeFeeCurrency: rt.exchangeFeeCurrency,
         status: rt.status,
         pair: rt.pair,
         basePair: (rt.pair.split('/'))[0],
