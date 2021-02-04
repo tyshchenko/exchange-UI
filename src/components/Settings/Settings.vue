@@ -25,14 +25,20 @@ export default {
       tabs: ['Account Info', 'Security', 'KYC', 'Deposit Address', 'Send Money',],
     };
   },
+  created() {
+    this.changeTab = tab => {
+      this.activeTab = tab;
+      /* eslint-disable no-console */
+      console.log(this.activeTab);
+      console.log(tab);
+      /* eslint-enable no-console */
+    },
+  },
   mounted() {
     ExchangeDataEventBus.$on('sett-activeTab', this.changeTab);
   },
   methods: {
     onDropDownTabChange(tab) {
-      this.activeTab = tab;
-    },
-    changeTab(tab) {
       this.activeTab = tab;
     },
   },
