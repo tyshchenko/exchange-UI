@@ -190,12 +190,12 @@ class Bitfinex {
     };
     this.ctx.send(JSON.stringify(data));
     this.id = this.id + 1;
-    let data = {
+    let datan = {
       id: this.id,
       method: 'server.auth',
       params: ['','website',], //book
     };
-    this.ctx.send(JSON.stringify(data));
+    this.ctx.send(JSON.stringify(datan));
     this.id = this.id + 1;
 
   }
