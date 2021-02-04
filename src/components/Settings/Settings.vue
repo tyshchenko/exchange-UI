@@ -32,7 +32,7 @@ export default {
       console.log(this.activeTab);
       console.log(tab);
       /* eslint-enable no-console */
-    },
+    }
   },
   mounted() {
     ExchangeDataEventBus.$on('sett-activeTab', this.changeTab);
