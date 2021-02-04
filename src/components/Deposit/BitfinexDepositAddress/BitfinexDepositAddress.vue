@@ -14,7 +14,7 @@ export default {
     return {
       selectedMethod: 'SELECT A CURRENCY',
       destinationAddress: '',
-      bitfinexMethodTypes: ['bitcoin','ethereum','anker',],
+      bitfinexMethodTypes: ['bitcoin','anker',],
       currentImgUrl: '/img/qr.png',
     };
   },
