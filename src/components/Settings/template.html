@@ -5,6 +5,12 @@
                 <vk-tabs-item title="Account Info">
                     <account-info></account-info>
                 </vk-tabs-item>
+                <vk-tabs-item title="Security">
+                    <security></security>
+                </vk-tabs-item>
+                <vk-tabs-item title="KYC">
+                    <kyc></kyc>
+                </vk-tabs-item>
                 <vk-tabs-item title="Deposit Address">
                     <receiving-address></receiving-address>
                 </vk-tabs-item>
@@ -21,6 +27,8 @@
                 </vk-nav-dropdown>
             </vk-dropdown>
             <account-info v-if="activeTab === 'Account Info'"></account-info>
+            <security v-if="activeTab === 'Security'"></security>
+            <kyc v-if="activeTab === 'KYC'"></kyc>
             <receiving-address v-if="activeTab === 'Deposit Address'"></receiving-address>
             <send-money v-if="activeTab === 'Send Money'"></send-money>
         </div>
