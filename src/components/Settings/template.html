@@ -1,20 +1,20 @@
 <div class="Trezor">
     <div>
         <div class="uk-margin-medium-top uk-visible@m">
-            <vk-tabs align="center" :activeTab=activeTab>
-                <vk-tabs-item title="Account Info">
+            <vk-tabs align="center" :activeTab=activeTab @update:activeTab=onDropDownTabChange>
+                <vk-tabs-item title="Account Info" :key="Account Info">
                     <account-info></account-info>
                 </vk-tabs-item>
-                <vk-tabs-item title="Security">
+                <vk-tabs-item title="Security" :key="Security">
                     <security></security>
                 </vk-tabs-item>
-                <vk-tabs-item title="KYC">
+                <vk-tabs-item title="KYC" :key="KYC">
                     <kyc></kyc>
                 </vk-tabs-item>
-                <vk-tabs-item title="Deposit Address">
+                <vk-tabs-item title="Deposit Address" :key="Deposit Address">
                     <receiving-address></receiving-address>
                 </vk-tabs-item>
-                <vk-tabs-item title="Send Crypto">
+                <vk-tabs-item title="Send Crypto" :key="Send Crypto">
                     <send-money></send-money>
                 </vk-tabs-item>
             </vk-tabs>
