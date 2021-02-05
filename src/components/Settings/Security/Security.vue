@@ -3,6 +3,7 @@
 
 <script>
 import LocalStorage, { Keys, } from '@/utils/localStorage.js';
+import HistoryService from '@/services/HistoryService.js';
 
 const loggedInUser = LocalStorage.get(Keys.username);
 
