@@ -22,6 +22,9 @@ export default {
     data = await HistoryService.authhistoryData();
     let newData = [];
     if (data.error) {
+      /* eslint-disable no-console */
+      console.log(data.error);
+      /* eslint-enable no-console */
 
     } else {
       data.data.forEach((val) => {
