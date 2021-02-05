@@ -208,9 +208,6 @@ class TradeService {
     return {'status':status,'message':'Balance','data':arr,};
   }
 
-  async getPairsList() {
-    return (await ApiCurryBase.get('/pairs-list')).data;
-  }
 
   async getMarginInfo(body) {
     //return (await ApiCurryBase.post('/bitfinex-margin-info', body)).data;
@@ -236,55 +233,10 @@ class TradeService {
     return (await ApiCurryBase.post('/set-bitmex-position-leverage', body)).data;
   }
 
-  async bitmexGetTradingHistory(symbol) {
-    let params = {
-      symbol: symbol,
-    };
-    let response = await axios.post('https://bds.blocknomic.com/get-bitmex-trades', params);
-    return response.data.tokens;
-  }
-  async bitmexGetLiquidationOrders() {
-    return (await ApiCurryBase.post('/bitmex-liquidation-orders')).data;
 
-  }
-  async bitmexWalletSummary() {
-    return (await ApiCurryBase.post('/bitmex-wallet-summary')).data;
-
-  }
-  async bitmexTransferMargin(symbol, amount) {
-    return (await ApiCurryBase.get('/bitmex-transfer-margin', {
-      symbol,
-      amount,
-    })).data;
-
-  }
-  async bitmexRiskLimit(symbol, riskLimit) {
-    return (await ApiCurryBase.get('/bitmex-risk-limit', {
-      symbol,
-      riskLimit,
-    })).data;
-
-  }
   async bitmexClosePosition(symbol) {
     return (await ApiCurryBase.post('/bitmex-close-position', {
       symbol,
-    })).data;
-
-  }
-  async bitmexCancelAllOrderAfter(timeout) {
-    return (await ApiCurryBase.get('/bitmex-cancel-all-order-after', {
-      timeout,
-    })).data;
-
-  }
-  async bitmexDeleteAllOrder(filter) {
-    return (await ApiCurryBase.get('/bitmex-delete-all-order', filter)).data;
-
-  }
-  async bitmexDeleteSingleOrder(orderID, clOrdID) {
-    return (await ApiCurryBase.get('/bitmex-delete-single-order', {
-      orderID,
-      clOrdID,
     })).data;
 
   }
