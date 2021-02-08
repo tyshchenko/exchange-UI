@@ -62,7 +62,7 @@ export default {
     }
   },
   methods: {
-    showme2fa() {
+    async showme2fa() {
       this.show2fa=true;
       let dataqr = await WalletService.loadqr();
       if (dataqr.error) {
@@ -75,7 +75,7 @@ export default {
         this.qrready = true;
       }
     },
-    enable2fa() {
+    async enable2fa() {
       let dataqr = await WalletService.enable2fa();
       if (dataqr.error) {
         /* eslint-disable no-console */
@@ -92,7 +92,7 @@ export default {
 
       }
     },
-    disable2fa() {
+    async disable2fa() {
       let dataqr = await WalletService.disable2fa();
       if (dataqr.error) {
         /* eslint-disable no-console */
