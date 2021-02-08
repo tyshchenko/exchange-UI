@@ -23,8 +23,8 @@ export default {
       history: [],
       kycdone: false,
       username:'',
-      show2fa:true,
-      qrcodevalue:'123',
+      show2fa:false,
+      qrcodevalue:'',
       qrready:false,
     };
   },
@@ -64,12 +64,50 @@ export default {
   methods: {
     showme2fa() {
       this.show2fa=true;
+      let dataqr = await WalletService.loadqr();
+      if (dataqr.error) {
+        /* eslint-disable no-console */
+        console.log(dataqr.error);
+        /* eslint-enable no-console */
+
+      } else {
+        this.qrcodevalue = dataqr.data;
+        this.qrready = true;
+      }
     },
     enable2fa() {
-      this.show2fa=true;
+      let dataqr = await WalletService.enable2fa();
+      if (dataqr.error) {
+        /* eslint-disable no-console */
+        console.log(dataqr.error);
+        /* eslint-enable no-console */
+        this.$showErrorMsg({
+          message: dataqr.error,
+        });
+        
+      } else {
+        this.$showSuccessMsg({
+          message: '2FA Verification enabled',
+        });
+
+      }
     },
     disable2fa() {
-      this.show2fa=true;
+      let dataqr = await WalletService.disable2fa();
+      if (dataqr.error) {
+        /* eslint-disable no-console */
+        console.log(dataqr.error);
+        /* eslint-enable no-console */
+        this.$showErrorMsg({
+          message: dataqr.error,
+        });
+        
+      } else {
+        this.$showSuccessMsg({
+          message: '2FA Verification dasabled',
+        });
+
+      }
     },
   },
 };

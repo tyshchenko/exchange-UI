@@ -18,7 +18,7 @@
             <tbody>
                 <tr v-for="historyRow in history">
                     <th style="text-align: right;">2FA Verification</th>
-                    <td style="display: flex;justify-content: space-between;"><div>Enabled</div> <button style="width: 80px;"  @click="disable2fa()" >Disable</button></td>
+                    <td style="display: flex;justify-content: space-between;"><div>Enabled</div> <div><button style="width: 80px;"  @click="disable2fa()" >Disable</button></div></td>
                 </tr>
 
             </tbody>
@@ -28,13 +28,13 @@
     <div v-else >
       <div v-if="show2fa">
         <span style="text-align:center;font-size: 20px;margin: 0 0 20px 0;">2FA Verification</span>
-        <div style="display: flex;justify-content: space-between;">
-          <div style="padding: 8px;"><vue-qrcode v-if="show2fa" :value="qrcodevalue" /><div v-else >Loading ... </div> </div><button style="width: 80px;"  @click="enable2fa()" >Enable</button>
+        <div style="display: flex;justify-content: center;">
+          <div style="padding: 8px;"><vue-qrcode v-if="qrready" :value="qrcodevalue" /><div v-else >Loading ... </div> </div><div><button style="width: 80px;"  @click="enable2fa()" >Enable</button></div>
         </div>
       </div>
       <div v-else >
-        <div style="display: flex;justify-content: space-between;">
-          <div style="padding: 8px;">2FA Verification <span style="color: red;">Off</span> </div><button style="width: 80px;"  @click="showme2fa()" >Enable</button>
+        <div style="display: flex;justify-content: center;">
+          <div style="padding: 8px;">2FA Verification <span style="color: red;">Off</span> </div><div><button style="width: 80px;"  @click="showme2fa()" >Enable</button></div>
         </div>
       </div>
 

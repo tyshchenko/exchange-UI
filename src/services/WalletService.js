@@ -40,6 +40,48 @@ class WalletService {
     }
     return responce;
   }
+  async loadqr() {
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    let params = [mqttKey,];
+    let method = {
+      'method': 'auth.qr.load',
+      'id':1,
+      'params':params,
+    };
+    let responce = (await ApiCurryBase.post('/', method)).data;
+    if (responce.Expired==1) {
+      EventBus.$emit(EventNames.userSessionExpired);
+    }
+    return responce;
+  }
+  async enable2fa() {
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    let params = [mqttKey,];
+    let method = {
+      'method': 'auth.qr.enable',
+      'id':1,
+      'params':params,
+    };
+    let responce = (await ApiCurryBase.post('/', method)).data;
+    if (responce.Expired==1) {
+      EventBus.$emit(EventNames.userSessionExpired);
+    }
+    return responce;
+  }
+  async disable2fa() {
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    let params = [mqttKey,];
+    let method = {
+      'method': 'auth.qr.disable',
+      'id':1,
+      'params':params,
+    };
+    let responce = (await ApiCurryBase.post('/', method)).data;
+    if (responce.Expired==1) {
+      EventBus.$emit(EventNames.userSessionExpired);
+    }
+    return responce;
+  }
   
   async loadstatus() {
     let mqttKey = LocalStorage.get(Keys.mqtt);
