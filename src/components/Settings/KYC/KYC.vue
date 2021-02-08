@@ -14,7 +14,12 @@ export default {
       activeTab: 'KYC',
       email:loggedInUser,
       displayFlag: false,
-      kyc:{firstname:'',lastname:'',phone:'',country:'',},
+      kyc: {
+        firstname:'',
+        lastname:'',
+        phone:'',
+        country:'',
+        },
     };
   },
   async created() {
@@ -25,7 +30,14 @@ export default {
       /* eslint-enable no-console */
 
     } else {
+      /* eslint-disable no-console */
+      console.log(this.kyc);
+      /* eslint-enable no-console */
       this.kyc = data.data;
+      /* eslint-disable no-console */
+      console.log(data.data);
+      console.log(this.kyc);
+      /* eslint-enable no-console */
     }
   },
   methods: {
