@@ -77,12 +77,12 @@ export default {
     },
     async enable2fa() {
       let dataqr = await WalletService.enable2fa();
-      if (dataqr.error) {
+      if (dataqr.Status != 1) {
         /* eslint-disable no-console */
-        console.log(dataqr.error);
+        console.log(dataqr.data);
         /* eslint-enable no-console */
         this.$showErrorMsg({
-          message: dataqr.error,
+          message: dataqr.data,
         });
         
       } else {
@@ -94,12 +94,12 @@ export default {
     },
     async disable2fa() {
       let dataqr = await WalletService.disable2fa();
-      if (dataqr.error) {
+      if (dataqr.Status != 1) {
         /* eslint-disable no-console */
-        console.log(dataqr.error);
+        console.log(dataqr.data);
         /* eslint-enable no-console */
         this.$showErrorMsg({
-          message: dataqr.error,
+          message: dataqr.data,
         });
         
       } else {
