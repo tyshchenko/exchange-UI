@@ -3,6 +3,7 @@
 
 <script>
 import LocalStorage, { Keys, } from '@/utils/localStorage.js';
+import WalletService from '@/services/WalletService.js';
 
 const loggedInUser = LocalStorage.get(Keys.username);
 
