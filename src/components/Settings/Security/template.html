@@ -27,13 +27,14 @@
     
     <div v-else >
       <div v-if="show2fa">
+        <span style="text-align:center;font-size: 20px;margin: 0 0 20px 0;">2FA Verification</span>
         <div style="display: flex;justify-content: space-between;">
-          <div>2FA Verification </div><button style="width: 80px;"  @click="enable2fa()" >Enable</button>
+          <div style="padding: 8px;">QRCODE HERE </div><button style="width: 80px;"  @click="enable2fa()" >Enable</button>
         </div>
       </div>
       <div v-else >
         <div style="display: flex;justify-content: space-between;">
-          <div>2FA Verification Off </div><button style="width: 80px;"  @click="showme2fa()" >Enable</button>
+          <div style="padding: 8px;">2FA Verification <span style="color: red;">Off</span> </div><button style="width: 80px;"  @click="showme2fa()" >Enable</button>
         </div>
       </div>
 
