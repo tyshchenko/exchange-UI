@@ -14,7 +14,7 @@ export default {
       activeTab: 'KYC',
       email:loggedInUser,
       displayFlag: false,
-      kyc:{firstname:"",lastname:"",phone:"",country:"",},
+      kyc:{firstname:'',lastname:'',phone:'',country:'',},
     };
   },
   async created() {
