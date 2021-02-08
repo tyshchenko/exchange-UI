@@ -14,6 +14,8 @@ export default {
       activeTab: 'Account Info',
       email:loggedInUser,
       displayFlag: false,
+      enabled2fa: false,
+      kycdone: false,
     };
   },
   methods: {

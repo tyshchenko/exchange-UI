@@ -12,11 +12,13 @@
                 </tr>
                 <tr>
                     <th style="text-align: right;">2FA Auth:</th>
-                    <td style="display: flex;justify-content: space-between;"><div>Off </div><button style="width: 80px;"  @click="goto2fa()" >Enable</button></td>
+                    <td v-if="enabled2fa" style="display: flex;justify-content: space-between;"><div>On </div></td>
+                    <td v-else style="display: flex;justify-content: space-between;"><div>Off </div><button style="width: 80px;"  @click="goto2fa()" >Enable</button></td>
                 </tr>
                 <tr>
                     <th style="text-align: right;">Account verification:</th>
-                    <td style="display: flex;justify-content: space-between;"><div>GENERAL </div><button style="width: 80px;" @click="gotokyc()" >Verify</button></td>
+                    <td  v-if="kycdone" style="display: flex;justify-content: space-between;"><div>GENERAL </div><button style="width: 80px;" @click="gotokyc()" >Verify</button></td>
+                    <td  v-else style="display: flex;justify-content: space-between;"><div>VERIFIED </div></td>
                 </tr>
             </tbody>
         </table>
