@@ -5,11 +5,15 @@
 import LocalStorage, { Keys, } from '@/utils/localStorage.js';
 import HistoryService from '@/services/HistoryService.js';
 import WalletService from '@/services/WalletService.js';
+import VueQrcode from 'vue-qrcode';
 
 const loggedInUser = LocalStorage.get(Keys.username);
 
 export default {
   name: 'security',
+  components: {
+    VueQrcode,
+  },
   data () {
     return {
       activeTab: 'Security',
@@ -19,7 +23,9 @@ export default {
       history: [],
       kycdone: false,
       username:'',
-      show2fa:false,
+      show2fa:true,
+      qrcodevalue:'123',
+      qrready:false,
     };
   },
   async created() {
