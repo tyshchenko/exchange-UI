@@ -89,7 +89,7 @@ export default {
         this.$showSuccessMsg({
           message: '2FA Verification enabled',
         });
-
+        this.enabled2fa = true;
       }
     },
     async disable2fa() {
@@ -106,7 +106,7 @@ export default {
         this.$showSuccessMsg({
           message: '2FA Verification dasabled',
         });
-
+        this.enabled2fa = false;
       }
     },
   },
