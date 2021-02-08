@@ -13,7 +13,39 @@ export default {
       activeTab: 'KYC',
       email:loggedInUser,
       displayFlag: false,
+      kyc:{firstname:"",lastname:"",phone:"",country:"",},
     };
+  },
+  async created() {
+    let data = await WalletService.loadkyc();
+    if (data.error) {
+      /* eslint-disable no-console */
+      console.log(data.error);
+      /* eslint-enable no-console */
+
+    } else {
+      this.kyc = data.data;
+    }
+  },
+  methods: {
+    async save() {
+      this.$showSuccessMsg({
+        message: 'Saving personal information ... ',
+      });
+      const response = await WalletService.savekyc(this.kyc);
+      if (response.Status == 1) {
+        this.$showSuccessMsg({
+          message: 'Done',
+        });
+      } else {
+        this.$showErrorMsg({
+          message: response.Result,
+        });
+        /* eslint-disable no-console */
+        console.log(response);
+        /* eslint-enable no-console */
+      }
+    },
   },
 };
 

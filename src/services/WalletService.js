@@ -1,5 +1,6 @@
 import ApiCurryBase from './ApiCurryBase';
 import EventBus, { EventNames, } from '@/eventBuses/default';
+import LocalStorage, { Keys, } from '@/utils/localStorage.js';
 
 class WalletService {
 
@@ -25,8 +26,9 @@ class WalletService {
     return responce;
   }
 
-  async loadkyc(requestBody) {
-    let params = [requestBody.login,];
+  async loadkyc() {
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    let params = [mqttKey,];
     let method = {
       'method': 'auth.kyc.load',
       'id':1,
@@ -39,8 +41,9 @@ class WalletService {
     return responce;
   }
   
-  async loadstatus(requestBody) {
-    let params = [requestBody.login,];
+  async loadstatus() {
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    let params = [mqttKey,];
     let method = {
       'method': 'auth.user.status',
       'id':1,
@@ -54,7 +57,8 @@ class WalletService {
   }
   
   async savekyc(requestBody) {
-    let params = [requestBody.login,requestBody.firstname,requestBody.lastname,requestBody.phone,requestBody.country,];
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    let params = [mqttKey,requestBody.firstname,requestBody.lastname,requestBody.phone,requestBody.country,];
     let method = {
       'method': 'auth.kyc.save',
       'id':1,
