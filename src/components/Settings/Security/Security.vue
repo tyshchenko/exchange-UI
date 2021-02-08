@@ -14,6 +14,7 @@ export default {
       activeTab: 'Security',
       email:loggedInUser,
       displayFlag: false,
+      enabled2fa: false,
       history: [],
     };
   },
