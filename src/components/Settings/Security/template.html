@@ -12,6 +12,48 @@
       <p style="font-size: 12px; margin-bottom: 4px; line-height: 150%;"></p>
     </div>
     
+    
+    <div v-if="enabled2fa" >
+        <table class="svh-table display nowrap" style="width:100%;font-size: 10px;" data-scroll-x="true" data-scroll-y="294px">
+            <tbody>
+                <tr v-for="historyRow in history">
+                    <th style="text-align: right;">2FA Verification</th>
+                    <td style="display: flex;justify-content: space-between;"><div>Enabled</div> <button style="width: 80px;"  @click="disable2fa()" >Disable</button></td>
+                </tr>
+
+            </tbody>
+        </table>        
+    </div>
+    
+    <div v-else >
+      <div v-if="show2fa">
+        <div style="display: flex;justify-content: space-between;">
+          <div>2FA Verification </div><button style="width: 80px;"  @click="enable2fa()" >Enable</button>
+        </div>
+      </div>
+      <div v-else >
+        <div style="display: flex;justify-content: space-between;">
+          <div>2FA Verification Off </div><button style="width: 80px;"  @click="show2fa()" >Enable</button>
+        </div>
+      </div>
+
+      
+    </div>
+    <div style="height:120px;">
+      <p style="font-size: 12px; margin-bottom: 4px; line-height: 150%;"></p>
+    </div>
+
+        <table class="svh-table display nowrap" style="width:100%;font-size: 10px;" data-scroll-x="true" data-scroll-y="294px">
+            <tbody>
+                <tr v-for="historyRow in history">
+                    <th style="text-align: right;">{{ historyRow.time }}</th>
+                    <td>{{ historyRow.action }}</td>
+                </tr>
+
+            </tbody>
+        </table>    
+    
+    
     <div>
       <span style="text-align:center;font-size: 20px;margin: 0 0 20px 0;">Your recent activity</span>
     </div>

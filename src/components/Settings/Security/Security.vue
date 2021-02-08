@@ -16,6 +16,9 @@ export default {
       displayFlag: false,
       enabled2fa: false,
       history: [],
+      kycdone: false,
+      username:'',
+      show2fa:false,
     };
   },
   async created() {
@@ -39,6 +42,28 @@ export default {
       });
     }
     this.history = newData;
+    let datastatus = await WalletService.loadstatus();
+    if (datastatus.error) {
+      /* eslint-disable no-console */
+      console.log(datastatus.error);
+      /* eslint-enable no-console */
+
+    } else {
+      this.enabled2fa = datastatus.data.otp;
+      this.kycdone = datastatus.data.kyc;
+      this.username = datastatus.data.username;
+    }
+  },
+  methods: {
+    show2fa() {
+      this.show2fa=true;
+    },
+    enable2fa() {
+      this.show2fa=true;
+    },
+    disable2fa() {
+      this.show2fa=true;
+    },
   },
 };
 
