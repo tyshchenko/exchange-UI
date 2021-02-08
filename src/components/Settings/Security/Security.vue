@@ -4,6 +4,7 @@
 <script>
 import LocalStorage, { Keys, } from '@/utils/localStorage.js';
 import HistoryService from '@/services/HistoryService.js';
+import WalletService from '@/services/WalletService.js';
 
 const loggedInUser = LocalStorage.get(Keys.username);
 
@@ -55,7 +56,7 @@ export default {
     }
   },
   methods: {
-    show2fa() {
+    showme2fa() {
       this.show2fa=true;
     },
     enable2fa() {
