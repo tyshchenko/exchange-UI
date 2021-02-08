@@ -31,8 +31,8 @@ export default {
 
         let obj = {};
 
-        obj.action = val[1] || '-';
-        obj.time = new Date(val[0]) || '-';
+        obj.action = val.action || '-';
+        obj.time = val.time || '-';
         newData.push(obj);
 
       });
