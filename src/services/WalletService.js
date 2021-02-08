@@ -1,4 +1,5 @@
 import ApiCurryBase from './ApiCurryBase';
+import EventBus, { EventNames, } from '@/eventBuses/default';
 
 class WalletService {
 
@@ -23,7 +24,50 @@ class WalletService {
     let responce = (await ApiCurryBase.post('/', method)).data;
     return responce;
   }
+
+  async loadkyc(requestBody) {
+    let params = [requestBody.login,];
+    let method = {
+      'method': 'auth.kyc.load',
+      'id':1,
+      'params':params,
+    };
+    let responce = (await ApiCurryBase.post('/', method)).data;
+    if (responce.Expired==1) {
+      EventBus.$emit(EventNames.userSessionExpired);
+    }
+    return responce;
+  }
   
+  async loadstatus(requestBody) {
+    let params = [requestBody.login,];
+    let method = {
+      'method': 'auth.user.status',
+      'id':1,
+      'params':params,
+    };
+    let responce = (await ApiCurryBase.post('/', method)).data;
+    if (responce.Expired==1) {
+      EventBus.$emit(EventNames.userSessionExpired);
+    }
+    return responce;
+  }
+  
+  async savekyc(requestBody) {
+    let params = [requestBody.login,requestBody.firstname,requestBody.lastname,requestBody.phone,requestBody.country,];
+    let method = {
+      'method': 'auth.kyc.save',
+      'id':1,
+      'params':params,
+    };
+    let responce = (await ApiCurryBase.post('/', method)).data;
+    if (responce.Expired==1) {
+      EventBus.$emit(EventNames.userSessionExpired);
+    }
+    return responce;
+  }
+  
+
   async register(requestBody) {
     /* eslint-disable no-console */
     console.log(requestBody);

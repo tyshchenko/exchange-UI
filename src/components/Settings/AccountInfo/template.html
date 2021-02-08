@@ -17,8 +17,8 @@
                 </tr>
                 <tr>
                     <th style="text-align: right;">Account verification:</th>
-                    <td  v-if="kycdone" style="display: flex;justify-content: space-between;"><div>GENERAL </div><button style="width: 80px;" @click="gotokyc()" >Verify</button></td>
-                    <td  v-else style="display: flex;justify-content: space-between;"><div>VERIFIED </div></td>
+                    <td  v-if="kycdone" style="display: flex;justify-content: space-between;"><div>VERIFIED </div></td>
+                    <td  v-else  style="display: flex;justify-content: space-between;"><div>GENERAL </div><button style="width: 80px;" @click="gotokyc()" >Verify</button></td>
                 </tr>
             </tbody>
         </table>
