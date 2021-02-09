@@ -8,7 +8,7 @@ export default {
   name: 'send-money',
   data() {
     return {
-      supportedCoins: ['btc', 'anker', ],
+      supportedCoins: ['btc', 'ank', ],
       formValue: {
         amount: '',
         recievingAddress: '',
