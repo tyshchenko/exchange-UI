@@ -42,7 +42,7 @@ export default {
   async created() {
     let fees = (await WithdrawlService.getWithdrawalFees()).data;
     fees.forEach((element) => {
-      this.fees[element.currency] = parseFloat(element.fees.toString());
+      this.fees[element.currency.toLowerCase()] = parseFloat(element.fees.toString());
     });
     this.withdrawalFee = this.fees[this.formValue.coin];
   },
