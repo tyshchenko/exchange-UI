@@ -1,5 +1,6 @@
 import ApiCurryBase from './ApiCurryBase';
 import LocalStorage, { Keys, } from '@/utils/localStorage.js';
+import EventBus, { EventNames, } from '@/eventBuses/default';
 
 class WithdrawlService {
   async withdrawCrypto(body) {
