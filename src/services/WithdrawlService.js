@@ -7,6 +7,7 @@ class WithdrawlService {
       .data;
   }
   async sendOTP(body) {
+    let mqttKey = LocalStorage.get(Keys.mqtt);
     return (await ApiCurryBase.post('/send-cryptowithdrawl-email-otp',body)).data;
   }
   async getWithdrawalFees() {
