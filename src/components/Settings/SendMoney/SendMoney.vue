@@ -89,8 +89,8 @@ export default {
       // }
       if (!validationErrors.length) {
         response = await WithdrawlService.sendOTP(this.formValue);
-        if (!response.status) {
-          validationErrors.push(...(response.data.errors || []));
+        if (response.status != 1) {
+          validationErrors.push(...(response.data.Result || []));
         }
       }
       if (validationErrors.length) {

@@ -86,7 +86,7 @@ export default {
   },
   async created() {
     localStorage.shouldOpen = true;
-    ExchangeDataEventBus.$emit('ticker-connect');
+    //ExchangeDataEventBus.$emit('ticker-connect');
 
   },
   mounted() {
