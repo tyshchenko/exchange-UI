@@ -77,7 +77,7 @@ export default {
         validationErrors.push('Invalid Amount');
         // isAmountValid = false;
       }
-      if ((Number(this.formValue.amount) > Number(this.balance[this.formValue.coin.toUpperCase()].available))) {
+      if (Number(this.formValue.amount) > (Number(this.balance[this.formValue.coin.toUpperCase()].available) + Number(this.fees[this.formValue.coin]) )) {
         validationErrors.push('Insufficient Amount');
         // isAmountValid = false;
       }
@@ -132,8 +132,14 @@ export default {
       if (!validationErrors.length) {
         let response = await WithdrawlService.withdrawCrypto(this.formValue);
         if (response.Status != 1) {
-          validationErrors.push(...(response.data.Result || []));
+          validationErrors.push(response.data.Result);
+          /* eslint-disable no-console */
+          console.log('Status!=1');
+          /* eslint-enable no-console */
         }
+        /* eslint-disable no-console */
+        console.log(response);
+        /* eslint-enable no-console */
       }
       if (validationErrors.length) {
         this.$showErrorMsg({

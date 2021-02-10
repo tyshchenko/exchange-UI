@@ -76,7 +76,7 @@ export default {
         validationErrors.push('Invalid Amount');
         // isAmountValid = false;
       }
-      if ((Number(this.formValue.amount) > Number(this.balance[this.formValue.coin.toUpperCase()].available))) {
+      if (Number(this.formValue.amount) > (Number(this.balance[this.formValue.coin.toUpperCase()].available) + Number(this.fees[this.formValue.coin]) )) {
         validationErrors.push('Insufficient Amount');
         // isAmountValid = false;
       }
