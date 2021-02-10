@@ -3,12 +3,14 @@
 <script>
 import { stringArrayToHtmlList, } from '@/utils/utility';
 import WithdrawlService from '@/services/WithdrawlService';
+import TradeService from '@/services/TradeService';
 
 export default {
   name: 'send-money',
   data() {
     return {
       supportedCoins: ['btc', 'ank', ],
+      balance:[],
       formValue: {
         amount: '',
         recievingAddress: '',
@@ -45,6 +47,8 @@ export default {
       this.fees[element.currency.toLowerCase()] = parseFloat(element.fees.toString());
     });
     this.withdrawalFee = this.fees[this.formValue.coin];
+    
+    this.balance =(await TradeService.getBalanses()).data;
   },
   methods: {
     getStatus(coin) {

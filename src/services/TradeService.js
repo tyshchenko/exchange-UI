@@ -207,6 +207,20 @@ class TradeService {
     }
     return {'status':status,'message':'Balance','data':arr,};
   }
+  
+  async getBalanses() {
+    let mqttKey = LocalStorage.get(Keys.mqtt);
+    let response = await ApiCurryBase.post('/', {'method': 'balance.query','id':1, 'params':[mqttKey,],});
+    let arr = [];
+    let data = response.data;
+    let status = true;
+    if (data.Expired==1) {
+      EventBus.$emit(EventNames.userSessionExpired);
+      status = false;
+    } 
+    return {'status':status,'message':'Balance','data':data.result,};
+  }
+
 
 
   async getMarginInfo(body) {

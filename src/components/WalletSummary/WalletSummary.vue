@@ -1,7 +1,6 @@
 <template src="./template.html"></template>
 
 <script>
-import WalletService from '@/services/WalletService.js';
 import Spinner from '@/components/Spinner/Spinner.vue';
 import TradeService from '@/services/TradeService';
 
@@ -29,34 +28,7 @@ export default {
   methods: {
     async creating () {
       this.bitfinexSummary =(await TradeService.getLedger()).data;
-      let data = await WalletService.bitfinexWalletSummary();
-      let newData = [];
-      if(data.error) {
-        this.spinnerFlag = false;
-        this.initialData = [];
-        this.$showErrorMsg({
-          message: 'Notice: Invalid API-KEY or API-KEYS not Entered.',
-        });
-      } else {
-        this.spinnerFlag = false;
-        this.initialData = [];
-        data.data.forEach((val) => {
-          let obj = {};
-          if(val[5]>0) {
-            obj.id = val[0] || '-';
-            obj.currency = val[1] || '-';
-            obj.currencyName = val[2] || '-';
-            obj.status = val[3] || '-';
-            obj.movementLastUpdated = new Date(val[4]) || '-';
-            obj.amount = val[5] || '-';
-            obj.fees = (val[6]* (-1)) || '-';
-            obj.destinationAddress = val[7] || '-';
-            obj.transactionHash = val[8] || '-';
-            newData.push(obj);
-          }
-        });
-      }
-      this.initialData = newData;
+
     },
 
   },
