@@ -124,7 +124,7 @@ export default {
       });
     },
     sendmax() {
-      this.formValue.amount = (Number(this.balance[this.formValue.coin.toUpperCase()].available) - Number(this.fees[this.formValue.coin])).toFixed();
+      this.formValue.amount = (Number(this.balance[this.formValue.coin.toUpperCase()].available) - Number(this.fees[this.formValue.coin])).toFixed(8);
     },
     async confirmWithdrawl() {
       this.$store.commit('addLoaderTask', 1, false);
