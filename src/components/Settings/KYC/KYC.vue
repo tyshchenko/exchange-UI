@@ -19,7 +19,7 @@ export default {
         lastname:'',
         phone:'',
         country:'',
-        },
+      },
     };
   },
   async created() {
