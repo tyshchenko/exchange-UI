@@ -36,7 +36,7 @@
 
         <vk-grid class="f1-form-grid">
                 <div class="uk-width-1-1">
-                        <div style="color: var(--primary-text-color);" class="">Withdrawal Fee: &nbsp; {{ withdrawalFee }} {{ formValue.coin.toUpperCase() }}</div>
+                        <div style="color: var(--primary-text-color);" class="">Withdrawal Fee: &nbsp; {{ withdrawalFee }} {{ formValue.coin.toUpperCase() }} &nbsp;&nbsp; Avaiable balance: &nbsp; {{ balance[formValue.coin.toUpperCase()] }} {{ formValue.coin.toUpperCase() }}</div>
                     </div>
             <div class="uk-width-1-1 uk-grid-margin">
                 <vk-button class="pl40 pr40" htmlType="submit">Withdraw</vk-button>

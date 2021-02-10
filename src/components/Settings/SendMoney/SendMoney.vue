@@ -49,6 +49,7 @@ export default {
     this.withdrawalFee = this.fees[this.formValue.coin];
     
     this.balance =(await TradeService.getBalanses()).data;
+    this.balance.ANK = this.balance.ANKER;
   },
   methods: {
     getStatus(coin) {
@@ -93,7 +94,7 @@ export default {
       // }
       if (!validationErrors.length) {
         response = await WithdrawlService.sendOTP(this.formValue);
-        if (response.status != 1) {
+        if (response.Status != 1) {
           validationErrors.push(...(response.data.Result || []));
         }
       }
@@ -126,8 +127,8 @@ export default {
       }
       if (!validationErrors.length) {
         let response = await WithdrawlService.withdrawCrypto(this.formValue);
-        if (!response.status) {
-          validationErrors.push(...(response.data.errors || []));
+        if (response.Status != 1) {
+          validationErrors.push(...(response.data.Result || []));
         }
       }
       if (validationErrors.length) {
