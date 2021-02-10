@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       supportedCoins: ['btc',  'ank', ],
-      balance:[],
+      balance:['BTC':0,'ETH':0,'ANK':0,],
       formValue: {
         amount: '',
         recievingAddress: '',
