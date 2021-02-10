@@ -28,7 +28,7 @@ export default {
   methods: {
     async creating () {
       this.bitfinexSummary =(await TradeService.getLedger()).data;
-
+      this.spinnerFlag = false;
     },
 
   },
