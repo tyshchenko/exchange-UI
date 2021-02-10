@@ -77,6 +77,10 @@ export default {
         validationErrors.push('Invalid Amount');
         // isAmountValid = false;
       }
+      if ((Number(this.formValue.amount) > Number(this.balance[this.formValue.coin.toUpperCase()].available))) {
+        validationErrors.push('Insufficient Amount');
+        // isAmountValid = false;
+      }
 
       if (!this.formValue.recievingAddress)
         validationErrors.push('Recieving Address is required');
