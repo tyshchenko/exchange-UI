@@ -135,14 +135,8 @@ export default {
       if (!validationErrors.length) {
         let response = await WithdrawlService.withdrawCrypto(this.formValue);
         if (response.Status != 1) {
-          validationErrors.push(response.data.Result);
-          /* eslint-disable no-console */
-          console.log('Status!=1');
-          /* eslint-enable no-console */
+          validationErrors.push(response.Result);
         }
-        /* eslint-disable no-console */
-        console.log(response);
-        /* eslint-enable no-console */
       }
       if (validationErrors.length) {
         this.$showErrorMsg({

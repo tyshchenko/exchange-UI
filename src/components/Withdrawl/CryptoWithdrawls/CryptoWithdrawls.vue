@@ -141,7 +141,7 @@ export default {
       if (!validationErrors.length) {
         let response = await WithdrawlService.withdrawCrypto(this.formValue);
         if (response.Status != 1) {
-          validationErrors.push(...(response.data.Result || []));
+          validationErrors.push(response.Result);
         }
       }
       if (validationErrors.length) {
