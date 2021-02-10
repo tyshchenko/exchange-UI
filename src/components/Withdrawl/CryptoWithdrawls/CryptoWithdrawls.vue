@@ -76,7 +76,7 @@ export default {
         validationErrors.push('Invalid Amount');
         // isAmountValid = false;
       }
-      if (Number(this.formValue.amount) > (Number(this.balance[this.formValue.coin.toUpperCase()].available) + Number(this.fees[this.formValue.coin]) )) {
+      if (Number(this.formValue.amount) > (Number(this.balance[this.formValue.coin.toUpperCase()].available) - Number(this.fees[this.formValue.coin]) )) {
         validationErrors.push('Insufficient Amount');
         // isAmountValid = false;
       }
@@ -128,6 +128,9 @@ export default {
       this.$showInfoMsg({
         message: 'Withdrawl request cancelled by user.',
       });
+    },
+    sendmax() {
+      this.formValue.amount = Number(this.balance[this.formValue.coin.toUpperCase()].available) - Number(this.fees[this.formValue.coin]);
     },
     async confirmWithdrawl() {
       this.$store.commit('addLoaderTask', 1, false);
