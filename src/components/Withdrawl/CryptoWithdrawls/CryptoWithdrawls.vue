@@ -98,7 +98,7 @@ export default {
       if (!validationErrors.length) {
         response = await WithdrawlService.sendOTP(this.formValue);
         if (response.Status != 1) {
-          validationErrors.push(...(response.data.Result || []));
+          validationErrors.push(response.Result);
         }
       }
       /* eslint-disable no-console */
@@ -130,7 +130,7 @@ export default {
       });
     },
     sendmax() {
-      this.formValue.amount = Number(this.balance[this.formValue.coin.toUpperCase()].available) - Number(this.fees[this.formValue.coin]);
+      this.formValue.amount = (Number(this.balance[this.formValue.coin.toUpperCase()].available) - Number(this.fees[this.formValue.coin])).toFixed();
     },
     async confirmWithdrawl() {
       this.$store.commit('addLoaderTask', 1, false);
