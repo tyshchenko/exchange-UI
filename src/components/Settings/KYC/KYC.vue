@@ -72,8 +72,8 @@ export default {
       let config = {
         header : {
           'Content-Type' : 'image/png'
-        }
-      }
+        },
+      };
 
       axios.put(
         URL, 
@@ -88,7 +88,7 @@ export default {
             message: 'Uploading file ... ',
           });
         }
-      )
+      );
     },
   },
 };
