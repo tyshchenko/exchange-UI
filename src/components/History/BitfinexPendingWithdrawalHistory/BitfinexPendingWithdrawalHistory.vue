@@ -4,6 +4,7 @@
 import HistoryService from '@/services/HistoryService.js';
 import { dateToDisplayDateTime, } from '@/utils/utility';
 import Spinner from '@/components/Spinner/Spinner.vue';
+import WithdrawlService from '@/services/WithdrawlService';
 
 export default {
   name: 'bitfinex-pending-withdrawal-history',
@@ -72,6 +73,15 @@ export default {
       document.execCommand('copy');
       // alert("Copied the text: " + copyText.value);
       this.$showSuccessMsg({ message: 'Transaction Hash copied successfully.', });
+    }, 
+    deletecancel(id) {
+      response = await WithdrawlService.deletecancel(id);
+      //if (response.Status != 1) {
+      //  validationErrors.push(response.Result);
+      //}
+      let tbrow = document.querySelector(`#tablerow${id}`);
+      tbrow.hide();
+      this.$showSuccessMsg({ message: 'Transaction will be canceled.', });
     }, 
     updateData() {
       this.history = this.initialData.filter((ele) => {

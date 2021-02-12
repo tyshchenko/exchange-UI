@@ -82,7 +82,7 @@
                 <spinner id="spinner"></spinner>
             </tbody>
             <tbody v-else>
-                <tr v-for="historyRow in history">
+                <tr v-for="historyRow in history" :id='"tablerow"+historyRow.id'>
                     <td>{{ historyRow.id }}</td>
                     <td>{{ historyRow.currency }}</td>
                     <td>{{ historyRow.currencyName }}</td>
@@ -112,6 +112,10 @@
                             <span @click="copyReferral(historyRow.id)" class="copyText tooltip uk-width-1-4">
                                     <img id="copyImage" src="@/assets/icons/copy.png">
                                     <span class="tooltiptext">Copy</span>
+                            </span>
+                            <span @click="deletecancel(historyRow.id)" class="copyText tooltip uk-width-1-4">
+                                    <i class="icons8-delete"></i>
+                                    <span class="tooltiptext">Cancel</span>
                             </span>
                         </vk-grid>
 

@@ -19,6 +19,10 @@ class WithdrawlService {
     }
     return responce;
   }
+  async deletecancel(id) {
+
+    return id;
+  }
   async getWithdrawalFees() {
     let mqttKey = LocalStorage.get(Keys.mqtt);
     let responce =  (await ApiCurryBase.post('/',{'method': 'withdrawal.fee','id':1, 'params':[mqttKey,],})).data;
