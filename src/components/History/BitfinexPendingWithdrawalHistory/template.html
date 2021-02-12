@@ -76,6 +76,7 @@
                     <th id="tableHeaders">Movement Last Updated On</th>
                     <th id="tableHeaders">Destination Address</th>
                     <th id="tableHeaders">Transaction Hash</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody v-if="spinnerFlag">
@@ -100,7 +101,7 @@
                             </div>
                         </vk-grid>
                     </td>
-                    <td></td>
+                    
                     <td>
                         <vk-grid class="f1-form-grid">
                             <div class="uk-width-3-4">
@@ -110,7 +111,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <span @click="copyReferral(historyRow.id)" class="copyText tooltip uk-width-1-4">
+                            <span @click="copyReferral(historyRow.id)" class="copyText tooltip uk-width-1-4" style="padding-top: 10px;">
                                     <img id="copyImage" src="@/assets/icons/copy.png">
                                     <span class="tooltiptext">Copy</span>
                             </span>
@@ -119,7 +120,7 @@
 
                     </td>
                     <td>
-                            <span @click="deletecancel(historyRow.id)" class="copyText tooltip c-red">
+                            <span @click="deletecancel(historyRow.id)" class="copyText tooltip c-red" style="padding-right: 20px;">
                                     <i class="icons8-delete"></i>
                                     <span class="tooltiptext">Cancel</span>
                             </span>

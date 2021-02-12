@@ -84,7 +84,7 @@ export default {
       //  validationErrors.push(response.Result);
       //}
       let tbrow = document.querySelector(`#tablerow${id}`);
-      tbrow.addClass("hidden");
+      tbrow.classList.add("hidden");
       this.$showSuccessMsg({ message: 'Transaction will be canceled.', });
     }, 
     updateData() {
