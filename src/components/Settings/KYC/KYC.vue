@@ -4,6 +4,7 @@
 <script>
 import LocalStorage, { Keys, } from '@/utils/localStorage.js';
 import WalletService from '@/services/WalletService.js';
+import axios from 'axios';
 
 const loggedInUser = LocalStorage.get(Keys.username);
 
