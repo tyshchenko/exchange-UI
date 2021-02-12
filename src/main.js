@@ -30,7 +30,7 @@ import '@/assets/css/colors.css';
 import '@/services/exchangeSockets/new_bitfinex';
 import '@/services/exchangeSockets/newApiEngine';
 
-const device = new WebSocket('ws://134.209.199.242:8090');
+const device = new WebSocket('ws://e.coinbae.org:8090');
 
 
 device.onopen = () => {

@@ -19,7 +19,7 @@ class Bitfinex {
         // selectedPair: store.getters.selectedPair,
         defaultPair: 'ANKER/BTC',
         selectedPair: 'ANKER/BTC',
-        baseAddress: 'ws://134.209.199.242:8090',
+        baseAddress: 'ws://e.coinbae.org:8090',
         streams: ['trades', 'candles', 'books', 'ticker', ],
         channelIDs: {
           candles: '',
