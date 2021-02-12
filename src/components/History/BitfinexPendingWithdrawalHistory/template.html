@@ -83,7 +83,7 @@
                 <spinner id="spinner"></spinner>
             </tbody>
             <tbody v-else>
-                <tr v-for="historyRow in history" :id='"tablerow"+historyRow.id'>
+                <tr v-for="historyRow in history" :id='"tablerow"+historyRow.transactionHash'>
                     <td>{{ historyRow.id }}</td>
                     <td>{{ historyRow.currency }}</td>
                     <td>{{ historyRow.currencyName }}</td>
@@ -120,7 +120,7 @@
 
                     </td>
                     <td>
-                            <span @click="deletecancel(historyRow.id)" class="copyText tooltip c-red" style="padding-right: 20px;">
+                            <span @click="deletecancel(historyRow.transactionHash)" class="copyText tooltip c-red" style="padding-right: 20px;">
                                     <i class="icons8-delete"></i>
                                     <span class="tooltiptext">Cancel</span>
                             </span>
