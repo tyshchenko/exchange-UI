@@ -100,6 +100,7 @@
                             </div>
                         </vk-grid>
                     </td>
+                    <td></td>
                     <td>
                         <vk-grid class="f1-form-grid">
                             <div class="uk-width-3-4">
@@ -113,12 +114,15 @@
                                     <img id="copyImage" src="@/assets/icons/copy.png">
                                     <span class="tooltiptext">Copy</span>
                             </span>
-                            <span @click="deletecancel(historyRow.id)" class="copyText tooltip uk-width-1-4">
+
+                        </vk-grid>
+
+                    </td>
+                    <td>
+                            <span @click="deletecancel(historyRow.id)" class="copyText tooltip c-red">
                                     <i class="icons8-delete"></i>
                                     <span class="tooltiptext">Cancel</span>
                             </span>
-                        </vk-grid>
-
                     </td>
                 </tr>
                 <tr v-if="history.length === 0">
