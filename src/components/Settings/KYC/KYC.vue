@@ -59,6 +59,36 @@ export default {
         /* eslint-enable no-console */
       }
     },
+    uploadImage(event) {
+
+      const URL = '/api/upload'; 
+
+      let data = new FormData();
+      data.append('name', loggedInUser);
+      data.append('id', event.target.id);
+      data.append('file', event.target.files[0]); 
+
+      let config = {
+        header : {
+          'Content-Type' : 'image/png'
+        }
+      }
+
+      axios.put(
+        URL, 
+        data,
+        config
+      ).then(
+        response => {
+          /* eslint-disable no-console */
+          console.log(response);
+          /* eslint-enable no-console */
+          this.$showSuccessMsg({
+            message: 'Uploading file ... ',
+          });
+        }
+      )
+    },
   },
 };
 
