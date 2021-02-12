@@ -35,18 +35,18 @@ export default {
           message: response.Result,
         });
       } else {
-        this.$showErrorMsg({
-          message: response.Result,
-        });
-        /* eslint-disable no-console */
-        console.log(response);
-        /* eslint-enable no-console */
         if (response.Status == 100) {
           this.showOTP = true;
-          /* eslint-disable no-console */
-          console.log(response);
-          /* eslint-enable no-console */
+          this.$showSuccessMsg({
+            message: 'Please enter 2FA ',
+          });
+        } else {
+          this.$showErrorMsg({
+            message: response.Result,
+          });
         }
+        
+        
       }
     },
     showDepositModal() {
