@@ -74,7 +74,7 @@ export default {
       // alert("Copied the text: " + copyText.value);
       this.$showSuccessMsg({ message: 'Transaction Hash copied successfully.', });
     }, 
-    deletecancel(id) {
+    async deletecancel(id) {
       response = await WithdrawlService.deletecancel(id);
       //if (response.Status != 1) {
       //  validationErrors.push(response.Result);
