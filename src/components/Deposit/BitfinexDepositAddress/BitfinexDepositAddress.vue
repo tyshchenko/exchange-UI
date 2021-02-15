@@ -27,7 +27,7 @@ export default {
       if(data.Status==1) {
         if(data.Result) {
           this.destinationAddress = data.Address;
-          this.currentImgUrl = process.env.VUE_APP_CURRY_API_BASE_URL + 'qr/' + data.Address;
+          this.currentImgUrl = process.env.VUE_APP_CURRY_API_BASE_URL + 'qr/' + data.Address + '?coin=' + newVal;
         } else {
           this.destinationAddress = '';
         }
